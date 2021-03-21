@@ -19,15 +19,13 @@
     </label>
 
     <div class="timeline">
-        <div
-            class="timeline__app"
+        <Appointment
             v-for="(app, index) in calendar1"
             :key="index"
+            :cal1="militaryToMinutes(calendar1[index][0])"
+            :cal2="militaryToMinutes(calendar1[index][1])"
         >
-            <!-- {{
-            <div>{{ app }}</div>
-            }} -->
-        </div>
+        </Appointment>
     </div>
 
     <h2>{{ name2 }}</h2>
@@ -39,8 +37,10 @@
 </template>
 
 <script>
+import Appointment from '@/components/Appointment.vue';
 export default {
     name: 'LandingPage',
+    components: {Appointment},
     data() {
         return {
             name1: null,
@@ -77,13 +77,5 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-}
-.timeline__app {
-    width: 20px;
-    height: 40px;
-    background-color: $color-2;
-    margin: 5px 0px 5px 5px;
-    //   border: 1px solid $color-3;
-    border-radius: 5px;
 }
 </style>
