@@ -1,5 +1,7 @@
 <template>
-    <div class="timeline__app" :style="{ width }">{{ cal1 }}</div>
+    <div class="timeline__app" :style="{ width }">
+        {{ cal1 }}/{{ cal2 }}
+    </div>
 </template>
 
 <script>
@@ -8,7 +10,7 @@ export default {
     props: ['cal1', 'cal2'],
     data() {
         return {
-            width: `calc(${this.cal2}px - ${this.cal1}px)`,
+            width: `calc(${((this.cal2 - this.cal1) / 1440) * 100}%)`,
             appStyles: {
                 // width: `calc(${cal2} - ${cal1} / 1440})`,
             },
