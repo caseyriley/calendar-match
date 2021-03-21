@@ -19,6 +19,7 @@
     </label>
 
     <div class="timeline">
+        <Start :time="(1440 - militaryToMinutes(startTime1))"></Start>
         <Appointment
             v-for="(app, index) in calendar1"
             :key="index"
@@ -26,6 +27,7 @@
             :cal2="militaryToMinutes(calendar1[index][1])"
         >
         </Appointment>
+        <End :time="militaryToMinutes(endTime1)"></End>
     </div>
 
     <h2>{{ name2 }}</h2>
@@ -38,16 +40,18 @@
 
 <script>
 import Appointment from '@/components/Appointment.vue';
+import Start from '@/components/Start.vue';
+import End from '@/components/End.vue';
 export default {
     name: 'LandingPage',
-    components: {Appointment},
+    components: { Appointment, Start, End },
     data() {
         return {
             name1: null,
             name2: null,
-            startTime1: null,
+            startTime1: '6:00',
             startTime2: null,
-            endTime1: null,
+            endTime1: '20:30',
             endTime2: null,
             calendar1: [
                 ['9:00', '10:30'],
@@ -69,7 +73,7 @@ export default {
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
 .timeline {
-    width: 80%;
+    width: 94%;
     height: 50px;
     border: 2px solid $color-1;
     border-radius: 5px;

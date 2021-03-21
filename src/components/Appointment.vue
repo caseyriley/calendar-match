@@ -10,10 +10,9 @@ export default {
     props: ['cal1', 'cal2'],
     data() {
         return {
-            width: `calc(${((this.cal2 - this.cal1) / 1440) * 100}%)`,
-            appStyles: {
-                // width: `calc(${cal2} - ${cal1} / 1440})`,
-            },
+            width: `calc(${
+                ((this.cal2 - this.cal1) / 1440) * 100
+            }% - 10px)`,
         };
     },
 };
