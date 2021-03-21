@@ -7,6 +7,9 @@
 </template>
 
 <style lang="scss">
+$color-1: rgb(45, 228, 149);
+$color-2: rgb(188, 45, 228);
+$color-3: rgb(0, 38, 255);
 #app {
     width: 100vw;
     position: fixed;

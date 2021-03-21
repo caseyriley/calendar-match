@@ -21,7 +21,7 @@
     <div class="timeline">
         <div
             class="timeline__app"
-            v-for="(app,index) in calendar1"
+            v-for="(app, index) in calendar1"
             :key="index"
         >
             <!-- {{
@@ -57,13 +57,17 @@ export default {
             calendar2: [],
         };
     },
+    methods: {
+        militaryToMinutes(string) {
+            let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
+            let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
+            return h * 60 + m;
+        },
+    },
 };
 </script>
-
 <style lang="scss" scoped>
-$color-1: rgb(45, 228, 149);
-$color-2: yellow;
-$color-3: purple;
+@import './../styles/_variables.scss';
 .timeline {
     width: 80%;
     height: 50px;
@@ -75,11 +79,11 @@ $color-3: purple;
     align-items: center;
 }
 .timeline__app {
-  width: 20px;
-  height: 100%;
-  background-color: $color-2;
-  margin: 0px 0px 0px 5px;
-  border: 1px solid $color-3;
-
+    width: 20px;
+    height: 40px;
+    background-color: $color-2;
+    margin: 5px 0px 5px 5px;
+    //   border: 1px solid $color-3;
+    border-radius: 5px;
 }
 </style>
