@@ -11,6 +11,7 @@
         :start="appEnd"
         :end="appNextStart"
         :appNextStart="appNextStart"
+        :endTime="endTime"
     ></Break>
 </template>
 
@@ -19,13 +20,11 @@
 import Break from './Break.vue';
 export default {
     name: 'Appointment',
-    props: ['appStart', 'appEnd', 'appNextStart'],
+    props: ['appStart', 'appEnd', 'appNextStart', 'endTime'],
     components: { Break },
     data() {
         return {
-            width: `calc(${
-                ((this.cal2 - this.cal1) / 1440) * 100
-            }% - 10px)`,
+            width: `calc(${((this.appEnd - this.appStart) / 1140) * 100}% - 10px)`,
         };
     },
     methods: {
@@ -46,15 +45,15 @@ export default {
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
 .timeline__app {
-    // width: 20px;
-    height: 40px;
+    height: 50px;
     background-color: $color-2;
-    margin: 5px 0px 5px 5px;
-    //   border: 1px solid $color-3;
-    border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: scroll;
+    box-sizing: border-box;
+    border: 5px solid $color-6;
+    border-left: none;
 }
 </style>

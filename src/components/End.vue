@@ -33,15 +33,19 @@ export default {
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
 .end {
-    height: 40px;
+    height: 50px;
     background-color: $color-4;
-    border-radius: 5px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 5px 0px 5px 5px;
+    // margin: 5px 0px 5px 5px;
+    box-sizing: border-box;
+    border: 5px solid $color-6;
+    border-left: none;
+    overflow: scroll;
 }
 .end span {
     margin: 5px 5px 5px 5px;
+    white-space: nowrap;
 }
 </style>

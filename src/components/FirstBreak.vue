@@ -1,16 +1,25 @@
 <template>
-    <div class="start" :style="{ width }">
-        <span> Start Time {{ minutesToMilitary(time) }} </span>
+    <div class="break" v-if="bool" :style="{ width }">
+        <span>{{ start }}/{{ end }}</span>
+        <span
+            >{{ minutesToMilitary(start) }}/{{
+                minutesToMilitary(end ? end : endTime)
+            }}</span
+        >
+        <span> {{endTime}}</span>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Start',
-    props: ['time'],
+    name: 'FirstBreak',
+    props: ['start', 'end'],
     data() {
         return {
-            width: `calc(${(this.time / 1440) * 100}% - 10px)`,
+            width: `calc(${
+                (((this.end ? this.end : this.endTime) - this.start) / 1140) * 100
+            }% - 10px)`,
+            bool: this.start < this.end,
         };
     },
     methods: {
@@ -30,19 +39,16 @@ export default {
 
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
-.start {
+.break {
     height: 50px;
-    background-color: $color-4;
-    border-radius: 5px;
+    background-color: $color-5;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
     border: 5px solid $color-6;
-}
-.start span {
-    margin: 5px 5px 5px 5px;
-    white-space: nowrap;
+    border-left: none;
 }
 </style>

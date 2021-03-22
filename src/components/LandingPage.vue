@@ -20,6 +20,10 @@
 
     <div class="timeline">
         <Start :time="militaryToMinutes(startTime1)"></Start>
+        <FirstBreak
+            :start="militaryToMinutes(startTime1)"
+            :end="militaryToMinutes(calendar1[0][0])"
+        ></FirstBreak>
         <Appointment
             v-for="(app, index) in calendar1"
             :key="index"
@@ -30,6 +34,7 @@
                     ? militaryToMinutes(calendar1[index + 1][0])
                     : null
             "
+            :endTime="militaryToMinutes(endTime1)"
         >
         </Appointment>
         <End :time="militaryToMinutes(endTime1)"></End>
@@ -47,9 +52,10 @@
 import Appointment from '@/components/Appointment.vue';
 import Start from '@/components/Start.vue';
 import End from '@/components/End.vue';
+import FirstBreak from '@/components/FirstBreak.vue';
 export default {
     name: 'LandingPage',
-    components: { Appointment, Start, End },
+    components: { Appointment, Start, End, FirstBreak },
     data() {
         return {
             name1: null,
@@ -82,7 +88,7 @@ export default {
     height: 50px;
     border: 2px solid $color-1;
     border-radius: 5px;
-    background-color: aliceblue;
+    background-color: $color-6;
     display: flex;
     justify-content: flex-start;
     align-items: center;
