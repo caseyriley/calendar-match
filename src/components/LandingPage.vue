@@ -19,7 +19,7 @@
     </label>
 
     <div class="timeline">
-        <Start :time="(1440 - militaryToMinutes(startTime1))"></Start>
+        <Start :time="(militaryToMinutes(startTime1))"></Start>
         <Appointment
             v-for="(app, index) in calendar1"
             :key="index"

@@ -10,7 +10,9 @@ export default {
     props: ['time'],
     data() {
         return {
-            width: `calc(${(this.time / 1440) * 100}% - 10px)`,
+            width: `calc(${
+                ((1440 - this.time) / 1440) * 100
+            }% - 10px)`,
         };
     },
     methods: {
