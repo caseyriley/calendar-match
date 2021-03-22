@@ -19,12 +19,17 @@
     </label>
 
     <div class="timeline">
-        <Start :time="(militaryToMinutes(startTime1))"></Start>
+        <Start :time="militaryToMinutes(startTime1)"></Start>
         <Appointment
             v-for="(app, index) in calendar1"
             :key="index"
-            :cal1="militaryToMinutes(calendar1[index][0])"
-            :cal2="militaryToMinutes(calendar1[index][1])"
+            :appStart="militaryToMinutes(calendar1[index][0])"
+            :appEnd="militaryToMinutes(calendar1[index][1])"
+            :appNextStart="
+                calendar1[index + 1]
+                    ? militaryToMinutes(calendar1[index + 1][0])
+                    : null
+            "
         >
         </Appointment>
         <End :time="militaryToMinutes(endTime1)"></End>
