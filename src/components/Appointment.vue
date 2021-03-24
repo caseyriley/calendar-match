@@ -15,7 +15,6 @@
     ></Break>
 </template>
 
-
 <script>
 // import Break from '@/components/Break.vue';
 import Break from './Break.vue';
