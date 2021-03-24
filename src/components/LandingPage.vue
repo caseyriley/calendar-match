@@ -84,13 +84,16 @@ export default {
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
 .timeline {
-    width: 94%;
-    height: 50px;
+    width: 200px;
+    height: 60vh;
     border: 2px solid $color-1;
     border-radius: 5px;
     background-color: $color-6;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    position: relative;
+
 }
 </style>
