@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png" />
+        <img alt="Vue logo" src="../assets/blue-stripe-ring.png" />
         <LandingPage />
     </div>
 </template>
@@ -17,11 +17,18 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .home {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    img {
+        width: 200px;
+        filter: hue-rotate(40deg);
+        
+        
+    }
 }
 </style>
