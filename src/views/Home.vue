@@ -31,7 +31,7 @@ export default {
     right: 0px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;x
     align-items: center;
     overflow-y: scroll;
     height: calc(100vh - 50px);
@@ -39,7 +39,6 @@ export default {
     border: 1px solid blue;
 
     img {
-        margin-top: 450px;
         width: 200px;
         height: 200px;
         filter: hue-rotate(40deg);

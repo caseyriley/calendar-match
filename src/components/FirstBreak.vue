@@ -1,8 +1,8 @@
 <template>
     <div class="break" v-if="bool" :style="{ height }">
-        <span>{{ start }}/{{ end }}</span>
+        <span>Break</span>
         <span
-            >{{ minutesToMilitary(start) }}/{{
+            >{{ minutesToMilitary(start) }} - {{
                 minutesToMilitary(end ? end : endTime)
             }}</span
         >

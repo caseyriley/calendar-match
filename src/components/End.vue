@@ -1,6 +1,7 @@
 <template>
     <div class="end" :style="{ height }">
-        <span> End Time {{ minutesToMilitary(time) }} </span>
+        <span>End Time</span>
+        <span>  {{ minutesToMilitary(time) }} </span>
     </div>
 </template>
 
@@ -36,6 +37,7 @@ export default {
     width: 100%;
     background-color: $color-4;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     // margin: 5px 0px 5px 5px;
@@ -45,7 +47,7 @@ export default {
     overflow: scroll;
 }
 .end span {
-    margin: 5px 5px 5px 5px;
+    // margin: 5px 5px 5px 5px;
     white-space: nowrap;
 }
 </style>

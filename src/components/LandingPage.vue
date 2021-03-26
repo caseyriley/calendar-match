@@ -18,26 +18,50 @@
         <input v-model="endTime1" type="time" />
     </label>
 
-    <div class="timeline">
-        <Start :time="militaryToMinutes(startTime1)"></Start>
-        <FirstBreak
-            :start="militaryToMinutes(startTime1)"
-            :end="militaryToMinutes(calendar1[0][0])"
-        ></FirstBreak>
-        <Appointment
-            v-for="(app, index) in calendar1"
-            :key="index"
-            :appStart="militaryToMinutes(calendar1[index][0])"
-            :appEnd="militaryToMinutes(calendar1[index][1])"
-            :appNextStart="
-                calendar1[index + 1]
-                    ? militaryToMinutes(calendar1[index + 1][0])
-                    : null
-            "
-            :endTime="militaryToMinutes(endTime1)"
-        >
-        </Appointment>
-        <End :time="militaryToMinutes(endTime1)"></End>
+    <div class="timeline-c">
+        <div class="timeline">
+            <Start :time="militaryToMinutes(startTime1)"></Start>
+            <FirstBreak
+                :start="militaryToMinutes(startTime1)"
+                :end="militaryToMinutes(calendar1[0][0])"
+            ></FirstBreak>
+            <Appointment
+                v-for="(app, index) in calendar1"
+                :key="index"
+                :appStart="militaryToMinutes(calendar1[index][0])"
+                :appEnd="militaryToMinutes(calendar1[index][1])"
+                :appNextStart="
+                    calendar1[index + 1]
+                        ? militaryToMinutes(calendar1[index + 1][0])
+                        : null
+                "
+                :endTime="militaryToMinutes(endTime1)"
+            >
+            </Appointment>
+            <End :time="militaryToMinutes(endTime1)"></End>
+        </div>
+
+        <div class="timeline">
+            <Start :time="militaryToMinutes(startTime1)"></Start>
+            <FirstBreak
+                :start="militaryToMinutes(startTime1)"
+                :end="militaryToMinutes(calendar1[0][0])"
+            ></FirstBreak>
+            <Appointment
+                v-for="(app, index) in calendar1"
+                :key="index"
+                :appStart="militaryToMinutes(calendar1[index][0])"
+                :appEnd="militaryToMinutes(calendar1[index][1])"
+                :appNextStart="
+                    calendar1[index + 1]
+                        ? militaryToMinutes(calendar1[index + 1][0])
+                        : null
+                "
+                :endTime="militaryToMinutes(endTime1)"
+            >
+            </Appointment>
+            <End :time="militaryToMinutes(endTime1)"></End>
+        </div>
     </div>
 
     <h2>{{ name2 }}</h2>
@@ -83,6 +107,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
+.timeline-c {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
 .timeline {
     width: 200px;
     height: 800px;
@@ -95,7 +124,5 @@ export default {
     justify-content: flex-start;
     align-items: center;
     position: relative;
-
 }
-
 </style>

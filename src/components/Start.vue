@@ -1,6 +1,7 @@
 <template>
     <div class="start" :style="{ height }">
-        <span> Start Time {{ minutesToMilitary(time) }} </span>
+        <span>Start Time </span>
+        <span> {{ minutesToMilitary(time) }} </span>
     </div>
 </template>
 
@@ -48,6 +49,7 @@ export default {
     background-color: $color-4;
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: scroll;
@@ -57,7 +59,7 @@ export default {
     // position: absolute;
 }
 .start span {
-    margin: 5px 5px 5px 5px;
+
     white-space: nowrap;
 }
 </style>

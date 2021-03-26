@@ -1,6 +1,6 @@
 <template>
     <div class="timeline__app" :style="{ height }">
-        <span>{{ appStart }}/{{ appEnd }}</span>
+        <span>Appointment</span>
         <span
             >{{ minutesToMilitary(appStart) }}-{{
                 minutesToMilitary(appEnd)
@@ -50,7 +50,7 @@ export default {
     
     background-color: $color-2;
     display: flex;
-    // flex-direction: column;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: scroll;
