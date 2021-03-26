@@ -2,8 +2,6 @@
     <div class="start" :style="{ height }">
         <span> Start Time {{ minutesToMilitary(time) }} </span>
     </div>
-    <h1>{{parent}}</h1>
-
 </template>
 
 <script>
@@ -16,8 +14,8 @@ export default {
         return {
             
             // height: `calc(${(this.time / 1440) * this.parentNode.clientHeight()}px)`,
-            parent: this.$parent.height,
-            minHeight: `calc(${(this.time / 1440) * 100}%)`,
+            // parent: this.$parent.height,
+            height: `calc(${(this.time / 1440) * 800}px)`,
             parentHeight: 0,
 
             
@@ -46,8 +44,7 @@ export default {
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
 .start {
-    width: 200px;
-
+    width: 100%;
     background-color: $color-4;
     border-radius: 5px;
     display: flex;
@@ -55,7 +52,7 @@ export default {
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
-    border: 5px solid $color-6;
+    // border: 5px solid $color-6;
 
     // position: absolute;
 }

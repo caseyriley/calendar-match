@@ -1,13 +1,13 @@
 <template>
     <div class="home">
-        <div class="home-scroll">
+        
             <img
                 alt="Vue logo"
                 src="../assets/blue-stripe-ring.png"
             />
 
             <LandingPage />
-        </div>
+     
     </div>
 </template>
 
@@ -25,17 +25,21 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-    position: relative;
+    position: fixed;
+    top: 50px;
+    left: 0px;
+    right: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow-y: scroll;
-    height: calc(100vh - 3);
+    height: calc(100vh - 50px);
+    // height: auto;
     border: 1px solid blue;
 
     img {
-        margin-top: 350px;
+        margin-top: 450px;
         width: 200px;
         height: 200px;
         filter: hue-rotate(40deg);
@@ -49,5 +53,7 @@ export default {
     align-items: center;
     height: auto;
     width: 100%;
+    height: 100%;
+
 }
 </style>

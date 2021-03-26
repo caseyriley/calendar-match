@@ -1,5 +1,5 @@
 <template>
-    <div class="end" :style="{ width }">
+    <div class="end" :style="{ height }">
         <span> End Time {{ minutesToMilitary(time) }} </span>
     </div>
 </template>
@@ -10,9 +10,9 @@ export default {
     props: ['time'],
     data() {
         return {
-            width: `calc(${
-                ((1440 - this.time) / 1440) * 100
-            }% - 10px)`,
+            height: `calc(${
+                ((1440 - this.time) / 1440) * 800
+            }px)`,
         };
     },
     methods: {
@@ -33,15 +33,15 @@ export default {
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
 .end {
-    height: 50px;
+    width: 100%;
     background-color: $color-4;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     // margin: 5px 0px 5px 5px;
     box-sizing: border-box;
-    border: 5px solid $color-6;
-    border-left: none;
+    // border: 5px solid $color-6;
+    border-top: none;
     overflow: scroll;
 }
 .end span {

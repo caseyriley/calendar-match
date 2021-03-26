@@ -1,5 +1,5 @@
 <template>
-    <div class="timeline__app" :style="{ width }">
+    <div class="timeline__app" :style="{ height }">
         <span>{{ appStart }}/{{ appEnd }}</span>
         <span
             >{{ minutesToMilitary(appStart) }}-{{
@@ -24,7 +24,8 @@ export default {
     components: { Break },
     data() {
         return {
-            width: `calc(${((this.appEnd - this.appStart) / 1140) * 100}% - 10px)`,
+            // width: `calc(${((this.appEnd - this.appStart) / 1140) * 100}% - 10px)`,
+            height: `calc(${((this.appEnd - this.appStart) / 1140) * 800}px)`,
         };
     },
     methods: {
@@ -45,15 +46,16 @@ export default {
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
 .timeline__app {
-    height: 50px;
+    width: 100%;
+    
     background-color: $color-2;
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
-    border: 5px solid $color-6;
-    border-left: none;
+    // border: 5px solid $color-6;
+    border-top: none;
 }
 </style>

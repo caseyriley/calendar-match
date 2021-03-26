@@ -1,8 +1,8 @@
 <template>
-  <div id="nav">
+    <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>
-    </div> 
+    </div>
     <router-view />
 </template>
 
@@ -22,6 +22,10 @@
 }
 
 #nav {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
     height: 50px;
     display: flex;
     justify-content: center;
