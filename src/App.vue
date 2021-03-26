@@ -1,8 +1,8 @@
 <template>
-    <div id="nav">
+  <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>
-    </div>
+    </div> 
     <router-view />
 </template>
 
@@ -10,6 +10,7 @@
 @import './styles/_variables.scss';
 #app {
     width: 100vw;
+    height: 100vh;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -21,7 +22,11 @@
 }
 
 #nav {
-    padding: 30px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid green;
 
     a {
         font-weight: bold;
