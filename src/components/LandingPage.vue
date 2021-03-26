@@ -84,7 +84,7 @@ export default {
         return {
             name1: null,
             name2: null,
-            startTime1: '6:00',
+            startTime1: '06:00',
             startTime2: null,
             endTime1: '20:30',
             endTime2: null,
@@ -111,6 +111,7 @@ export default {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    margin: 20px 0px 20px 0px;
 }
 .timeline {
     width: 200px;
