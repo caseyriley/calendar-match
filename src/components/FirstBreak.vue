@@ -15,15 +15,9 @@ export default {
     props: ['start', 'end'],
     data() {
         return {
-            // height: `calc(${
-            //     (((this.end ? this.end : this.endTime) - this.start) /
-            //         1140) *
-            //     800
-            // }px)`,
             bool: this.start < this.end,
             calcStart: null,
             curStart: this.calcStart ? this.calcStart : this.start,
-            styleO: { height: `${(((this.end ? this.end : this.endTime) - this.start) /1140) * 800}px`},
         };
     },
     methods: {
@@ -44,14 +38,7 @@ export default {
             return minToMStart;
         },
         curHeight: function () {
-            // let cH = `calc(${
-            //     (((this.end ? this.end : this.endTime) - this.start) /
-            //         1140) *
-            //     800
-            // }px)`;
-
-            return {height: `${(((this.end ? this.end : this.endTime) - this.start) /1140) * 800}px`}
-
+            return {height: `${(((this.end ? this.end : this.endTime) - this.start) /1140) * 800}px`};
         },
     },
 };
