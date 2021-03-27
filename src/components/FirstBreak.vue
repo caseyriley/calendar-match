@@ -1,12 +1,11 @@
 <template>
-    <div class="break" v-if="bool" :style="{ height }">
+    <div class="break" v-if="bool" :style="curHeight">
         <span>Break</span>
-        <span
-            >{{ minutesToMilitary(start) }} - {{
-                minutesToMilitary(end ? end : endTime)
-            }}</span
-        >
-        <span> {{endTime}}</span>
+        <span>
+            {{ minToMilStart }} -
+            {{ minutesToMilitary(end ? end : endTime) }}
+        </span>
+        <span> {{ endTime }}</span>
     </div>
 </template>
 
@@ -16,10 +15,15 @@ export default {
     props: ['start', 'end'],
     data() {
         return {
-            height: `calc(${
-                (((this.end ? this.end : this.endTime) - this.start) / 1140) * 800
-            }px)`,
+            // height: `calc(${
+            //     (((this.end ? this.end : this.endTime) - this.start) /
+            //         1140) *
+            //     800
+            // }px)`,
             bool: this.start < this.end,
+            calcStart: null,
+            curStart: this.calcStart ? this.calcStart : this.start,
+            styleO: { height: `${(((this.end ? this.end : this.endTime) - this.start) /1140) * 800}px`},
         };
     },
     methods: {
@@ -32,6 +36,22 @@ export default {
                 m = f + `${m}`;
             }
             return `${h}:${m}`;
+        },
+    },
+    computed: {
+        minToMilStart: function () {
+            let minToMStart = this.minutesToMilitary(this.start);
+            return minToMStart;
+        },
+        curHeight: function () {
+            // let cH = `calc(${
+            //     (((this.end ? this.end : this.endTime) - this.start) /
+            //         1140) *
+            //     800
+            // }px)`;
+
+            return {height: `${(((this.end ? this.end : this.endTime) - this.start) /1140) * 800}px`}
+
         },
     },
 };

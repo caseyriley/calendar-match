@@ -1,12 +1,12 @@
 <template>
     <div class="home">
         
-            <img
-                alt="Vue logo"
-                src="../assets/blue-stripe-ring.png"
-            />
+        <img
+            alt="Vue logo"
+            src="../assets/blue-stripe-ring.png"
+        />
 
-            <LandingPage />
+        <LandingPage />
      
     </div>
 </template>
