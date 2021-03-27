@@ -34,16 +34,17 @@
 
     <div class="timeline-c">
         <div class="timeline">
-            <Start :time="militaryToMinutes(startTime1)"></Start>
+            <Start v-if="startTime1" :time="militaryToMinutes(startTime1)"></Start>
             <FirstBreak
+                v-if="calendar1.length"
                 :start="militaryToMinutes(startTime1)"
-                :end="militaryToMinutes(calendar1[0][0])"
+                :end="calendar1.length ? militaryToMinutes(calendar1[0][0]) : null"
             ></FirstBreak>
             <Appointment
                 v-for="(app, index) in calendar1"
                 :key="index"
-                :appStart="militaryToMinutes(calendar1[index][0])"
-                :appEnd="militaryToMinutes(calendar1[index][1])"
+                :appStart="calendar1.length ? militaryToMinutes(calendar1[index][0]) : null"
+                :appEnd="calendar1.length ? militaryToMinutes(calendar1[index][1]) : null"
                 :appNextStart="
                     calendar1[index + 1]
                         ? militaryToMinutes(calendar1[index + 1][0])
@@ -52,14 +53,14 @@
                 :endTime="militaryToMinutes(endTime1)"
             >
             </Appointment>
-            <End :time="militaryToMinutes(endTime1)"></End>
+            <End v-if="endTime1" :time="militaryToMinutes(endTime1)"></End>
         </div>
 
-        <div class="timeline">
+    <!--    <div class="timeline">
             <Start :time="militaryToMinutes(startTime1)"></Start>
             <FirstBreak
                 :start="militaryToMinutes(startTime1)"
-                :end="militaryToMinutes(calendar1[0][0])"
+                :end="calendar1.length ? militaryToMinutes(calendar1[0][0]) : null"
             ></FirstBreak>
             <Appointment
                 v-for="(app, index) in calendar1"
@@ -75,7 +76,7 @@
             >
             </Appointment>
             <End :time="militaryToMinutes(endTime1)"></End>
-        </div>
+        </div> -->
     </div>
 
     <h2>{{ name2 }}</h2>
@@ -98,14 +99,14 @@ export default {
         return {
             name1: null,
             name2: null,
-            startTime1: '06:00',
+            startTime1: null,
             startTime2: null,
-            endTime1: '20:30',
-            endTime2: null,
+            endTime1: null,
+            1: null,
             calendar1: [
-                ['9:00', '10:30'],
-                ['12:00', '13:00'],
-                ['16:00', '18:00'],
+                // ['9:00', '10:30'],
+                // ['12:00', '13:00'],
+                // ['16:00', '18:00'],
             ],
             calendar2: [],
             appStart: null,
