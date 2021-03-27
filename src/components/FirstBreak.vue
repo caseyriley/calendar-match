@@ -38,7 +38,14 @@ export default {
             return minToMStart;
         },
         curHeight: function () {
-            return {height: `${(((this.end ? this.end : this.endTime) - this.start) /1140) * 800}px`};
+            return {
+                height: `${
+                    (((this.end ? this.end : this.endTime) -
+                        this.start) /
+                        1140) *
+                    800
+                }px`,
+            };
         },
     },
 };

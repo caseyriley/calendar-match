@@ -17,6 +17,20 @@
         end thier day?
         <input v-model="endTime1" type="time" />
     </label>
+    <h2>
+        Enter
+        {{ name1 === null || name1 === '' ? 'person one' : name1 }}'s
+        first appointment and click submit
+    </h2>
+    <label>
+        Appointment start time
+        <input v-model="appStart" type="time" />
+    </label>
+    <label>
+        Appointment end time
+        <input v-model="appEnd" type="time" />
+    </label>
+    <submit v-on:click="addApp" >Submit</submit>
 
     <div class="timeline-c">
         <div class="timeline">
@@ -94,6 +108,8 @@ export default {
                 ['16:00', '18:00'],
             ],
             calendar2: [],
+            appStart: null,
+            appEnd: null,
         };
     },
     methods: {
@@ -101,6 +117,10 @@ export default {
             let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
+        },
+        addApp() {
+            this.calendar1.push([this.appStart, this.appEnd]);
+            console.log("calendar1======>",this.calendar1)
         },
     },
 };
