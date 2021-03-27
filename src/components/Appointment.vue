@@ -1,5 +1,5 @@
 <template>
-    <div class="timeline__app" :style="{ height }">
+    <div class="timeline__app" :style="curHeight">
         <span>Appointment</span>
         <span
             >{{ minutesToMilitary(appStart) }}-{{
@@ -25,7 +25,9 @@ export default {
     data() {
         return {
             // width: `calc(${((this.appEnd - this.appStart) / 1140) * 100}% - 10px)`,
-            height: `calc(${((this.appEnd - this.appStart) / 1140) * 800}px)`,
+            height: `calc(${
+                ((this.appEnd - this.appStart) / 1140) * 800
+            }px)`,
         };
     },
     methods: {
@@ -40,6 +42,15 @@ export default {
             return `${h}:${m}`;
         },
     },
+    computed: {
+        curHeight: function () {
+            return {
+                height: `calc(${
+                    ((this.appEnd - this.appStart) / 1140) * 800
+                }px)`,
+            };
+        },
+    },
 };
 </script>
 
@@ -47,7 +58,7 @@ export default {
 @import './../styles/_variables.scss';
 .timeline__app {
     width: 100%;
-    
+
     background-color: $color-2;
     display: flex;
     flex-direction: column;
