@@ -3,7 +3,7 @@
         <span>Break</span>
         <span>
             {{ minToMilStart }} -
-            {{ minutesToMilitary(end ? end : endTime) }}
+            {{ minutesToMilitary(breakEnd ? breakEnd : endTime) }}
         </span>
         <span> {{ endTime }}</span>
     </div>
@@ -12,12 +12,12 @@
 <script>
 export default {
     name: 'FirstBreak',
-    props: ['start', 'end'],
+    props: ['startTime', 'breakEnd'],
     data() {
         return {
-            bool: this.start < this.end,
+            bool: this.startTime < this.breakEnd,
             calcStart: null,
-            curStart: this.calcStart ? this.calcStart : this.start,
+            curStart: this.calcStart ? this.calcStart : this.startTime,
         };
     },
     methods: {
@@ -34,14 +34,14 @@ export default {
     },
     computed: {
         minToMilStart: function () {
-            let minToMStart = this.minutesToMilitary(this.start);
+            let minToMStart = this.minutesToMilitary(this.startTime);
             return minToMStart;
         },
         curHeight: function () {
             return {
                 height: `${
-                    (((this.end ? this.end : this.endTime) -
-                        this.start) /
+                    (((this.breakEnd ? this.breakEnd : this.endTime) -
+                        this.startTime) /
                         1140) *
                     800
                 }px`,

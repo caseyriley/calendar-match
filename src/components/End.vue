@@ -1,17 +1,17 @@
 <template>
     <div class="end" :style="curHeight">
         <span>End Time</span>
-        <span> {{ minutesToMilitary(time) }} </span>
+        <span> {{ minutesToMilitary(endTime) }} </span>
     </div>
 </template>
 
 <script>
 export default {
     name: 'End',
-    props: ['time'],
+    props: ['endTime'],
     data() {
         return {
-            height: `calc(${((1440 - this.time) / 1440) * 800}px)`,
+            height: `calc(${((1440 - this.endTime) / 1440) * 800}px)`,
         };
     },
     methods: {
@@ -29,7 +29,7 @@ export default {
     computed: {
         curHeight: function () {
             return {
-                height: `${((1440 - this.time) / 1440) * 800}px`,
+                height: `${((1440 - this.endTime) / 1440) * 800}px`,
             };
         },
     },

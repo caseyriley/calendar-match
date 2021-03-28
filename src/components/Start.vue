@@ -1,7 +1,7 @@
 <template>
     <div class="start" :style="curHeight">
         <span>Start Time </span>
-        <span> {{ minutesToMilitary(time) }} </span>
+        <span> {{ minutesToMilitary(startTime) }} </span>
     </div>
 </template>
 
@@ -9,13 +9,13 @@
 
 export default {
     name: 'Start',
-    props: ['time'],
+    props: ['startTime'],
     data() {
         return {
             
             // height: `calc(${(this.time / 1440) * this.parentNode.clientHeight()}px)`,
             // parent: this.$parent.height,
-            height: `calc(${(this.time / 1440) * 800}px)`,
+            height: `calc(${(this.startTime / 1440) * 800}px)`,
             parentHeight: 0,
 
             
@@ -40,7 +40,7 @@ export default {
     },
     computed: {
         curHeight: function() {
-            return {height: `calc(${(this.time / 1440) * 800}px)`}
+            return {height: `calc(${(this.startTime / 1440) * 800}px)`}
         }
     },
 };

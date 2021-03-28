@@ -44,6 +44,7 @@ export default {
         filter: hue-rotate(40deg);
         margin: 30px 0px 0px 0px;
     }
+
 }
 
 .home-scroll {
