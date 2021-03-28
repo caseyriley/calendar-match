@@ -45,10 +45,9 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // margin: 5px 0px 5px 5px;
     box-sizing: border-box;
-    // border: 5px solid $color-6;
-    border-top: none;
+    border: 2px solid grey;
+    border-radius: 5px;
     overflow: scroll;
 }
 .end span {

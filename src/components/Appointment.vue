@@ -66,7 +66,7 @@ export default {
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
-    // border: 5px solid $color-6;
-    border-top: none;
+    border: 2px solid grey;
+    border-radius: 5px;
 }
 </style>

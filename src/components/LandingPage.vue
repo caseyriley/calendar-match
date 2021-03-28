@@ -20,7 +20,7 @@
     <h2>
         Enter
         {{ name1 === null || name1 === '' ? 'person one' : name1 }}'s
-        first appointment and click submit
+        appointment #{{calendar1.length + 1}} times and click submit, or enter {{name2 === null || name2 === '' ? 'person two' : name2 }}'s information
     </h2>
     <label>
         Appointment start time
@@ -30,7 +30,7 @@
         Appointment end time
         <input v-model="appEnd" type="time" />
     </label>
-    <submit v-on:click="addApp" >Submit</submit>
+    <submit class="app-submit" v-on:click="addApp" >Submit</submit>
 
     <div class="timeline-c">
         <div class="timeline">
@@ -125,9 +125,15 @@ export default {
         },
     },
 };
+
 </script>
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
+h1, h2 {
+    font-family: 'Russo One', sans-serif;
+    margin: 20px 20px 20px 20px;
+    text-align: center;
+}
 .timeline-c {
     width: 100%;
     display: flex;
@@ -138,7 +144,7 @@ export default {
     width: 200px;
     height: 800px;
     height: auto;
-    border: 2px solid $color-1;
+    // border: 2px solid $color-1;
     border-radius: 5px;
     background-color: $color-6;
     display: flex;
@@ -146,5 +152,32 @@ export default {
     justify-content: flex-start;
     align-items: center;
     position: relative;
+}
+label {
+    font-family: 'Russo One', sans-serif;
+    font-family: 'Sarabun', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+input {
+    border-radius: 5px;
+    
+}
+.app-submit {
+    border: 1px solid grey;
+    min-height: 30px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Russo One', sans-serif;
+    border-radius: 999px;
+    background-color: lightgrey;
+    transition: all .3s;
+}
+.app-submit:hover {
+    color: white;
+    background-color: grey;
+    border: 1px solid white;
 }
 </style>
