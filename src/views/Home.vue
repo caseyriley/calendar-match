@@ -39,9 +39,10 @@ export default {
     border: 1px solid blue;
 
     img {
-        width: 200px;
-        height: 200px;
+        width: 100px;
+        height: 100px;
         filter: hue-rotate(40deg);
+        margin: 30px 0px 0px 0px;
     }
 }
 

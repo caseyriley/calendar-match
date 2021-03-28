@@ -1,50 +1,81 @@
 <template>
     <h1>Find all available appointment times</h1>
-    <h2>{{ name1 }}</h2>
-    <label>
-        What is person one's name?
-        <input v-model="name1" />
-    </label>
-    <label>
-        When does
-        {{ name1 === null || name1 === '' ? 'person one' : name1 }}
-        begin thier day?
-        <input v-model="startTime1" type="time" />
-    </label>
-    <label>
-        When does
-        {{ name1 === null || name1 === '' ? 'person one' : name1 }}
-        end thier day?
-        <input v-model="endTime1" type="time" />
-    </label>
-    <h2>
-        Enter
-        {{ name1 === null || name1 === '' ? 'person one' : name1 }}'s
-        appointment #{{calendar1.length + 1}} times and click submit, or enter {{name2 === null || name2 === '' ? 'person two' : name2 }}'s information
-    </h2>
-    <label>
-        Appointment start time
-        <input v-model="appStart" type="time" />
-    </label>
-    <label>
-        Appointment end time
-        <input v-model="appEnd" type="time" />
-    </label>
-    <submit class="app-submit" v-on:click="addApp" >Submit</submit>
+    <div class="person-toggle">
+        <div class="person-toggle__1" v-on:click="togglePerson1">Person 1</div>
+        <div class="person-toggle__divider"></div>
+        <div class="person-toggle__2" v-on:click="togglePerson2">Person 2</div>
+    </div>
+    <div class="userForm" v-if="personToggle">
+        <h2>{{ name1 }}</h2>
+        <label>
+            What is person one's name?
+            <input v-model="name1" />
+        </label>
+        <label>
+            When does
+            {{
+                name1 === null || name1 === '' ? 'person one' : name1
+            }}
+            begin thier day?
+            <input v-model="startTime1" type="time" />
+        </label>
+        <label>
+            When does
+            {{
+                name1 === null || name1 === '' ? 'person one' : name1
+            }}
+            end thier day?
+            <input v-model="endTime1" type="time" />
+        </label>
+        <h2>
+            Enter
+            {{
+                name1 === null || name1 === '' ? 'person one' : name1
+            }}'s appointment #{{ calendar1.length + 1 }} times and
+            click submit, or enter
+            {{
+                name2 === null || name2 === '' ? 'person two' : name2
+            }}'s information
+        </h2>
+        <label>
+            Appointment start time
+            <input v-model="appStart" type="time" />
+        </label>
+        <label>
+            Appointment end time
+            <input v-model="appEnd" type="time" />
+        </label>
+        <submit class="app-submit" v-on:click="addApp">Submit</submit>
+    </div>
 
     <div class="timeline-c">
         <div class="timeline">
-            <Start v-if="startTime1" :time="militaryToMinutes(startTime1)"></Start>
+            <Start
+                v-if="startTime1"
+                :time="militaryToMinutes(startTime1)"
+            ></Start>
             <FirstBreak
                 v-if="calendar1.length"
                 :start="militaryToMinutes(startTime1)"
-                :end="calendar1.length ? militaryToMinutes(calendar1[0][0]) : null"
+                :end="
+                    calendar1.length
+                        ? militaryToMinutes(calendar1[0][0])
+                        : null
+                "
             ></FirstBreak>
             <Appointment
                 v-for="(app, index) in calendar1"
                 :key="index"
-                :appStart="calendar1.length ? militaryToMinutes(calendar1[index][0]) : null"
-                :appEnd="calendar1.length ? militaryToMinutes(calendar1[index][1]) : null"
+                :appStart="
+                    calendar1.length
+                        ? militaryToMinutes(calendar1[index][0])
+                        : null
+                "
+                :appEnd="
+                    calendar1.length
+                        ? militaryToMinutes(calendar1[index][1])
+                        : null
+                "
                 :appNextStart="
                     calendar1[index + 1]
                         ? militaryToMinutes(calendar1[index + 1][0])
@@ -53,10 +84,13 @@
                 :endTime="militaryToMinutes(endTime1)"
             >
             </Appointment>
-            <End v-if="endTime1" :time="militaryToMinutes(endTime1)"></End>
+            <End
+                v-if="endTime1"
+                :time="militaryToMinutes(endTime1)"
+            ></End>
         </div>
 
-    <!--    <div class="timeline">
+        <!--    <div class="timeline">
             <Start :time="militaryToMinutes(startTime1)"></Start>
             <FirstBreak
                 :start="militaryToMinutes(startTime1)"
@@ -111,6 +145,7 @@ export default {
             calendar2: [],
             appStart: null,
             appEnd: null,
+            personToggle: true,
         };
     },
     methods: {
@@ -121,18 +156,25 @@ export default {
         },
         addApp() {
             this.calendar1.push([this.appStart, this.appEnd]);
-            console.log("calendar1======>",this.calendar1)
+            console.log('calendar1======>', this.calendar1);
+        },
+        togglePerson1() {
+            this.personToggle = true;
+        },
+        togglePerson2() {
+            this.personToggle = false;
         },
     },
 };
-
 </script>
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
-h1, h2 {
+h1,
+h2 {
     font-family: 'Russo One', sans-serif;
     margin: 20px 20px 20px 20px;
     text-align: center;
+    color: rgb(000, 222, 222);
 }
 .timeline-c {
     width: 100%;
@@ -153,7 +195,43 @@ h1, h2 {
     align-items: center;
     position: relative;
 }
+.person-toggle {
+    width: 250px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid $color-1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow: hidden;
+}
+.person-toggle__1 {
+    background-color: $color-5;
+}
+.person-toggle__2 {
+    background-color: rgb(209, 209, 242);
+}
+.person-toggle__1,
+.person-toggle__2 {
+    height: 40px;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.person-toggle__divider {
+    height: 40px;
+    border-right: 1px solid $color-1;
+}
+.userForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 label {
+    color: grey;
     font-family: 'Russo One', sans-serif;
     font-family: 'Sarabun', sans-serif;
     font-weight: 600;
@@ -163,7 +241,6 @@ input {
     border: 1px solid grey;
     border-radius: 5px;
     color: grey;
-    
 }
 input:focus {
     outline: none;
@@ -180,7 +257,7 @@ input:focus {
     font-family: 'Russo One', sans-serif;
     border-radius: 999px;
     background-color: lightgrey;
-    transition: all .3s;
+    transition: all 0.3s;
 }
 .app-submit:hover {
     color: white;
