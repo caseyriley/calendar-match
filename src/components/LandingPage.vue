@@ -160,8 +160,15 @@ label {
     font-size: 20px;
 }
 input {
+    border: 1px solid grey;
     border-radius: 5px;
+    color: grey;
     
+}
+input:focus {
+    outline: none;
+    background-color: lavender;
+    border: 1px solid $color-2;
 }
 .app-submit {
     border: 1px solid grey;

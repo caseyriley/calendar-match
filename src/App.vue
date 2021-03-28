@@ -18,7 +18,7 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    background: rgb(165, 210, 230);
+    background: $color-7;
 }
 
 #nav {
