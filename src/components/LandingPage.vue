@@ -120,6 +120,11 @@
         <div class="timeline-c">
             <Timeline
                 v-if="startTime1"
+                :name="
+                    name1 === null || name1 === ''
+                        ? 'person one'
+                        : name1
+                "
                 :startTime="militaryToMinutes(startTime1)"
                 :breakEnd="
                     calendar1.length
@@ -130,8 +135,14 @@
                 :calendar="calendar1"
             >
             </Timeline>
+            
             <Timeline
                 v-if="startTime2"
+                :name="
+                    name1 === null || name1 === ''
+                        ? 'person two'
+                        : name2
+                "
                 :startTime="militaryToMinutes(startTime2)"
                 :breakEnd="
                     calendar2.length

@@ -1,10 +1,6 @@
 <template>
     <div class="timeline">
-        <!--
-            Start-> start>startTime
-            FirstBreak-> start>startTime
-                         end>breakEnd
-        -->
+        <span class="name">{{name}}</span >
         <Start v-if="startTime" :startTime="startTime"></Start>
         <FirstBreak
             v-if="calendar.length"
@@ -45,7 +41,7 @@ export default {
     name: 'Timeline',
     components: { Appointment, Start, End, FirstBreak },
     props: [
-        'name1',
+        'name',
         'startTime',
         'breakEnd',
         'endTime',
@@ -69,7 +65,7 @@ export default {
 @import './../styles/_variables.scss';
 .timeline {
     width: 200px;
-    height: 800px;
+    height: 823px;
     height: auto;
     // border: 2px solid $color-1;
     border-radius: 5px;
@@ -79,5 +75,13 @@ export default {
     justify-content: flex-start;
     align-items: center;
     position: relative;
+}
+.name {
+    height: 20px;
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    display: flex;
+    align-items: center;
+    margin: 3px 0px 0px 0px;
 }
 </style>
