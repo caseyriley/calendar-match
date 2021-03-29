@@ -135,7 +135,7 @@
                 :calendar="calendar1"
             >
             </Timeline>
-            
+
             <Timeline
                 v-if="startTime2"
                 :name="
@@ -193,7 +193,45 @@ export default {
             return h * 60 + m;
         },
         addApp1() {
-            this.calendar1.push([this.appStart, this.appEnd]);
+            let cal = [];
+            let pushed = false;
+            if (this.calendar1.length < 1) {
+                console.log('calendar1.length < 1');
+                this.calendar1.push([this.appStart, this.appEnd]);
+            } else {
+                for (let i = 0; i < this.calendar1.length; i++) {
+                    let app = this.calendar1[i];
+                    if (
+                        // if current appointment is earlier then new appointment
+                        this.militaryToMinutes(app[0]) <
+                        this.militaryToMinutes(this.appStart)
+                    ) {
+                        cal.push(app);
+                    } else if (
+                        // if current appointment is later then new appointment and new appointment has not been pushed
+                        this.militaryToMinutes(app[0]) >
+                            this.militaryToMinutes(this.appStart) &&
+                        pushed === false
+                    ) {
+                        cal.push([this.appStart, this.appEnd]);
+                        pushed = true;
+                        i--;
+                    } else if (
+                        // if current appointment is later then new appointment and new apoointment has been pushed
+                        this.militaryToMinutes(app[0]) >
+                            this.militaryToMinutes(this.appStart) &&
+                        pushed === true
+                    ) {
+                        cal.push(app);
+                    }
+                }
+                if (pushed === false){
+                    cal.push([this.appStart, this.appEnd]);
+                        pushed = true;
+                }
+                this.calendar1 = cal;
+            }
+
             console.log('calendar1======>', this.calendar1);
             this.appStart = null;
             this.appEnd = null;
