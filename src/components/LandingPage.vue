@@ -10,7 +10,7 @@
                 Person 2
             </div>
         </div>
-
+        <!-- Person 1's Form -->
         <div class="userForm" v-if="personToggle">
             <h2>{{ name1 }}</h2>
             <label>
@@ -63,7 +63,7 @@
                 >Submit</submit
             >
         </div>
-
+        <!-- Person 2's Form -->
         <div class="userForm" v-if="!personToggle">
             <h2>{{ name2 }}</h2>
             <label>
@@ -216,9 +216,22 @@ export default {
                         pushed === false
                     ) {
                         console.log('if 2');
-                        cal.push([this.appStart, this.appEnd]);
-                        pushed = true;
-                        i--;
+                        if (cal.length) {
+                            console.log('if 2 A');
+                            const prev = cal.pop();
+                            cal.push([prev[0], this.AppEnd]);
+                            pushed = true;
+                            i--;
+                            console.log('this.AppEnd', this.AppEnd);
+                            console.log('if 2 A End');
+                        } else {
+                            console.log('if 2 B');
+                            cal.push([this.appStart, this.appEnd]);
+                            pushed = true;
+                            i--;
+                            console.log('this.AppEnd', this.AppEnd);
+                            console.log('if 2 B end');
+                        }
                     } else if (
                         // if current appointment is later then new appointment and new apoointment has been pushed
                         this.militaryToMinutes(app[0]) >
@@ -246,8 +259,10 @@ export default {
             }
 
             console.log('calendar1======>', this.calendar1);
-            this.appStart = null;
-            this.appEnd = null;
+            setTimeout(() => {
+                this.appStart = null;
+                this.appEnd = null;
+            }, 1000);
         },
         addApp2() {
             this.calendar2.push([this.appStart, this.appEnd]);

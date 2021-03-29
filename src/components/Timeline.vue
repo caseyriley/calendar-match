@@ -1,13 +1,13 @@
 <template>
-    <div class="timeline">
+    <div class="timeline" v-if="calendar.length">
         <span class="name">{{name}}</span >
         <Start v-if="startTime" :startTime="startTime"></Start>
         <FirstBreak
-            v-if="calendar.length"
             :startTime="startTime"
             :breakEnd="breakEnd"
         ></FirstBreak>
         <Appointment
+            
             v-for="(app, index) in calendar"
             :key="index"
             :appStart="
@@ -17,7 +17,7 @@
             "
             :appEnd="
                 calendar.length
-                    ? militaryToMinutes(calendar[index][1])
+                    ? militaryToMinutes(calendar[index][1] ? calendar[index][1] : '11:30')
                     : null
             "
             :appNextStart="
@@ -45,13 +45,16 @@ export default {
         'startTime',
         'breakEnd',
         'endTime',
-        'appStart',
-        'appEnd',
-        'appNextStart',
         'calendar',
+
+        // 'appStart',
+        // 'appEnd',
+        // 'appNextStart',
+        
     ],
     methods: {
         militaryToMinutes(string) {
+            console.log("this.appEnd", this.appEnd)
             console.log('string', string)
             let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
