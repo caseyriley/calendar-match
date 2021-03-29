@@ -203,9 +203,11 @@ export default {
                     let app = this.calendar1[i];
                     if (
                         // if current appointment is earlier then new appointment
+
                         this.militaryToMinutes(app[0]) <
                         this.militaryToMinutes(this.appStart)
                     ) {
+                        console.log('if 1');
                         cal.push(app);
                     } else if (
                         // if current appointment is later then new appointment and new appointment has not been pushed
@@ -213,6 +215,7 @@ export default {
                             this.militaryToMinutes(this.appStart) &&
                         pushed === false
                     ) {
+                        console.log('if 2');
                         cal.push([this.appStart, this.appEnd]);
                         pushed = true;
                         i--;
@@ -222,12 +225,22 @@ export default {
                             this.militaryToMinutes(this.appStart) &&
                         pushed === true
                     ) {
+                        console.log('if 3');
                         cal.push(app);
                     }
                 }
-                if (pushed === false){
-                    cal.push([this.appStart, this.appEnd]);
+                if (pushed === false) {
+                    console.log('last if');
+                    if (cal[cal.length - 1][1] > this.appStart) {
+                        console.log('last if A');
+                        const prev = cal.pop();
+                        cal.push([prev[0], this.appEnd]);
                         pushed = true;
+                    } else {
+                        console.log('last if B');
+                        cal.push([this.appStart, this.appEnd]);
+                        pushed = true;
+                    }
                 }
                 this.calendar1 = cal;
             }

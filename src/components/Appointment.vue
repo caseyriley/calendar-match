@@ -1,6 +1,6 @@
 <template>
     <div class="timeline__app" :style="curHeight">
-        <span>Appointment</span>
+        <span>Busy</span>
         <span
             >{{ minutesToMilitary(appStart) }}-{{
                 minutesToMilitary(appEnd)
@@ -58,7 +58,7 @@ export default {
 @import './../styles/_variables.scss';
 .timeline__app {
     width: 100%;
-
+    
     background-color: $color-2;
     display: flex;
     flex-direction: column;
