@@ -59,7 +59,7 @@
                 Appointment end time
                 <input v-model="appEnd" type="time" />
             </label>
-            <submit class="app-submit" v-on:click="addApp"
+            <submit class="app-submit" v-on:click="addApp1"
                 >Submit</submit
             >
         </div>
@@ -112,7 +112,7 @@
                 Appointment end time
                 <input v-model="appEnd" type="time" />
             </label>
-            <submit class="app-submit" v-on:click="addApp"
+            <submit class="app-submit" v-on:click="addApp2"
                 >Submit</submit
             >
         </div>
@@ -130,28 +130,18 @@
                 :calendar="calendar1"
             >
             </Timeline>
-
-            <!--    <div class="timeline">
-            <Start :time="militaryToMinutes(startTime1)"></Start>
-            <FirstBreak
-                :start="militaryToMinutes(startTime1)"
-                :end="calendar1.length ? militaryToMinutes(calendar1[0][0]) : null"
-            ></FirstBreak>
-            <Appointment
-                v-for="(app, index) in calendar1"
-                :key="index"
-                :appStart="militaryToMinutes(calendar1[index][0])"
-                :appEnd="militaryToMinutes(calendar1[index][1])"
-                :appNextStart="
-                    calendar1[index + 1]
-                        ? militaryToMinutes(calendar1[index + 1][0])
+            <Timeline
+                v-if="startTime2"
+                :startTime="militaryToMinutes(startTime2)"
+                :breakEnd="
+                    calendar2.length
+                        ? militaryToMinutes(calendar2[0][0])
                         : null
                 "
-                :endTime="militaryToMinutes(endTime1)"
+                :endTime="militaryToMinutes(endTime2)"
+                :calendar="calendar2"
             >
-            </Appointment>
-            <End :time="militaryToMinutes(endTime1)"></End>
-        </div> -->
+            </Timeline>
         </div>
     </div>
 </template>
@@ -186,14 +176,22 @@ export default {
     },
     methods: {
         militaryToMinutes(string) {
-            console.log('string', string)
+            console.log('string', string);
             let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
         },
-        addApp() {
+        addApp1() {
             this.calendar1.push([this.appStart, this.appEnd]);
             console.log('calendar1======>', this.calendar1);
+            this.appStart = null;
+            this.appEnd = null;
+        },
+        addApp2() {
+            this.calendar2.push([this.appStart, this.appEnd]);
+            console.log('calendar1======>', this.calendar1);
+            this.appStart = null;
+            this.appEnd = null;
         },
         togglePerson1() {
             this.personToggle = true;
