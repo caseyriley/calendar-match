@@ -125,7 +125,11 @@
                         ? 'person one'
                         : name1
                 "
-                :startTime="startTime1 ? militaryToMinutes(startTime1) : '00:00'"
+                :startTime="
+                    startTime1
+                        ? militaryToMinutes(startTime1)
+                        : '00:00'
+                "
                 :breakEnd="
                     calendar1.length
                         ? militaryToMinutes(calendar1[0][0])
@@ -203,6 +207,7 @@ export default {
                     let app = this.calendar1[i];
                     if (
                         // if current appointment is earlier then new appointment
+                        // push current appointment
 
                         this.militaryToMinutes(app[0]) <
                         this.militaryToMinutes(this.appStart)
@@ -210,31 +215,44 @@ export default {
                         console.log('if 1');
                         cal.push(app);
                     } else if (
-                        // if current appointment is later then new appointment and new appointment has not been pushed
-                        // this.militaryToMinutes(app[0]) >
-                        this.militaryToMinutes(app[0] ? app[0] : "LandingPage 215") >
-                            this.militaryToMinutes(this.appStart) &&
-                        pushed === false
+                        // if current appointment start time is later then appointment start time and new appointment has not been pushed
+                        this.militaryToMinutes(app[0]) > // cur app start time
+                            this.militaryToMinutes(this.appStart) && // new app end time
+                        pushed === false // new app has not been pushed
                     ) {
                         console.log('if 2');
                         if (cal.length) {
-                            console.log('if 2 A');
-                            const prev = cal.pop();
-                            cal.push([prev[0], this.appEnd]);
-                            pushed = true;
-                            i--;
-                            console.log('landingPage 226 this.AppEnd', this.AppEnd);
-                            console.log('if 2 A End');
+                            if (
+                                //if new appointment start time is less than prev appointment end time
+                                this.militaryToMinutes(
+                                    // new app start time
+                                    this.appStart
+                                ) <
+                                this.militaryToMinutes(
+                                    this.calendar1[i - 1][1]
+                                ) //
+                            ) {
+                                console.log('if 2 A.1');
+                                const prev = cal.pop();
+                                cal.push([prev[0], this.appEnd]);
+                                pushed = true;
+                                i--;
+                                console.log('if 2 A.1 End');
+                            } else { //if new appointment start time is greater than prev appointment end time
+                                console.log('if 2 A.2');
+                                cal.push([this.appStart, this.appEnd]);
+                                pushed = true;
+                                i--;
+                            }
                         } else {
                             console.log('if 2 B');
                             cal.push([this.appStart, this.appEnd]);
                             pushed = true;
                             i--;
-                            console.log('landingPage 233 this.AppEnd', this.AppEnd);
                             console.log('if 2 B end');
                         }
                     } else if (
-                        // if current appointment is later then new appointment and new apoointment has been pushed
+                        // if current new appointment start time is later then appointment start time and new appointment has been pushed
                         this.militaryToMinutes(app[0]) >
                             this.militaryToMinutes(this.appStart) &&
                         pushed === true
