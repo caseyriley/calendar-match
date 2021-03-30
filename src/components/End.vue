@@ -1,7 +1,7 @@
 <template>
     <div class="end" :style="curHeight">
         <span>End Time</span>
-        <span> {{ minutesToMilitary(endTime) }} </span>
+        <span> {{ endTime }} </span>
     </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
     props: ['endTime'],
     data() {
         return {
-            height: `calc(${((1440 - this.endTime) / 1440) * 800}px)`,
+            // height: `calc(${((1440 - militaryToMinutes(this.endTime)) / 1440) * 800}px)`,
         };
     },
     methods: {
@@ -25,11 +25,17 @@ export default {
             }
             return `${h}:${m}`;
         },
+        militaryToMinutes(string) {
+            console.log('string', string);
+            let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
+            let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
+            return h * 60 + m;
+        },
     },
     computed: {
         curHeight: function () {
             return {
-                height: `${((1440 - this.endTime) / 1440) * 800}px`,
+                height: `${((1440 - this.militaryToMinutes(this.endTime)) / 1440) * 800}px`,
             };
         },
     },

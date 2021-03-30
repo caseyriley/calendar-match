@@ -1,16 +1,11 @@
 <template>
     <div class="timeline__app" :style="curHeight">
         <span>Busy</span>
-        <span
-            >{{ minutesToMilitary(appStart) }}-{{
-                minutesToMilitary(appEnd)
-            }}</span
-        >
+        <span>{{ appStartMin['start'] }}-{{ appEndMil['end'] }}</span>
     </div>
     <Break
-        :start="appEnd"
-        :end="appNextStart"
-        :appNextStart="appNextStart"
+        :start="appEndMin['end']"
+        :end="appNextStart['start']"
         :endTime="endTime"
     ></Break>
 </template>
@@ -20,14 +15,15 @@
 import Break from './Break.vue';
 export default {
     name: 'Appointment',
-    props: ['appStart', 'appEnd', 'appNextStart', 'endTime'],
+    // props: ['appStart', 'appEnd', 'appNextStart', 'endTime'],
+    props: ['key', 'index', 'calendar', 'endTime'],
     components: { Break },
     data() {
         return {
             // width: `calc(${((this.appEnd - this.appStart) / 1140) * 100}% - 10px)`,
-            height: `calc(${
-                ((this.appEnd - this.appStart) / 1140) * 800
-            }px)`,
+            // appEnd: this.calendar[this.index] ? this.militaryToMinutes(this.calendar[this.index][1]) : null,
+            // appStart: this.calendar[this.index] ? this.militaryToMinutes(this.calendar[this.index][0]) : null,
+            // appNextStart: this.calendar[this.index + 1] ? this.militaryToMinutes(this.calendar[this.index + 1][0]) : null,
         };
     },
     methods: {
@@ -41,13 +37,61 @@ export default {
             }
             return `${h}:${m}`;
         },
+        militaryToMinutes(string) {
+            console.log('string', string);
+            let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
+            let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
+            return h * 60 + m;
+        },
     },
     computed: {
         curHeight: function () {
             return {
                 height: `calc(${
-                    ((this.appEnd - this.appStart) / 1140) * 800
+                    ((this.appEndMin['end'] - this.appStart['start']) / 1140) * 800
                 }px)`,
+            };
+        },
+        appStart: function () {
+            const start = this.calendar[this.index]
+                ? this.militaryToMinutes(this.calendar[this.index][0])
+                : null;
+            return {
+                start,
+            };
+        },
+        appStartMin: function () {
+            const start = this.calendar[this.index]
+                ? this.calendar[this.index][0]
+                : null;
+            return {
+                start,
+            };
+        },
+        appEndMin: function () {
+            const end = this.calendar[this.index]
+                ? this.militaryToMinutes(this.calendar[this.index][1])
+                : null;
+            return {
+                end,
+            };
+        },
+        appEndMil: function () {
+            const end = this.calendar[this.index]
+                ? this.calendar[this.index][1]
+                : null;
+            return {
+                end,
+            };
+        },
+        appNextStart: function () {
+            const start = this.calendar[this.index + 1]
+                ? this.militaryToMinutes(
+                      this.calendar[this.index + 1][0]
+                  )
+                : null;
+            return {
+                start,
             };
         },
     },
@@ -58,7 +102,7 @@ export default {
 @import './../styles/_variables.scss';
 .timeline__app {
     width: 100%;
-    
+
     background-color: $color-2;
     display: flex;
     flex-direction: column;

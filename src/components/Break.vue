@@ -3,7 +3,7 @@
         <span>Break</span>
         <span
             >{{ minutesToMilitary(start) }} -
-            {{ minutesToMilitary(end ? end : endTime) }}</span
+            {{ end ? minutesToMilitary(end) : endTime }}</span
         >
     </div>
 </template>
@@ -11,17 +11,17 @@
 <script>
 export default {
     name: 'Break',
-    props: ['start', 'end', 'appNextStart', 'endTime'],
+    props: ['start', 'end', 'endTime'],
     data() {
         return {
-            height: `calc(${
-                (((this.end ? this.end : this.endTime) - this.start) /
-                    1140) *
-                800
-            }px)`,
+            // height: `calc(${
+            //     (((this.end ? this.end : militaryToMinutes(this.endTime)) - this.start) /
+            //         1140) *
+            //     800
+            // }px)`,
             bool:
-                this.start < this.appNextStart ||
-                this.start < this.endTime
+                this.start < this.end ||
+                this.start < this.militaryToMinutes(this.endTime)
                     ? true
                     : false,
         };
@@ -37,12 +37,18 @@ export default {
             }
             return `${h}:${m}`;
         },
+        militaryToMinutes(string) {
+            console.log('string', string);
+            let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
+            let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
+            return h * 60 + m;
+        },
     },
     computed: {
         curHeight: function () {
             return {
                 height: `calc(${
-                    (((this.end ? this.end : this.endTime) -
+                    (((this.end ? this.end : this.militaryToMinutes(this.endTime)) -
                         this.start) /
                         1140) *
                     800

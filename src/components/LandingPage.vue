@@ -64,7 +64,7 @@
             >
         </div>
         <!-- Person 2's Form -->
-        <div class="userForm" v-if="!personToggle">
+        <!-- <div class="userForm" v-if="!personToggle">
             <h2>{{ name2 }}</h2>
             <label>
                 What is person two's name?
@@ -115,7 +115,7 @@
             <submit class="app-submit" v-on:click="addApp2"
                 >Submit</submit
             >
-        </div>
+        </div> -->
 
         <div class="timeline-c">
             <Timeline
@@ -125,18 +125,18 @@
                         ? 'person one'
                         : name1
                 "
-                :startTime="militaryToMinutes(startTime1)"
+                :startTime="startTime1 ? militaryToMinutes(startTime1) : '00:00'"
                 :breakEnd="
                     calendar1.length
                         ? militaryToMinutes(calendar1[0][0])
                         : null
                 "
-                :endTime="militaryToMinutes(endTime1)"
+                :endTime="endTime1"
                 :calendar="calendar1"
             >
             </Timeline>
 
-            <Timeline
+            <!-- <Timeline
                 v-if="startTime2"
                 :name="
                     name1 === null || name1 === ''
@@ -152,7 +152,7 @@
                 :endTime="militaryToMinutes(endTime2)"
                 :calendar="calendar2"
             >
-            </Timeline>
+            </Timeline> -->
         </div>
     </div>
 </template>
@@ -181,7 +181,7 @@ export default {
             ],
             calendar2: [],
             appStart: null,
-            appEnd: null,
+            appEnd: '20:00',
             personToggle: true,
         };
     },
@@ -211,7 +211,8 @@ export default {
                         cal.push(app);
                     } else if (
                         // if current appointment is later then new appointment and new appointment has not been pushed
-                        this.militaryToMinutes(app[0]) >
+                        // this.militaryToMinutes(app[0]) >
+                        this.militaryToMinutes(app[0] ? app[0] : "LandingPage 215") >
                             this.militaryToMinutes(this.appStart) &&
                         pushed === false
                     ) {
@@ -219,17 +220,17 @@ export default {
                         if (cal.length) {
                             console.log('if 2 A');
                             const prev = cal.pop();
-                            cal.push([prev[0], this.AppEnd]);
+                            cal.push([prev[0], this.appEnd]);
                             pushed = true;
                             i--;
-                            console.log('this.AppEnd', this.AppEnd);
+                            console.log('landingPage 226 this.AppEnd', this.AppEnd);
                             console.log('if 2 A End');
                         } else {
                             console.log('if 2 B');
                             cal.push([this.appStart, this.appEnd]);
                             pushed = true;
                             i--;
-                            console.log('this.AppEnd', this.AppEnd);
+                            console.log('landingPage 233 this.AppEnd', this.AppEnd);
                             console.log('if 2 B end');
                         }
                     } else if (
@@ -259,10 +260,9 @@ export default {
             }
 
             console.log('calendar1======>', this.calendar1);
-            setTimeout(() => {
-                this.appStart = null;
-                this.appEnd = null;
-            }, 1000);
+
+            this.appStart = null;
+            this.appEnd = null;
         },
         addApp2() {
             this.calendar2.push([this.appStart, this.appEnd]);

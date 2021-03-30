@@ -1,13 +1,13 @@
 <template>
     <div class="timeline" v-if="calendar.length">
-        <span class="name">{{name}}</span >
+        <span class="name">{{ name }}</span>
         <Start v-if="startTime" :startTime="startTime"></Start>
         <FirstBreak
             :startTime="startTime"
             :breakEnd="breakEnd"
         ></FirstBreak>
-        <Appointment
-            
+
+        <!-- <Appointment
             v-for="(app, index) in calendar"
             :key="index"
             :appStart="
@@ -16,18 +16,27 @@
                     : null
             "
             :appEnd="
-                calendar.length
-                    ? militaryToMinutes(calendar[index][1] ? calendar[index][1] : '11:30')
-                    : null
+                calendar[index]
+                    ? militaryToMinutes(calendar[index][1])
+                    : null // give a default
             "
             :appNextStart="
                 calendar[index + 1]
-                    ? militaryToMinutes(calendar [index + 1][0])
+                    ? militaryToMinutes(calendar[index + 1][0])
                     : null
             "
             :endTime="endTime"
         >
+        </Appointment> -->
+        <Appointment
+            v-for="(app, index) in calendar"
+            :key="index"
+            :index="index"
+            :calendar="calendar"
+            :endTime="endTime"
+        >
         </Appointment>
+
         <End v-if="endTime" :endTime="endTime"></End>
     </div>
 </template>
@@ -40,22 +49,10 @@ import FirstBreak from '@/components/FirstBreak.vue';
 export default {
     name: 'Timeline',
     components: { Appointment, Start, End, FirstBreak },
-    props: [
-        'name',
-        'startTime',
-        'breakEnd',
-        'endTime',
-        'calendar',
-
-        // 'appStart',
-        // 'appEnd',
-        // 'appNextStart',
-        
-    ],
+    props: ['name', 'startTime', 'breakEnd', 'endTime', 'calendar'],
     methods: {
         militaryToMinutes(string) {
-            console.log("this.appEnd", this.appEnd)
-            console.log('string', string)
+            console.log('string', string);
             let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
