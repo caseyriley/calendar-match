@@ -232,8 +232,9 @@ export default {
                                     this.calendar1[i - 1][1]
                                 ) //
                             ) {
+                                console.log('if 2 A.1');
                                 if (
-                                    //if new appointment end time is later then next appointment start time
+                                    //if new appointment end time is later then next appointment start time but not later then next appointment end time
                                     this.militaryToMinutes(
                                         this.appEnd
                                     ) >
@@ -242,30 +243,35 @@ export default {
                                         ) &&
                                     this.militaryToMinutes(
                                         this.appEnd
-                                    ) <
-                                        this.militaryToMinutes(
-                                            app[1]
-                                        )
+                                    ) < this.militaryToMinutes(app[1])
                                 ) {
-                                    console.log('if 2 A.1');
+                                    console.log('if 2 A.1.1');
                                     const prev = cal.pop();
-                                    cal.push([
-                                        prev[0],
-                                        app[1],
-                                    ]);
+                                    cal.push([prev[0], app[1]]);
                                     pushed = true;
-                                    console.log('if 2 A.1 End');
+                                    console.log('if 2 A.1.1 End');
+                                } else if (
+                                    //if new appointment end time is later then next appointment end time
+                                    this.militaryToMinutes(
+                                        this.appEnd
+                                    ) > this.militaryToMinutes(app[1])
+                                ) {
+                                    console.log('if 2 A.1.2');
+                                    const prev = cal.pop();
+                                    cal.push([prev[0], this.appEnd]);
+                                    pushed = true;
+                                    console.log('if 2 A.1.2 End');
                                 } else {
-                                    console.log('if 2 A.1');
+                                    console.log('if 2 A.1.3');
                                     const prev = cal.pop();
                                     cal.push([prev[0], this.appEnd]);
                                     pushed = true;
                                     i--;
-                                    console.log('if 2 A.1 End');
+                                    console.log('if 2 A.1.3 End');
                                 }
                             } else {
                                 //if new appointment start time is greater than prev appointment end time
-                                console.log('if 2 A.2');
+                                console.log('if 2 A.4');
                                 cal.push([
                                     this.appStart,
                                     this.appEnd,
