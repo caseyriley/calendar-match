@@ -215,7 +215,7 @@ export default {
                         console.log('if 1');
                         cal.push(app);
                     } else if (
-                        // if current appointment start time is later then appointment start time and new appointment has not been pushed
+                        // if current appointment start time is later then new appointment start time and new appointment has not been pushed
                         this.militaryToMinutes(app[0]) > // cur app start time
                             this.militaryToMinutes(this.appStart) && // new app end time
                         pushed === false // new app has not been pushed
@@ -232,15 +232,44 @@ export default {
                                     this.calendar1[i - 1][1]
                                 ) //
                             ) {
-                                console.log('if 2 A.1');
-                                const prev = cal.pop();
-                                cal.push([prev[0], this.appEnd]);
-                                pushed = true;
-                                i--;
-                                console.log('if 2 A.1 End');
-                            } else { //if new appointment start time is greater than prev appointment end time
+                                if (
+                                    //if new appointment end time is later then next appointment start time
+                                    this.militaryToMinutes(
+                                        this.appEnd
+                                    ) >
+                                        this.militaryToMinutes(
+                                            app[0]
+                                        ) &&
+                                    this.militaryToMinutes(
+                                        this.appEnd
+                                    ) <
+                                        this.militaryToMinutes(
+                                            app[1]
+                                        )
+                                ) {
+                                    console.log('if 2 A.1');
+                                    const prev = cal.pop();
+                                    cal.push([
+                                        prev[0],
+                                        app[1],
+                                    ]);
+                                    pushed = true;
+                                    console.log('if 2 A.1 End');
+                                } else {
+                                    console.log('if 2 A.1');
+                                    const prev = cal.pop();
+                                    cal.push([prev[0], this.appEnd]);
+                                    pushed = true;
+                                    i--;
+                                    console.log('if 2 A.1 End');
+                                }
+                            } else {
+                                //if new appointment start time is greater than prev appointment end time
                                 console.log('if 2 A.2');
-                                cal.push([this.appStart, this.appEnd]);
+                                cal.push([
+                                    this.appStart,
+                                    this.appEnd,
+                                ]);
                                 pushed = true;
                                 i--;
                             }
@@ -262,6 +291,7 @@ export default {
                     }
                 }
                 if (pushed === false) {
+                    //if after iterating through the calendar the new appointment has not been push
                     console.log('last if');
                     if (cal[cal.length - 1][1] > this.appStart) {
                         console.log('last if A');
