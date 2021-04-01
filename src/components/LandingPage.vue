@@ -74,12 +74,12 @@
             <submit class="app-submit" v-on:click="addApp1"
                 >Submit</submit
             >
-            <span v-if="required" class="required"
+            <span v-if="required1" class="required"
                 >please complete required fields *</span
             >
         </div>
         <!-- Person 2's Form -->
-        <!-- <div class="userForm" v-if="!personToggle">
+        <div class="userForm" v-if="!personToggle">
             <h2>{{ name2 }}</h2>
             <label>
                 What is person two's name?
@@ -89,21 +89,27 @@
                 When does
                 {{
                     name2 === null || name2 === ''
-                        ? 'person one'
+                        ? 'person two'
                         : name2
                 }}
                 begin thier day?
                 <input v-model="startTime2" type="time" />
+                <span v-if="reqStartTime2['req']" class="required"
+                    >*</span
+                >
             </label>
             <label>
                 When does
                 {{
                     name2 === null || name2 === ''
-                        ? 'person one'
+                        ? 'person two'
                         : name2
                 }}
                 end thier day?
                 <input v-model="endTime2" type="time" />
+                <span v-if="reqEndTime2['req']" class="required"
+                    >*</span
+                >
             </label>
             <h2>
                 Enter
@@ -111,26 +117,36 @@
                     name2 === null || name2 === ''
                         ? 'person two'
                         : name2
-                }}'s appointment #{{ calendar1.length + 1 }} times and
+                }}'s appointment #{{ calendar2.length + 1 }} times and
                 click submit, or enter
                 {{
-                    name2 === null || name2 === ''
-                        ? 'person two'
-                        : name2
+                    name1 === null || name1 === ''
+                        ? 'person one'
+                        : name1
                 }}'s information
             </h2>
             <label>
                 Appointment start time
                 <input v-model="appStart" type="time" />
+                <span v-if="reqAppStart2['req']" class="required"
+                    >*</span
+                >
             </label>
             <label>
                 Appointment end time
                 <input v-model="appEnd" type="time" />
+                <span v-if="reqAppEnd2['req']" class="required"
+                    >*</span
+                >
             </label>
-            <submit class="app-submit" v-on:click="addApp2"
+            <submit class="app-submit" v-on:click="addApp1"
                 >Submit</submit
             >
-        </div> -->
+            <span v-if="required2" class="required"
+                >please complete required fields *</span
+            >
+        </div>
+        <!-- --------------------- -->
 
         <div class="timeline-c">
             <Timeline
@@ -193,16 +209,14 @@ export default {
             startTime1: null,
             startTime2: null,
             endTime1: null,
-            calendar1: [
-                // ['9:00', '10:30'],
-                // ['12:00', '13:00'],
-                // ['16:00', '18:00'],
-            ],
+            endTime2: null,
+            calendar1: [],
             calendar2: [],
             appStart: null,
             appEnd: null,
             personToggle: true,
-            required: false,
+            required1: false,
+            required2: false,
         };
     },
     methods: {
@@ -213,7 +227,7 @@ export default {
             return h * 60 + m;
         },
         addApp1() {
-            this.required = false;
+            this.required1 = false;
             if (this.startTime1 > this.endTime1) return;
             if (this.appStart > this.appEnd) return;
             if (this.startTime1 > this.appStart)
@@ -227,7 +241,7 @@ export default {
                 !this.startTime1 ||
                 !this.endTime1
             ) {
-                this.required = true;
+                this.required1 = true;
                 return;
             }
             let cal = [];
@@ -422,27 +436,54 @@ export default {
     computed: {
         reqStartTime: function () {
             const req =
-                this.required && !this.startTime1 ? true : false;
+                this.required1 && !this.startTime1 ? true : false;
+            return {
+                req,
+            };
+        },
+        reqStartTime2: function () {
+            const req =
+                this.required2 && !this.startTime2 ? true : false;
             return {
                 req,
             };
         },
         reqEndTime: function () {
             const req =
-                this.required && !this.endTime1 ? true : false;
+                this.required1 && !this.endTime1 ? true : false;
+            return {
+                req,
+            };
+        },
+        reqEndTime2: function () {
+            const req =
+                this.required2 && !this.endTime2 ? true : false;
             return {
                 req,
             };
         },
         reqAppStart: function () {
             const req =
-                this.required && !this.appStart ? true : false;
+                this.required1 && !this.appStart ? true : false;
+            return {
+                req,
+            };
+        },
+        reqAppStart2: function () {
+            const req =
+                this.required2 && !this.appStart ? true : false;
             return {
                 req,
             };
         },
         reqAppEnd: function () {
-            const req = this.required && !this.appEnd ? true : false;
+            const req = this.required1 && !this.appEnd ? true : false;
+            return {
+                req,
+            };
+        },
+        reqAppEnd2: function () {
+            const req = this.required2 && !this.appEnd ? true : false;
             return {
                 req,
             };
