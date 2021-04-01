@@ -26,6 +26,9 @@
                 }}
                 begin thier day?
                 <input v-model="startTime1" type="time" />
+                <span v-if="reqStartTime['req']" class="required"
+                    >*</span
+                >
             </label>
             <label>
                 When does
@@ -36,6 +39,9 @@
                 }}
                 end thier day?
                 <input v-model="endTime1" type="time" />
+                <span v-if="reqEndTime['req']" class="required"
+                    >*</span
+                >
             </label>
             <h2>
                 Enter
@@ -54,13 +60,22 @@
             <label>
                 Appointment start time
                 <input v-model="appStart" type="time" />
+                <span v-if="reqAppStart['req']" class="required"
+                    >*</span
+                >
             </label>
             <label>
                 Appointment end time
                 <input v-model="appEnd" type="time" />
+                <span v-if="reqAppEnd['req']" class="required"
+                    >*</span
+                >
             </label>
             <submit class="app-submit" v-on:click="addApp1"
                 >Submit</submit
+            >
+            <span v-if="required" class="required"
+                >please complete required fields *</span
             >
         </div>
         <!-- Person 2's Form -->
@@ -185,8 +200,9 @@ export default {
             ],
             calendar2: [],
             appStart: null,
-            appEnd: '20:00',
+            appEnd: null,
             personToggle: true,
+            required: false,
         };
     },
     methods: {
@@ -197,7 +213,15 @@ export default {
             return h * 60 + m;
         },
         addApp1() {
-            let cal = [];
+            this.required = false;
+            if (this.appStart > this.appEnd) return
+            if (this.startTime1 > this.appStart) this.appStart = this.startTime1;
+            if (this.endTime1 < this.appEnd) this.appEnd = this.endTime1;5
+            if (!this.appStart || !this.appEnd || !this.startTime1 || !this.endTime1) {
+                this.required = true;
+                return;
+            }
+            let cal = []; 
             let pushed = false;
             if (this.calendar1.length < 1) {
                 console.log('calendar1.length < 1');
@@ -280,11 +304,41 @@ export default {
                                 i--;
                             }
                         } else {
-                            console.log('if 2 B');
-                            cal.push([this.appStart, this.appEnd]);
-                            pushed = true;
-                            i--;
-                            console.log('if 2 B end');
+                            // if calendar has no length
+                            // if new appointment end time is after current appointment start time but before current appointment end time
+                            if (
+                                this.militaryToMinutes(this.appEnd) >
+                                    this.militaryToMinutes(app[0]) &&
+                                this.militaryToMinutes(this.appEnd) <
+                                    this.militaryToMinutes(app[1])
+                            ) {
+                                console.log('if 2 B.1');
+                                cal.push([this.appStart, app[1]]);
+                                pushed = true;
+                                console.log('if 2 B.1 end');
+                            } else if (
+                                // if new appointment end time is later than current appointment
+                                this.militaryToMinutes(this.appEnd) >
+                                this.militaryToMinutes(app[1])
+                            ) {
+                                console.log('if 2 B.2');
+                                cal.push([
+                                    this.appStart,
+                                    this.appEnd,
+                                ]);
+                                pushed = true;
+                                console.log('if 2 B.2 end');
+                            } else {
+                                //if new appointment end time is before current appointment start time
+                                console.log('if 2 B.3');
+                                cal.push([
+                                    this.appStart,
+                                    this.appEnd,
+                                ]);
+                                pushed = true;
+                                i--;
+                                console.log('if 2 B.3 end');
+                            }
                         }
                     } else if (
                         // if current new appointment start time is later then appointment start time and new appointment has been pushed
@@ -329,6 +383,35 @@ export default {
         },
         togglePerson2() {
             this.personToggle = false;
+        },
+    },
+    computed: {
+        reqStartTime: function () {
+            const req =
+                this.required && !this.startTime1 ? true : false;
+            return {
+                req,
+            };
+        },
+        reqEndTime: function () {
+            const req =
+                this.required && !this.endTime1 ? true : false;
+            return {
+                req,
+            };
+        },
+        reqAppStart: function () {
+            const req =
+                this.required && !this.appStart ? true : false;
+            return {
+                req,
+            };
+        },
+        reqAppEnd: function () {
+            const req = this.required && !this.appEnd ? true : false;
+            return {
+                req,
+            };
         },
     },
 };
@@ -419,6 +502,10 @@ input:focus {
     outline: none;
     background-color: lavender;
     border: 1px solid $color-2;
+}
+.required {
+    color: red;
+    margin: 0px 0px 0px 5px;
 }
 .app-submit {
     border: 1px solid grey;

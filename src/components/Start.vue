@@ -59,6 +59,7 @@ export default {
     overflow: scroll;
     box-sizing: border-box;
     border: 2px solid grey;
+    border-bottom: none;
     border-radius: 5px;
 }
 .start span {
