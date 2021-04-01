@@ -110,7 +110,7 @@ export default {
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
-    border: 2px solid grey;
+    border: 1px solid grey;
     border-radius: 5px;
 }
 </style>

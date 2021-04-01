@@ -214,16 +214,26 @@ export default {
         },
         addApp1() {
             this.required = false;
-            if (this.appStart > this.appEnd) return
-            if (this.startTime1 > this.appStart) this.appStart = this.startTime1;
-            if (this.endTime1 < this.appEnd) this.appEnd = this.endTime1;5
-            if (!this.appStart || !this.appEnd || !this.startTime1 || !this.endTime1) {
+            if (this.startTime1 > this.endTime1) return;
+            if (this.appStart > this.appEnd) return;
+            if (this.startTime1 > this.appStart)
+                this.appStart = this.startTime1;
+            if (this.endTime1 < this.appEnd)
+                this.appEnd = this.endTime1;
+            5;
+            if (
+                !this.appStart ||
+                !this.appEnd ||
+                !this.startTime1 ||
+                !this.endTime1
+            ) {
                 this.required = true;
                 return;
             }
-            let cal = []; 
+            let cal = [];
             let pushed = false;
             if (this.calendar1.length < 1) {
+                // calendar1.length < 1
                 console.log('calendar1.length < 1');
                 this.calendar1.push([this.appStart, this.appEnd]);
             } else {
@@ -246,6 +256,7 @@ export default {
                     ) {
                         console.log('if 2');
                         if (cal.length) {
+                            // if cal.length
                             if (
                                 //if new appointment start time is less than prev appointment end time
                                 this.militaryToMinutes(
@@ -304,7 +315,7 @@ export default {
                                 i--;
                             }
                         } else {
-                            // if calendar has no length
+                            // if cal has no length
                             // if new appointment end time is after current appointment start time but before current appointment end time
                             if (
                                 this.militaryToMinutes(this.appEnd) >
@@ -317,7 +328,7 @@ export default {
                                 pushed = true;
                                 console.log('if 2 B.1 end');
                             } else if (
-                                // if new appointment end time is later than current appointment
+                                // if new appointment end time is later than current appointment end time
                                 this.militaryToMinutes(this.appEnd) >
                                 this.militaryToMinutes(app[1])
                             ) {
@@ -341,24 +352,47 @@ export default {
                             }
                         }
                     } else if (
-                        // if current new appointment start time is later then appointment start time and new appointment has been pushed
+                        // if current appointment start time is later then new appointment start time and new appointment has been pushed
                         this.militaryToMinutes(app[0]) >
                             this.militaryToMinutes(this.appStart) &&
                         pushed === true
                     ) {
                         console.log('if 3');
-                        cal.push(app);
+                        if (
+                            //if the last appointment end time is less than current appointment start time
+                            this.militaryToMinutes(
+                                cal[cal.length - 1][1]
+                            ) < this.militaryToMinutes(app[0]) 
+                        ) {
+                            console.log('if 3.1')
+                            cal.push(app);
+                        } else if (
+                            //if the last appointment end time is greater than current appointment start time and less then current appointment end time
+                            this.militaryToMinutes(
+                                cal[cal.length - 1][1]
+                            ) > this.militaryToMinutes(app[0]) &&
+                            this.militaryToMinutes(cal[cal.length - 1][1]) < this.militaryToMinutes(app[1])
+                        ){
+                            console.log('if 3.2')
+                            const prev = cal.pop();
+                            cal.push([prev[0], app[1]])
+                        } else {
+                            //if the last appointment end time is greater then the current appointment end time
+                            continue
+                        }
                     }
                 }
                 if (pushed === false) {
                     //if after iterating through the calendar the new appointment has not been push
                     console.log('last if');
                     if (cal[cal.length - 1][1] > this.appStart) {
+                        //if last appointment in cal overlaps new appointment start time
                         console.log('last if A');
                         const prev = cal.pop();
                         cal.push([prev[0], this.appEnd]);
                         pushed = true;
                     } else {
+                        //if last appointment in cal ends before new appointment start time
                         console.log('last if B');
                         cal.push([this.appStart, this.appEnd]);
                         pushed = true;
