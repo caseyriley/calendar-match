@@ -6,28 +6,6 @@
             :startTime="startTime"
             :breakEnd="breakEnd"
         ></FirstBreak>
-
-        <!-- <Appointment
-            v-for="(app, index) in calendar"
-            :key="index"
-            :appStart="
-                calendar.length
-                    ? militaryToMinutes(calendar[index][0])
-                    : null
-            "
-            :appEnd="
-                calendar[index]
-                    ? militaryToMinutes(calendar[index][1])
-                    : null // give a default
-            "
-            :appNextStart="
-                calendar[index + 1]
-                    ? militaryToMinutes(calendar[index + 1][0])
-                    : null
-            "
-            :endTime="endTime"
-        >
-        </Appointment> -->
         <Appointment
             v-for="(app, index) in calendar"
             :key="index"
@@ -66,7 +44,7 @@ export default {
 .timeline {
     width: 200px;
     height: 823px;
-    height: auto;
+    // height: auto;
     // border: 2px solid $color-1;
     border-radius: 5px;
     background-color: $color-6;

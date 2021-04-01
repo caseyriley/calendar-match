@@ -10,6 +10,16 @@
                 Person 2
             </div>
         </div>
+
+        <label class="duration">
+            How many minutes long is your appointment going to be?
+            <input
+                v-model="meetingDuration"
+                type="number"
+                min="0"
+                max="1440"
+            />
+        </label>
         <!-- Person 1's Form -->
         <div class="userForm" v-if="personToggle">
             <h2>{{ name1 }}</h2>
@@ -170,6 +180,21 @@
                 :calendar="calendar1"
             >
             </Timeline>
+            <!-- MatchTimes --------- -->
+            <MatchTimes
+                v-if="
+                    calendar1.length &&
+                    calendar2.length &&
+                    meetingDuration
+                "
+                :meetingDuration="meetingDuration"
+                :dailyBoundsOne="`[${startTime1}, ${endTime1}]`"
+                :dailyBoundsTwo="`[${startTime2}, ${endTime2}]`"
+                :calendarOne="calendar1"
+                :calendarTwo="calendar2"
+            >
+            </MatchTimes>
+            <!-- ---------- --------- -->
 
             <!-- Timeline 2 --------- -->
             <Timeline
@@ -200,13 +225,14 @@
 
 <script>
 import Timeline from './Timeline.vue';
+import MatchTimes from './MatchTimes.vue';
 // import Appointment from '@/components/Appointment.vue';
 // import Start from '@/components/Start.vue';
 // import End from '@/components/End.vue';
 // import FirstBreak from '@/components/FirstBreak.vue';
 export default {
     name: 'LandingPage',
-    components: { Timeline },
+    components: { Timeline, MatchTimes },
     // components: { Appointment, Start, End, FirstBreak },
     data() {
         return {
@@ -223,6 +249,7 @@ export default {
             personToggle: true,
             required1: false,
             required2: false,
+            meetingDuration: null,
         };
     },
     methods: {
@@ -382,23 +409,25 @@ export default {
                             //if the last appointment end time is less than current appointment start time
                             this.militaryToMinutes(
                                 cal[cal.length - 1][1]
-                            ) < this.militaryToMinutes(app[0]) 
+                            ) < this.militaryToMinutes(app[0])
                         ) {
-                            console.log('if 3.1')
+                            console.log('if 3.1');
                             cal.push(app);
                         } else if (
                             //if the last appointment end time is greater than current appointment start time and less then current appointment end time
                             this.militaryToMinutes(
                                 cal[cal.length - 1][1]
                             ) > this.militaryToMinutes(app[0]) &&
-                            this.militaryToMinutes(cal[cal.length - 1][1]) < this.militaryToMinutes(app[1])
-                        ){
-                            console.log('if 3.2')
+                            this.militaryToMinutes(
+                                cal[cal.length - 1][1]
+                            ) < this.militaryToMinutes(app[1])
+                        ) {
+                            console.log('if 3.2');
                             const prev = cal.pop();
-                            cal.push([prev[0], app[1]])
+                            cal.push([prev[0], app[1]]);
                         } else {
                             //if the last appointment end time is greater then the current appointment end time
-                            continue
+                            continue;
                         }
                     }
                 }
@@ -576,23 +605,25 @@ export default {
                             //if the last appointment end time is less than current appointment start time
                             this.militaryToMinutes(
                                 cal[cal.length - 1][1]
-                            ) < this.militaryToMinutes(app[0]) 
+                            ) < this.militaryToMinutes(app[0])
                         ) {
-                            console.log('if 3.1')
+                            console.log('if 3.1');
                             cal.push(app);
                         } else if (
                             //if the last appointment end time is greater than current appointment start time and less then current appointment end time
                             this.militaryToMinutes(
                                 cal[cal.length - 1][1]
                             ) > this.militaryToMinutes(app[0]) &&
-                            this.militaryToMinutes(cal[cal.length - 1][1]) < this.militaryToMinutes(app[1])
-                        ){
-                            console.log('if 3.2')
+                            this.militaryToMinutes(
+                                cal[cal.length - 1][1]
+                            ) < this.militaryToMinutes(app[1])
+                        ) {
+                            console.log('if 3.2');
                             const prev = cal.pop();
-                            cal.push([prev[0], app[1]])
+                            cal.push([prev[0], app[1]]);
                         } else {
                             //if the last appointment end time is greater then the current appointment end time
-                            continue
+                            continue;
                         }
                     }
                 }
@@ -700,6 +731,18 @@ h2 {
     margin: 20px 20px 20px 20px;
     text-align: center;
     color: rgb(000, 222, 222);
+}
+.duration {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    margin: 20px 0px 0px 0px;
+    // border-top: 1px solid grey;
+    // border-bottom: 1px solid grey;
+    input {
+        margin: 10px 0px 7px 0px;
+    }
 }
 .timeline-c {
     width: 100%;
