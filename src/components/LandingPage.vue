@@ -188,8 +188,10 @@
                     meetingDuration
                 "
                 :meetingDuration="meetingDuration"
-                :dailyBoundsOne="`[${startTime1}, ${endTime1}]`"
-                :dailyBoundsTwo="`[${startTime2}, ${endTime2}]`"
+                :startTime1="startTime1"
+                :endTime1="endTime1"
+                :startTime2="startTime2"
+                :endTime2="endTime2"
                 :calendarOne="calendar1"
                 :calendarTwo="calendar2"
             >
