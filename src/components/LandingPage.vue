@@ -648,7 +648,7 @@ export default {
                 this.calendar2 = cal;
             }
 
-            console.log('calendar2======>', this.calendar2);
+            console.log('calendar1======>', this.calendar2);
 
             this.appStart = null;
             this.appEnd = null;
