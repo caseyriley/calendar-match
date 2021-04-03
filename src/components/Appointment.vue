@@ -48,7 +48,7 @@ export default {
         curHeight: function () {
             return {
                 height: `calc(${
-                    ((this.appEndMin['end'] - this.appStart['start']) / 1140) * 800
+                    ((this.militaryToMinutes(this.appEndMin['end']) - this.appStart['start']) / 1140) * 800
                 }px)`,
             };
         },
@@ -78,7 +78,7 @@ export default {
         },
         appEndMil: function () {
             const end = this.calendar[this.index]
-                ? this.calendar[this.index][1]
+                ? this.minutesToMilitary(this.calendar[this.index][1])
                 : null;
             return {
                 end,
