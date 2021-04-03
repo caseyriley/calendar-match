@@ -3,7 +3,7 @@
         <span>Break</span>
         <span>
             {{ minToMilStart }} -
-            {{ minutesToMilitary(breakEnd ? breakEnd : endTime) }}
+            {{ breakEnd ? breakEnd : endTime }}
         </span>
         <span> {{ endTime }}</span>
     </div>
@@ -15,7 +15,7 @@ export default {
     props: ['startTime', 'breakEnd'],
     data() {
         return {
-            bool: this.startTime < this.breakEnd,
+            bool: this.startTime < this.militaryToMinutes(this.breakEnd),
             calcStart: null,
             curStart: this.calcStart ? this.calcStart : this.startTime,
         };
@@ -30,6 +30,12 @@ export default {
                 m = f + `${m}`;
             }
             return `${h}:${m}`;
+        },
+        militaryToMinutes(string) {
+            console.log('string', string);
+            let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
+            let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
+            return h * 60 + m;
         },
     },
     computed: {

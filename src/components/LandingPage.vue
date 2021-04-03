@@ -173,7 +173,7 @@
                 "
                 :breakEnd="
                     calendar1.length
-                        ? militaryToMinutes(calendar1[0][0])
+                        ? calendar1[0][0]
                         : null
                 "
                 :endTime="endTime1"
@@ -213,7 +213,7 @@
                 "
                 :breakEnd="
                     calendar2.length
-                        ? militaryToMinutes(calendar2[0][0])
+                        ? calendar2[0][0]
                         : null
                 "
                 :endTime="endTime2"

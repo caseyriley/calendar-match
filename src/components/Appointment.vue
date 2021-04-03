@@ -70,7 +70,7 @@ export default {
         },
         appEndMin: function () {
             const end = this.calendar[this.index]
-                ? this.militaryToMinutes(this.calendar[this.index][1])
+                ? this.calendar[this.index][1]
                 : null;
             return {
                 end,
