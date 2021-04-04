@@ -32,7 +32,7 @@ export default {
             return `${h}:${m}`;
         },
         militaryToMinutes(string) {
-            console.log('string', string);
+            console.log('string FirstBreak', string);
             let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
@@ -46,7 +46,7 @@ export default {
         curHeight: function () {
             return {
                 height: `${
-                    ((this.breakEnd -
+                    ((this.militaryToMinutes(this.breakEnd) -
                         this.startTime) /
                         1140) *
                     800

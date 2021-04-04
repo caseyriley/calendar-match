@@ -171,13 +171,9 @@
                         ? militaryToMinutes(startTime1)
                         : '00:00'
                 "
-                :breakEnd="
-                    calendar1.length
-                        ? calendar1[0][0]
-                        : null
-                "
+                :breakEnd="calendar1.length ? calendar1[0][0] : null"
                 :endTime="endTime1"
-                :calendar="calendar1"
+                :calendar="[...calendar2Computed['c']]"
             >
             </Timeline>
             <!-- MatchTimes --------- -->
@@ -192,10 +188,11 @@
                 :endTime1="endTime1"
                 :startTime2="startTime2"
                 :endTime2="endTime2"
-                :calendarOne="calendar1"
-                :calendarTwo="calendar2"
+                :calendarOne="[...calendar1Computed['c']]"
+                :calendarTwo="[...calendar2Computed['c']]"
             >
             </MatchTimes>
+
             <!-- ---------- --------- -->
 
             <!-- Timeline 2 --------- -->
@@ -211,13 +208,9 @@
                         ? militaryToMinutes(startTime2)
                         : '00:00'
                 "
-                :breakEnd="
-                    calendar2.length
-                        ? calendar2[0][0]
-                        : null
-                "
+                :breakEnd="calendar2.length ? calendar2[0][0] : null"
                 :endTime="endTime2"
-                :calendar="calendar2"
+                :calendar="[...calendar1Computed['c']]"
             >
             </Timeline>
             <!-- ---------- --------- -->
@@ -256,12 +249,16 @@ export default {
     },
     methods: {
         militaryToMinutes(string) {
-            console.log('string', string);
+            console.log('string LandingPage', string);
             let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
         },
         addApp1() {
+            console.log(
+                'calendar1 at addApp1 start======>',
+                this.calendar1
+            );
             this.required1 = false;
             if (this.startTime1 > this.endTime1) return;
             if (this.appStart > this.appEnd) return;
@@ -449,10 +446,25 @@ export default {
                         pushed = true;
                     }
                 }
+                console.log(
+                    'calendar1 LandingPage Pre this.calendar1 = cal',
+                    this.calendar1
+                );
+                console.log(
+                    'cal LandingPage this.calendar1 = cal',
+                    cal
+                );
                 this.calendar1 = cal;
+                console.log(
+                    'calendar1 LandingPage Post this.calendar1 = cal',
+                    this.calendar1
+                );
             }
 
-            console.log('calendar1======>', this.calendar1);
+            console.log(
+                'calendar1 at addApp1 end======>',
+                this.calendar1
+            );
 
             this.appStart = null;
             this.appEnd = null;
@@ -661,6 +673,18 @@ export default {
         },
     },
     computed: {
+        calendar1Computed: function () {
+            let c = [...this.calendar1];
+            return {
+                c,
+            };
+        },
+        calendar2Computed: function () {
+            let c = [...this.calendar2];
+            return {
+                c,
+            };
+        },
         reqStartTime: function () {
             const req =
                 this.required1 && !this.startTime1 ? true : false;
