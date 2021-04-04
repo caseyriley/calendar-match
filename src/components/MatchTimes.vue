@@ -53,8 +53,8 @@ export default {
                 this.militaryToMinutes(this.startTime2),
                 this.militaryToMinutes(this.endTime2),
             ];
-            let calendar1 = this.calendarOne;
-            let calendar2 = this.calendarTwo;
+            let calendar1 = [...this.calendarOne];
+            let calendar2 = [...this.calendarTwo];
             console.log('dailyBounds1', dailyBounds1);
             console.log('dailyBounds2', dailyBounds2);
 
@@ -111,7 +111,7 @@ export default {
                 calendar1[0][0] > dBounds[0] &&
                 calendar2[0][0] > dBounds[0]
             ) {
-                console.log("114")
+                console.log('114');
                 if (
                     Math.min(calendar1[0][0], calendar2[0][0]) -
                         dBounds[0] >=
@@ -133,7 +133,7 @@ export default {
             ) {
                 //if not at the last index of either calendar
                 if (calendar1[idx1 + 1] && calendar2[idx2 + 1]) {
-                    console.log("136")
+                    console.log('136');
                     let nextS1 = calendar1[idx1 + 1][0];
                     let nextS2 = calendar2[idx2 + 1][0];
                     let nextS = Math.min(nextS1, nextS2);
@@ -144,18 +144,16 @@ export default {
 
                     //if both clients are free at the same time push that time to result
                     if (nextS - curEnd >= this.meetingDuration) {
-                        console.log("147")
+                        console.log('147');
                         result.push([curEnd, nextS]);
                         idx1++;
                         idx2++;
                         continue;
                         //if there is not enough time for a meeting increment inexes accordingly
                     } else if (
-                        
                         nextS - curEnd <
                         this.meetingDuration
                     ) {
-                        
                         //if both indexes should increment because the start of both
                         //clients next appointment is later then both clients next availble openings
                         if (
@@ -164,7 +162,7 @@ export default {
                             calendar2[idx2 + 1][0] <
                                 calendar1[idx1 + 1][1]
                         ) {
-                            console.log("167")
+                            console.log('167');
                             idx1++;
                             idx2++;
                             continue;
@@ -174,7 +172,7 @@ export default {
                             calendar1[idx1 + 1][0] >
                             calendar2[idx2 + 1][1]
                         ) {
-                            console.log("177")
+                            console.log('177');
                             idx2++;
                             continue;
                             //if only idx1 should increment due to the start time of the
@@ -183,7 +181,7 @@ export default {
                             calendar2[idx2 + 1][0] >
                             calendar1[idx1 + 1][1]
                         ) {
-                            console.log("186")
+                            console.log('186');
                             idx1++;
                             continue;
                         }
@@ -195,7 +193,7 @@ export default {
                     calendar1.length - 1 === idx1 &&
                     calendar2.length - 1 === idx2
                 ) {
-                    console.log("198")
+                    console.log('198');
                     let end1 = calendar1[idx1][1];
                     let end2 = calendar2[idx2][1];
                     let curEnd = Math.max(end1, end2);
@@ -208,7 +206,7 @@ export default {
                     calendar1[idx1 + 1] &&
                     !calendar2[idx2 + 1]
                 ) {
-                    console.log("211")
+                    console.log('211');
                     let end1 = calendar1[idx1][1];
                     let end2 = calendar2[calendar2.length - 1][1];
                     let curEnd = Math.max(end1, end2);
@@ -228,7 +226,7 @@ export default {
                     calendar2[idx2 + 1] &&
                     !calendar1[idx1 + 1]
                 ) {
-                    console.log("231")
+                    console.log('231');
                     let end1 = calendar1[calendar1.length - 1][1];
                     let end2 = calendar2[idx2][1];
                     let curEnd = Math.max(end1, end2);
@@ -238,7 +236,7 @@ export default {
                         curEnd < start &&
                         start - curEnd >= this.meetingDuration
                     ) {
-                        console.log("240")
+                        console.log('240');
                         result.push([curEnd, start]);
                     }
 
@@ -252,13 +250,13 @@ export default {
                 console.log('No available times for a meeting');
                 return 'No available times for a meeting';
             }
-            console.log("255")
+            console.log('255');
             //convert result times from minutes to military time
             result.forEach((el, i) => {
                 result[i][0] = this.minutesToMilitary(el[0]);
                 result[i][1] = this.minutesToMilitary(el[1]);
             });
-            console.log('result++++',result);
+            console.log('result++++', result);
             return result;
         },
     },

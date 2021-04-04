@@ -46,7 +46,7 @@ export default {
         curHeight: function () {
             return {
                 height: `${
-                    (((this.breakEnd ? this.breakEnd : this.endTime) -
+                    ((this.breakEnd -
                         this.startTime) /
                         1140) *
                     800

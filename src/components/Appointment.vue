@@ -1,10 +1,10 @@
 <template>
     <div class="timeline__app" :style="curHeight">
         <span>Busy</span>
-        <span>{{ appStartMin['start'] }}-{{ appEndMil['end'] }}</span>
+        <span>{{ appStartMil['start'] }}-{{ appEndMil['end'] }}</span>
     </div>
     <Break
-        :start="appEndMin['end']"
+        :start="appEndMil['end']"
         :end="appNextStart['start']"
         :endTime="endTime"
     ></Break>
@@ -20,10 +20,7 @@ export default {
     components: { Break },
     data() {
         return {
-            // width: `calc(${((this.appEnd - this.appStart) / 1140) * 100}% - 10px)`,
-            // appEnd: this.calendar[this.index] ? this.militaryToMinutes(this.calendar[this.index][1]) : null,
-            // appStart: this.calendar[this.index] ? this.militaryToMinutes(this.calendar[this.index][0]) : null,
-            // appNextStart: this.calendar[this.index + 1] ? this.militaryToMinutes(this.calendar[this.index + 1][0]) : null,
+            cal: [...this.calendar],
         };
     },
     methods: {
@@ -48,47 +45,48 @@ export default {
         curHeight: function () {
             return {
                 height: `calc(${
-                    ((this.militaryToMinutes(this.appEndMin['end']) - this.appStart['start']) / 1140) * 800
+                    ((this.appEndMin['end'] - this.appStartMin['start']) / 1140) * 800
                 }px)`,
             };
         },
-        appStart: function () {
-            const start = this.calendar[this.index]
-                ? this.militaryToMinutes(this.calendar[this.index][0])
+        appStartMin: function () {
+        
+            const start = this.cal[this.index]
+                ? this.militaryToMinutes(this.cal[this.index][0])
                 : null;
             return {
                 start,
             };
         },
-        appStartMin: function () {
-            const start = this.calendar[this.index]
-                ? this.calendar[this.index][0]
+        appStartMil: function () {
+            const start = this.cal[this.index]
+                ? this.cal[this.index][0]
                 : null;
             return {
                 start,
             };
         },
         appEndMin: function () {
-            const end = this.calendar[this.index]
-                ? this.calendar[this.index][1]
+            const end = this.cal[this.index]
+                ? this.militaryToMinutes(this.cal[this.index][1])
                 : null;
             return {
                 end,
             };
         },
-        appEndMil: function () {
-            const end = this.calendar[this.index]
-                ? this.minutesToMilitary(this.calendar[this.index][1])
+                appEndMil: function () {
+            const end = this.cal[this.index]
+                ? this.cal[this.index][1]
                 : null;
             return {
                 end,
             };
         },
         appNextStart: function () {
-            const start = this.calendar[this.index + 1]
-                ? this.militaryToMinutes(
-                      this.calendar[this.index + 1][0]
-                  )
+            const start = this.cal[this.index + 1]
+                ? 
+                      this.cal[this.index + 1][0]
+                  
                 : null;
             return {
                 start,
