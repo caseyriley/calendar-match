@@ -3,7 +3,7 @@
         
         <img
             alt="Vue logo"
-            src="../assets/blue-stripe-ring.png"
+            src="../assets/fquestion.jpg"
         />
 
         <LandingPage />
@@ -39,10 +39,12 @@ export default {
     border: 1px solid blue;
 
     img {
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 150px;
         filter: hue-rotate(40deg);
         margin: 30px 0px 0px 0px;
+        border-radius: 999px;
+        box-shadow: 5px 5px 10px 2px rgb(0, 0, 0, .3);
     }
 
 }
