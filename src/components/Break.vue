@@ -21,7 +21,7 @@ export default {
             // }px)`,
             bool:
                 this.militaryToMinutes(this.start) < this.end ||
-                this.militaryToMinutes(this.start) < this.militaryToMinutes(this.endTime)
+                this.militaryToMinutes(this.start) < this.endTime
                     ? true
                     : false,
         };
@@ -48,7 +48,7 @@ export default {
         curHeight: function () {
             return {
                 height: `calc(${
-                    (((this.end ? this.end : this.militaryToMinutes(this.endTime)) -
+                    (((this.end ? this.end : this.endTime) -
                         this.militaryToMinutes(this.start)) /
                         1140) *
                     800

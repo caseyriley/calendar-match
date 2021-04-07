@@ -51,7 +51,7 @@ export default {
             );
             let dailyBounds1 = [
                 this.startTime1,
-                this.militaryToMinutes(this.endTime1),
+                this.endTime1,
             ];
             let dailyBounds2 = [
                 this.militaryToMinutes(this.startTime2),

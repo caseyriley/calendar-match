@@ -168,7 +168,7 @@
                 "
                 :startTime="startTimeOneComp['t']"
                 :breakEnd="calendar1.length ? calendar1[0][0] : null"
-                :endTime="endTime1"
+                :endTime="endTimeOneComp['t']"
                 :calendar="[...calendar2Computed['c']]"
             >
             </timeline>
@@ -181,7 +181,7 @@
                 "
                 :meetingDuration="meetingDuration"
                 :startTime1="startTimeOneComp['t']"
-                :endTime1="endTime1"
+                :endTime1="endTimeOneComp['t']"
                 :startTime2="startTime2"
                 :endTime2="endTime2"
                 :calendarOne="[...calendar1Computed['c']]"
@@ -675,7 +675,7 @@ export default {
             }
         },
         endTimeOneComp: function () {
-            const t = this.militaryToMinutes(this.endTime1);
+            const t = this.endTime1 ? this.militaryToMinutes(this.endTime1) : 1440;
             return {
                 t
             }
