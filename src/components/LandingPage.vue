@@ -674,8 +674,20 @@ export default {
                 t
             }
         },
+        startTimeTwoComp: function () {
+            const t = this.startTime2 ? this.militaryToMinutes(this.startTime2) : 0;
+            return {
+                t
+            }
+        },
         endTimeOneComp: function () {
             const t = this.endTime1 ? this.militaryToMinutes(this.endTime1) : 1440;
+            return {
+                t
+            }
+        },
+        endTimeTwoComp: function () {
+            const t = this.endTime2 ? this.militaryToMinutes(this.endTime2) : 1440;
             return {
                 t
             }
