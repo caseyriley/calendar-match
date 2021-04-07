@@ -50,7 +50,7 @@ export default {
                 this.calendarOne
             );
             let dailyBounds1 = [
-                this.militaryToMinutes(this.startTime1),
+                this.startTime1,
                 this.militaryToMinutes(this.endTime1),
             ];
             let dailyBounds2 = [

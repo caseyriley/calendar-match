@@ -166,11 +166,7 @@
                         ? 'person one'
                         : name1
                 "
-                :startTime="
-                    startTime1
-                        ? militaryToMinutes(startTime1)
-                        : '00:00'
-                "
+                :startTime="startTimeOneComp"
                 :breakEnd="calendar1.length ? calendar1[0][0] : null"
                 :endTime="endTime1"
                 :calendar="[...calendar2Computed['c']]"
@@ -184,7 +180,7 @@
                     meetingDuration
                 "
                 :meetingDuration="meetingDuration"
-                :startTime1="startTime1"
+                :startTime1="startTimeOneComp"
                 :endTime1="endTime1"
                 :startTime2="startTime2"
                 :endTime2="endTime2"
@@ -672,6 +668,18 @@ export default {
         },
     },
     computed: {
+        startTimeOneComp: function () {
+            const t = this.startTime1 ? this.militaryToMinutes(this.startTime1) : '00:00';
+            return {
+                t
+            }
+        },
+        endTimeOneComp: function () {
+            const t = this.militaryToMinutes(this.endTime1);
+            return {
+                t
+            }
+        },
         calendar1Computed: function () {
             let c = [...this.calendar1];
             return {
