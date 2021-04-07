@@ -194,7 +194,6 @@
             </MatchTimes>
 
             <!-- ---------- --------- -->
-
             <!-- Timeline 2 --------- -->
             <Timeline
                 v-if="startTime2"
