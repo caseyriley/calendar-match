@@ -3,11 +3,11 @@
         <span>Busy</span>
         <span>{{ appStartMil['start'] }}-{{ appEndMil['end'] }}</span>
     </div>
-    <Break
+    <break
         :start="appEndMil['end']"
         :end="appNextStart['start']"
         :endTime="endTime"
-    ></Break>
+    ></break>
 </template>
 
 <script>

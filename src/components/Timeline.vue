@@ -1,21 +1,21 @@
 <template>
     <div class="timeline" v-if="calendar.length">
         <span class="name">{{ name }}</span>
-        <Start v-if="startTime" :startTime="startTime"></Start>
-        <FirstBreak
+        <start v-if="startTime" :startTime="startTime"></start>
+        <first-break
             :startTime="startTime"
             :breakEnd="breakEnd"
-        ></FirstBreak>
-        <Appointment
+        ></first-break>
+        <appointment
             v-for="(app, index) in calendar"
             :key="index"
             :index="index"
             :calendar="calendar"
             :endTime="endTime"
         >
-        </Appointment>
+        </appointment>
 
-        <End v-if="endTime" :endTime="endTime"></End>
+        <end v-if="endTime" :endTime="endTime"></end>
     </div>
 </template>
 

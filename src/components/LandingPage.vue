@@ -159,39 +159,39 @@
         <!-- --------------------- -->
 
         <div class="timeline-c">
-            <Timeline
+            <timeline
                 v-if="startTime1"
                 :name="
                     name1 === null || name1 === ''
                         ? 'person one'
                         : name1
                 "
-                :startTime="startTimeOneComp"
+                :startTime="startTimeOneComp['t']"
                 :breakEnd="calendar1.length ? calendar1[0][0] : null"
                 :endTime="endTime1"
                 :calendar="[...calendar2Computed['c']]"
             >
-            </Timeline>
+            </timeline>
             <!-- MatchTimes --------- -->
-            <MatchTimes
+            <match-times
                 v-if="
                     calendar1.length &&
                     calendar2.length &&
                     meetingDuration
                 "
                 :meetingDuration="meetingDuration"
-                :startTime1="startTimeOneComp"
+                :startTime1="startTimeOneComp['t']"
                 :endTime1="endTime1"
                 :startTime2="startTime2"
                 :endTime2="endTime2"
                 :calendarOne="[...calendar1Computed['c']]"
                 :calendarTwo="[...calendar2Computed['c']]"
             >
-            </MatchTimes>
+            </match-times>
 
             <!-- ---------- --------- -->
             <!-- Timeline 2 --------- -->
-            <Timeline
+            <timeline
                 v-if="startTime2"
                 :name="
                     name2 === null || name2 === ''
@@ -207,7 +207,7 @@
                 :endTime="endTime2"
                 :calendar="[...calendar1Computed['c']]"
             >
-            </Timeline>
+            </timeline>
             <!-- ---------- --------- -->
         </div>
     </div>
@@ -669,7 +669,7 @@ export default {
     },
     computed: {
         startTimeOneComp: function () {
-            const t = this.startTime1 ? this.militaryToMinutes(this.startTime1) : '00:00';
+            const t = this.startTime1 ? this.militaryToMinutes(this.startTime1) : 0;
             return {
                 t
             }

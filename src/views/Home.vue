@@ -6,7 +6,7 @@
             src="../assets/fquestion.jpg"
         />
 
-        <LandingPage />
+        <landing-page />
      
     </div>
 </template>
@@ -18,6 +18,7 @@ import LandingPage from '@/components/LandingPage.vue';
 export default {
     name: 'Home',
     components: {
+
         LandingPage,
     },
 };
