@@ -52,7 +52,7 @@ export default {
         appStartMin: function () {
         
             const start = this.cal[this.index]
-                ? this.militaryToMinutes(this.cal[this.index][0])
+                ? this.cal[this.index][0]
                 : null;
             return {
                 start,
@@ -60,7 +60,7 @@ export default {
         },
         appStartMil: function () {
             const start = this.cal[this.index]
-                ? this.cal[this.index][0]
+                ? this.minutesToMilitary(this.cal[this.index][0])
                 : null;
             return {
                 start,
@@ -68,7 +68,7 @@ export default {
         },
         appEndMin: function () {
             const end = this.cal[this.index]
-                ? this.militaryToMinutes(this.cal[this.index][1])
+                ? this.cal[this.index][1]
                 : null;
             return {
                 end,
@@ -76,7 +76,7 @@ export default {
         },
                 appEndMil: function () {
             const end = this.cal[this.index]
-                ? this.cal[this.index][1]
+                ? this.minutesToMilitary(this.cal[this.index][1])
                 : null;
             return {
                 end,
@@ -85,7 +85,7 @@ export default {
         appNextStart: function () {
             const start = this.cal[this.index + 1]
                 ? 
-                      this.cal[this.index + 1][0]
+                      this.minutesToMilitary(this.cal[this.index + 1][0])
                   
                 : null;
             return {

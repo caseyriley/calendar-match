@@ -1,7 +1,7 @@
 <template>
     <div class="end" :style="curHeight">
         <span>End Time</span>
-        <span> {{ endTime }} </span>
+        <span> {{ minutesToMilitary(endTime) }} </span>
     </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
     computed: {
         curHeight: function () {
             return {
-                height: `${((1440 - this.militaryToMinutes(this.endTime)) / 1440) * 800}px`,
+                height: `${((1440 - this.endTime) / 1440) * 800}px`,
             };
         },
     },

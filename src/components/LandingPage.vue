@@ -81,9 +81,7 @@
                     >*</span
                 >
             </label>
-            <submit class="app-submit" v-on:click="addApp1"
-                >Submit</submit
-            >
+            <div class="app-submit" v-on:click="addApp1">Submit</div>
             <span v-if="required1" class="required"
                 >please complete required fields *</span
             >
@@ -149,9 +147,7 @@
                     >*</span
                 >
             </label>
-            <submit class="app-submit" v-on:click="addApp2"
-                >Submit</submit
-            >
+            <div class="app-submit" v-on:click="addApp2">Submit</div>
             <span v-if="required2" class="required"
                 >please complete required fields *</span
             >
@@ -167,9 +163,13 @@
                         : name1
                 "
                 :startTime="startTimeOneComp['t']"
-                :breakEnd="calendar1.length ? calendar1[0][0] : null"
+                :breakEnd="
+                    calendar1Computed['c'].length
+                        ? calendar1Computed['c'][0][0]
+                        : null
+                "
                 :endTime="endTimeOneComp['t']"
-                :calendar="[...calendar2Computed['c']]"
+                :calendar="[...calendar1Computed['c']]"
             >
             </timeline>
             <!-- MatchTimes --------- -->
@@ -182,8 +182,8 @@
                 :meetingDuration="meetingDuration"
                 :startTime1="startTimeOneComp['t']"
                 :endTime1="endTimeOneComp['t']"
-                :startTime2="startTime2"
-                :endTime2="endTime2"
+                :startTime2="startTimeTwoComp['t']"
+                :endTime2="endTimeTwoComp['t']"
                 :calendarOne="[...calendar1Computed['c']]"
                 :calendarTwo="[...calendar2Computed['c']]"
             >
@@ -198,14 +198,14 @@
                         ? 'person two'
                         : name2
                 "
-                :startTime="
-                    startTime2
-                        ? militaryToMinutes(startTime2)
-                        : '00:00'
+                :startTime="startTimeTwoComp['t']"
+                :breakEnd="
+                    calendar2Computed['c'].length
+                        ? calendar2Computed['c'][0][0]
+                        : null
                 "
-                :breakEnd="calendar2.length ? calendar2[0][0] : null"
-                :endTime="endTime2"
-                :calendar="[...calendar1Computed['c']]"
+                :endTime="endTimeTwoComp['t']"
+                :calendar="[...calendar2Computed['c']]"
             >
             </timeline>
             <!-- ---------- --------- -->
@@ -669,37 +669,55 @@ export default {
     },
     computed: {
         startTimeOneComp: function () {
-            const t = this.startTime1 ? this.militaryToMinutes(this.startTime1) : 0;
+            const t = this.startTime1
+                ? this.militaryToMinutes(this.startTime1)
+                : 0;
             return {
-                t
-            }
+                t,
+            };
         },
         startTimeTwoComp: function () {
-            const t = this.startTime2 ? this.militaryToMinutes(this.startTime2) : 0;
+            const t = this.startTime2
+                ? this.militaryToMinutes(this.startTime2)
+                : 0;
             return {
-                t
-            }
+                t,
+            };
         },
         endTimeOneComp: function () {
-            const t = this.endTime1 ? this.militaryToMinutes(this.endTime1) : 1440;
+            const t = this.endTime1
+                ? this.militaryToMinutes(this.endTime1)
+                : 1440;
             return {
-                t
-            }
+                t,
+            };
         },
         endTimeTwoComp: function () {
-            const t = this.endTime2 ? this.militaryToMinutes(this.endTime2) : 1440;
+            const t = this.endTime2
+                ? this.militaryToMinutes(this.endTime2)
+                : 1440;
             return {
-                t
-            }
+                t,
+            };
         },
         calendar1Computed: function () {
             let c = [...this.calendar1];
+            c.forEach((array, i) =>
+                array.forEach((el, j) => {
+                    c[i][j] = this.militaryToMinutes(el);
+                })
+            );
             return {
                 c,
             };
         },
         calendar2Computed: function () {
             let c = [...this.calendar2];
+            c.forEach((array, i) =>
+                array.forEach((el, j) => {
+                    c[i][j] = this.militaryToMinutes(el);
+                })
+            );
             return {
                 c,
             };

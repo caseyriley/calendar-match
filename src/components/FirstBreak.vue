@@ -3,7 +3,7 @@
         <span>Break</span>
         <span>
             {{ minToMilStart }} -
-            {{ breakEnd ? breakEnd : endTime }}
+            {{ breakEnd ? minutesToMilitary(breakEnd) : endTime }}
         </span>
         <span> {{ endTime }}</span>
     </div>
@@ -15,7 +15,7 @@ export default {
     props: ['startTime', 'breakEnd'],
     data() {
         return {
-            bool: this.startTime < this.militaryToMinutes(this.breakEnd),
+            bool: this.startTime < this.breakEnd,
             calcStart: null,
             curStart: this.calcStart ? this.calcStart : this.startTime,
         };
@@ -46,7 +46,7 @@ export default {
         curHeight: function () {
             return {
                 height: `${
-                    ((this.militaryToMinutes(this.breakEnd) -
+                    ((this.breakEnd -
                         this.startTime) /
                         1140) *
                     800

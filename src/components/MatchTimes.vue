@@ -54,8 +54,8 @@ export default {
                 this.endTime1,
             ];
             let dailyBounds2 = [
-                this.militaryToMinutes(this.startTime2),
-                this.militaryToMinutes(this.endTime2),
+                this.startTime2,
+                this.endTime2,
             ];
             let calendarA = [...this.calendarOne];
             let calendarB = [...this.calendarTwo];
