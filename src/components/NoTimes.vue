@@ -1,5 +1,5 @@
 <template>
-    <div class="no-times" v-if="true" :style="curHeight">
+    <div class="no-times" v-if="bool" :style="curHeight">
         <span>No Times</span>
         <span
             >{{ minutesToMilitary(start) }} -
@@ -15,8 +15,7 @@ export default {
     data() {
         return {
             bool:
-                this.start < this.end ||
-                this.start < this.militaryToMinutes(this.endTime)
+                this.start < this.end 
                     ? true
                     : false,
         };
@@ -43,7 +42,7 @@ export default {
         curHeight: function () {
             return {
                 height: `calc(${
-                    (((this.end ? this.end : this.militaryToMinutes(this.endTime)) -
+                    ((this.end  -
                         this.start) /
                         1140) *
                     800

@@ -4,7 +4,7 @@
         <span>{{ appStartMil['start'] }}-{{ appEndMil['end'] }}</span>
     </div>
     <break
-        :start="appEndMil['end']"
+        :start="appEndMin['end']"
         :end="appNextStart['start']"
         :endTime="endTime"
     ></break>
@@ -51,41 +51,41 @@ export default {
         },
         appStartMin: function () {
         
-            const start = this.cal[this.index]
-                ? this.cal[this.index][0]
+            const start = this.calendar[this.index]
+                ? this.calendar[this.index][0]
                 : null;
             return {
                 start,
             };
         },
         appStartMil: function () {
-            const start = this.cal[this.index]
-                ? this.minutesToMilitary(this.cal[this.index][0])
+            const start = this.calendar[this.index]
+                ? this.minutesToMilitary(this.calendar[this.index][0])
                 : null;
             return {
                 start,
             };
         },
         appEndMin: function () {
-            const end = this.cal[this.index]
-                ? this.cal[this.index][1]
+            const end = this.calendar[this.index]
+                ? this.calendar[this.index][1]
                 : null;
             return {
                 end,
             };
         },
                 appEndMil: function () {
-            const end = this.cal[this.index]
-                ? this.minutesToMilitary(this.cal[this.index][1])
+            const end = this.calendar[this.index]
+                ? this.minutesToMilitary(this.calendar[this.index][1])
                 : null;
             return {
                 end,
             };
         },
         appNextStart: function () {
-            const start = this.cal[this.index + 1]
+            const start = this.calendar[this.index + 1]
                 ? 
-                      this.minutesToMilitary(this.cal[this.index + 1][0])
+                      this.calendar[this.index + 1][0]
                   
                 : null;
             return {

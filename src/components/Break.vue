@@ -2,8 +2,8 @@
     <div class="break" v-if="bool" :style="curHeight">
         <span>Break</span>
         <span
-            >{{ start }} -
-            {{ end ? minutesToMilitary(end) : endTime }}</span
+            >{{ minutesToMilitary(start) }} -
+            {{ end ? minutesToMilitary(end) : minutesToMilitary(endTime) }}</span
         >
     </div>
 </template>
@@ -20,8 +20,8 @@ export default {
             //     800
             // }px)`,
             bool:
-                this.militaryToMinutes(this.start) < this.end ||
-                this.militaryToMinutes(this.start) < this.endTime
+                this.start < this.end ||
+                this.start < this.endTime
                     ? true
                     : false,
         };
@@ -49,7 +49,7 @@ export default {
             return {
                 height: `calc(${
                     (((this.end ? this.end : this.endTime) -
-                        this.militaryToMinutes(this.start)) /
+                        this.start) /
                         1140) *
                     800
                 }px)`,

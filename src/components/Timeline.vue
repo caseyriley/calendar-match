@@ -3,6 +3,7 @@
         <span class="name">{{ name }}</span>
         <start v-if="startTime" :startTime="startTime"></start>
         <first-break
+            v-if="startTime < calendar[0][0]"
             :startTime="startTime"
             :breakEnd="breakEnd"
         ></first-break>

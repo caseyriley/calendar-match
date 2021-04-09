@@ -2,19 +2,19 @@
     <div class="app-times" v-if="true">
         <span class="name">Available Times</span>
         <span>{{ timesArray['cal'] }}</span>
-        <!-- <NoTimes
-            v-if="timesArray.length"
+        <NoTimes
+            v-if="timesArray['cal']"
             :start="0"
             :end="end['e']"
-        /> -->
+        />
     </div>
 </template>
 
 <script>
-// import NoTimes from '@/components/NoTimes.vue';
+import NoTimes from '@/components/NoTimes.vue';
 export default {
     name: 'MatchTimes',
-    // components: { NoTimes },
+    components: { NoTimes },
     props: [
         'meetingDuration',
         // 'dailyBoundsOne',
@@ -49,14 +49,8 @@ export default {
                 'calendar1 at start of calMatch$$$$$$$$$$',
                 this.calendarOne
             );
-            let dailyBounds1 = [
-                this.startTime1,
-                this.endTime1,
-            ];
-            let dailyBounds2 = [
-                this.startTime2,
-                this.endTime2,
-            ];
+            let dailyBounds1 = [this.startTime1, this.endTime1];
+            let dailyBounds2 = [this.startTime2, this.endTime2];
             let calendarA = [...this.calendarOne];
             let calendarB = [...this.calendarTwo];
             console.log('dailyBounds1', dailyBounds1);
@@ -93,17 +87,17 @@ export default {
             }
 
             //////convert both calendars to minutes///////
-            calendarA.forEach((array, i) =>
-                array.forEach((el, j) => {
-                    calendarA[i][j] = this.militaryToMinutes(el);
-                })
-            );
+            // calendarA.forEach((array, i) =>
+            //     array.forEach((el, j) => {
+            //         calendarA[i][j] = this.militaryToMinutes(el);
+            //     })
+            // );
 
-            calendarB.forEach((array, i) =>
-                array.forEach((el, j) => {
-                    calendarB[i][j] = this.militaryToMinutes(el);
-                })
-            );
+            // calendarB.forEach((array, i) =>
+            //     array.forEach((el, j) => {
+            //         calendarB[i][j] = this.militaryToMinutes(el);
+            //     })
+            // );
 
             //////declare result to be returned at end of function if there is
             //////at least one available meeting time
@@ -256,10 +250,10 @@ export default {
             }
             console.log('255');
             //convert result times from minutes to military time
-            result.forEach((el, i) => {
-                result[i][0] = this.minutesToMilitary(el[0]);
-                result[i][1] = this.minutesToMilitary(el[1]);
-            });
+            // result.forEach((el, i) => {
+            //     result[i][0] = this.minutesToMilitary(el[0]);
+            //     result[i][1] = this.minutesToMilitary(el[1]);
+            // });
             console.log('result++++', result);
             console.log(
                 'calendar1 at end of calMatch$$$$$$$$$$',
@@ -271,22 +265,20 @@ export default {
     computed: {
         timesArray: function () {
             const cal = this.calMatch();
-            return cal;
+            return { cal };
         },
         end: function () {
             let e = '';
-            if (this.timesArray[0]) {
+            if (this.timesArray['cal']) {
                 e =
-                    this.militaryToMinutes(
-                        this.timesArray['cal'][0][0]
-                    ) > 0
-                        ? this.militaryToMinutes(
-                              this.timesArray['cal'][0][0]
-                          )
+                    this.timesArray['cal'][0][0] > 0
+                        ? this.timesArray['cal'][0][0]
                         : 0;
+            } else {
+                e = 0;
             }
 
-            return e;
+            return { e };
         },
     },
 };
