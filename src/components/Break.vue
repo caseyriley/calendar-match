@@ -3,7 +3,12 @@
         <span>Break</span>
         <span
             >{{ minutesToMilitary(start) }} -
-            {{ end ? minutesToMilitary(end) : minutesToMilitary(endTime) }}</span
+            {{
+                end
+                    ? minutesToMilitary(end)
+                    : minutesToMilitary(endTime)
+            }}
+            </span
         >
     </div>
 </template>
@@ -14,14 +19,8 @@ export default {
     props: ['start', 'end', 'endTime'],
     data() {
         return {
-            // height: `calc(${
-            //     (((this.end ? this.end : militaryToMinutes(this.endTime)) - this.start) /
-            //         1140) *
-            //     800
-            // }px)`,
             bool:
-                this.start < this.end ||
-                this.start < this.endTime
+                this.start < this.end || this.start < this.endTime
                     ? true
                     : false,
         };

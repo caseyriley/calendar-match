@@ -1,7 +1,8 @@
 <template>
-    <div class="timeline__app" :style="curHeight">
+    <div class="timeline__app" :style="curHeight" v-bind="$attrs">
         <span>Busy</span>
         <span>{{ appStartMil['start'] }}-{{ appEndMil['end'] }}</span>
+
     </div>
     <break
         :start="appEndMin['end']"
@@ -11,8 +12,8 @@
 </template>
 
 <script>
-// import Break from '@/components/Break.vue';
-import Break from './Break.vue';
+import Break from '@/components/Break.vue';
+// import Break from './Break.vue';
 export default {
     name: 'Appointment',
     // props: ['appStart', 'appEnd', 'appNextStart', 'endTime'],
@@ -45,12 +46,14 @@ export default {
         curHeight: function () {
             return {
                 height: `calc(${
-                    ((this.appEndMin['end'] - this.appStartMin['start']) / 1140) * 800
+                    ((this.appEndMin['end'] -
+                        this.appStartMin['start']) /
+                        1140) *
+                    800
                 }px)`,
             };
         },
         appStartMin: function () {
-        
             const start = this.calendar[this.index]
                 ? this.calendar[this.index][0]
                 : null;
@@ -74,7 +77,7 @@ export default {
                 end,
             };
         },
-                appEndMil: function () {
+        appEndMil: function () {
             const end = this.calendar[this.index]
                 ? this.minutesToMilitary(this.calendar[this.index][1])
                 : null;
@@ -84,9 +87,7 @@ export default {
         },
         appNextStart: function () {
             const start = this.calendar[this.index + 1]
-                ? 
-                      this.calendar[this.index + 1][0]
-                  
+                ? this.calendar[this.index + 1][0]
                 : null;
             return {
                 start,

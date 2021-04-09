@@ -52,7 +52,7 @@ export default {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    border: 2px solid grey;
+    border: 1px solid grey;
     border-radius: 5px;
     overflow: scroll;
 }

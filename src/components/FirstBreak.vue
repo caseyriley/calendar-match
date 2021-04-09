@@ -3,9 +3,8 @@
         <span>Break</span>
         <span>
             {{ minToMilStart }} -
-            {{ breakEnd ? minutesToMilitary(breakEnd) : endTime }}
+            {{ breakEnd }}
         </span>
-        <span> {{ endTime }}</span>
     </div>
 </template>
 

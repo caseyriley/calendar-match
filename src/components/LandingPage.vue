@@ -149,7 +149,7 @@
                     >*</span
                 >
             </label>
-            <div class="app-submit" v-on:click="addApp2">Submit</div>
+            <div class="app-submit" v-on:click="addApp1">Submit</div>
             <span v-if="required2" class="required"
                 >please complete required fields *</span
             >
@@ -260,25 +260,28 @@ export default {
                 this.calendar1Computed['c']
             );
             this.required1 = false;
-            if (this.startTime1 > this.endTime1) return;
+            let startTime = this.personToggle ? this.startTime1 : this.startTime2;
+            let endTime = this.personToggle ? this.endTime1 : this.endTime2;
+            let calendar = this.personToggle ? this.calendar1Computed['c'] : this.calendar2Computed['c'];
+            if (startTime > endTime) return;
             if (this.appStart > this.appEnd) return;
             if (
-                this.militaryToMinutes(this.startTime1) >
+                this.militaryToMinutes(startTime) >
                 this.militaryToMinutes(this.appStart)
             ) {
-                this.appStart = this.startTime1;
+                this.appStart = startTime;
             }
             if (
-                this.militaryToMinutes(this.endTime1) <
+                this.militaryToMinutes(endTime) <
                 this.militaryToMinutes(this.appEnd)
             ) {
-                this.appEnd = this.endTime1;
+                this.appEnd = endTime;
             }
             if (
                 !this.appStart ||
                 !this.appEnd ||
-                !this.startTime1 ||
-                !this.endTime1
+                !startTime ||
+                !endTime
             ) {
                 this.required1 = true;
                 return;
@@ -288,18 +291,18 @@ export default {
             let appSt = this.militaryToMinutes(this.appStart);
             let appEn = this.militaryToMinutes(this.appEnd);
 
-            if (this.calendar1Computed['c'].length < 1) {
+            if (calendar.length < 1) {
                 // calendar1.length < 1
                 console.log('calendar1.length < 1');
-                this.calendar1Computed['c'].push([appSt, appEn]);
+                calendar.push([appSt, appEn]);
                 // this.calendar1.push(['05:00', '06:00']);
             } else {
                 for (
                     let i = 0;
-                    i < this.calendar1Computed['c'].length;
+                    i < calendar.length;
                     i++
                 ) {
-                    let app = this.calendar1Computed['c'][i];
+                    let app = calendar[i];
                     console.log('app**************', app);
                     if (
                         // if current appointment is earlier then new appointment
@@ -321,7 +324,7 @@ export default {
                             if (
                                 //if new appointment start time is less than prev appointment end time
                                 appSt <
-                                this.calendar1Computed['c'][i - 1][1]
+                                calendar[i - 1][1]
                             ) {
                                 console.log('if 2 A.1');
                                 if (
@@ -429,16 +432,18 @@ export default {
                     }
                 }
                 // this.calendar1 = cal;
-                this.calendar1Computed['c'] = cal;
+                let cl = this.personToggle ? this.calendar1Computed : this.calendar2Computed;
+                cl['c'] = cal; 
+                
                 console.log(
                     'this.calendar1Computed[c] LandingPage Post this.this.calendar1Computed[c] = cal',
-                    this.calendar1Computed['c']
+                    calendar
                 );
             }
 
             console.log(
                 'calendar1Computed[c] at addApp1 end======>',
-                this.calendar1Computed['c']
+                calendar
             );
 
             this.appStart = null;
