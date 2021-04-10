@@ -3,7 +3,7 @@
         <span>Break</span>
         <span>
             {{ minToMilStart }} -
-            {{ breakEnd }}
+            {{ minutesToMilitary(breakEnd) }}
         </span>
     </div>
 </template>

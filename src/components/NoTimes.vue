@@ -57,7 +57,7 @@ export default {
 @import './../styles/_variables.scss';
 .no-times {
     width: 100%;
-    background-color: $color-5;
+    background-color: $color-7;
     display: flex;
     flex-direction: column;
     justify-content: center;

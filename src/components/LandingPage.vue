@@ -175,7 +175,7 @@
             >
             </timeline>
             <!-- MatchTimes --------- -->
-            <!-- <match-times
+            <match-times
                 v-if="
                     calendar1Computed['c'].length &&
                     calendar2Computed['c'].length &&
@@ -189,7 +189,7 @@
                 :calendarOne="[...calendar1Computed['c']]"
                 :calendarTwo="[...calendar2Computed['c']]"
             >
-            </match-times> -->
+            </match-times>
 
             <!-- ---------- --------- -->
             <!-- Timeline 2 --------- -->
@@ -217,7 +217,7 @@
 
 <script>
 import Timeline from './Timeline.vue';
-// import MatchTimes from './MatchTimes.vue';
+import MatchTimes from './MatchTimes.vue';
 // import Appointment from '@/components/Appointment.vue';
 // import Start from '@/components/Start.vue';
 // import End from '@/components/End.vue';
@@ -226,7 +226,7 @@ export default {
     name: 'LandingPage',
     components: {
         Timeline,
-        // MatchTimes
+        MatchTimes
     },
     // components: { Appointment, Start, End, FirstBreak },
     data() {
