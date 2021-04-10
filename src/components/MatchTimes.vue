@@ -13,6 +13,11 @@
             :timesArray="[...timesArray['cal']]"
             :endTime="combinedEndTime['e']"
         />
+        <no-times
+            v-if="timesArray['cal']"
+            :start="timesArray['cal'][timesArray['cal'].length - 1][1]"
+            :end="1440"
+        />
     </div>
 </template>
 
@@ -85,10 +90,16 @@ export default {
             console.log('dBounds', dBounds);
             console.log('calendarA', calendarA);
             console.log('calendarB', calendarB);
-            console.log('meetingDuration', this.meetingDurationComp['d']);
+            console.log(
+                'meetingDuration',
+                this.meetingDurationComp['d']
+            );
 
             ///////if there is no time available to clients due to thier dailyBounds//////
-            if (dBounds[1] - dBounds[0] < this.meetingDurationComp['d']) {
+            if (
+                dBounds[1] - dBounds[0] <
+                this.meetingDurationComp['d']
+            ) {
                 console.log('No available times for a meeting');
                 return 'No available times for a meeting';
             }
@@ -148,7 +159,10 @@ export default {
                     let curEnd = Math.max(end1, end2);
 
                     //if both clients are free at the same time push that time to result
-                    if (nextS - curEnd >= this.meetingDurationComp['d']) {
+                    if (
+                        nextS - curEnd >=
+                        this.meetingDurationComp['d']
+                    ) {
                         console.log('147');
                         result.push([curEnd, nextS]);
                         idx1++;
@@ -202,7 +216,10 @@ export default {
                     let end1 = calendarA[idx1][1];
                     let end2 = calendarB[idx2][1];
                     let curEnd = Math.max(end1, end2);
-                    if (dBounds[1] - curEnd >= this.meetingDurationComp['d']) {
+                    if (
+                        dBounds[1] - curEnd >=
+                        this.meetingDurationComp['d']
+                    ) {
                         result.push([curEnd, dBounds[1]]);
                     }
                     break;
@@ -219,7 +236,8 @@ export default {
                     //push any avialable time slot bigger then or equal to the meeting duration
                     if (
                         curEnd < start &&
-                        start - curEnd >= this.meetingDurationComp['d']
+                        start - curEnd >=
+                            this.meetingDurationComp['d']
                     ) {
                         result.push([curEnd, start]);
                     }
@@ -239,7 +257,8 @@ export default {
                     //push any avialable time slot bigger then or equal to the meeting duration
                     if (
                         curEnd < start &&
-                        start - curEnd >= this.meetingDurationComp['d']
+                        start - curEnd >=
+                            this.meetingDurationComp['d']
                     ) {
                         console.log('240');
                         result.push([curEnd, start]);
@@ -301,9 +320,9 @@ export default {
         meetingDurationComp: function () {
             let d = Number(this.meetingDuration);
             return {
-                d
-            }
-        }
+                d,
+            };
+        },
     },
 };
 </script>

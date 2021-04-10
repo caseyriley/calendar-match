@@ -1,9 +1,12 @@
 <template>
     <div class="match" :style="curHeight">
         <span>Available Time</span>
-        <span>{{ index }}</span>
+        <span>{{ appStartMil['start'] }}-{{ appEndMil['end'] }}</span>
     </div>
-    <no-times :start="appEndMin['end']" :end="appNextStart['start'] ? appNextStart['start'] : endTime" />
+    <no-times
+        :start="appEndMin['end']"
+        :end="appNextStart['start'] ? appNextStart['start'] : endTime"
+    />
 </template>
 
 <script>

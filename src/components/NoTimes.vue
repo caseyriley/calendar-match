@@ -1,5 +1,5 @@
 <template>
-    <div class="no-times" v-if="bool" :style="curHeight">
+    <div class="no-times" v-if="bool['b']" :style="curHeight">
         <span>No Times</span>
         <span
             >{{ minutesToMilitary(start) }} -
@@ -12,14 +12,6 @@
 export default {
     name: 'NoTimes',
     props: ['start', 'end'],
-    data() {
-        return {
-            bool:
-                this.start < this.end 
-                    ? true
-                    : false,
-        };
-    },
     methods: {
         minutesToMilitary(num) {
             let h = Math.floor(num / 60);
@@ -39,6 +31,12 @@ export default {
         },
     },
     computed: {
+        bool: function () {
+            let b = this.start < this.end ? true : false;
+            return {
+                b
+            };
+        },
         curHeight: function () {
             return {
                 height: `${
@@ -67,5 +65,4 @@ export default {
     border: 2px solid grey;
     border-radius: 5px;
 }
-
 </style>
