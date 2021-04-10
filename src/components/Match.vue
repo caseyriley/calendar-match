@@ -3,7 +3,7 @@
         <span>Available Time</span>
         <span>{{ appStartMil['start'] }}-{{ appEndMil['end'] }}</span>
     </div>
-    <no-times
+    <no-times v-if="appEndMin['end'] < timesArray[timesArray.length - 1][1]"
         :start="appEndMin['end']"
         :end="appNextStart['start'] ? appNextStart['start'] : endTime"
     />
