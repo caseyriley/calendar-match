@@ -1,5 +1,5 @@
 <template>
-    <div class="app-times" v-if="true">
+    <div class="app-times" v-if="bool['b']">
         <span class="name">Available Times</span>
         <no-times
             v-if="timesArray['cal']"
@@ -15,7 +15,9 @@
         />
         <no-times
             v-if="timesArray['cal']"
-            :start="timesArray['cal'][timesArray['cal'].length - 1][1]"
+            :start="
+                timesArray['cal'][timesArray['cal'].length - 1][1]
+            "
             :end="1440"
         />
     </div>
@@ -57,6 +59,8 @@ export default {
         },
         calMatch() {
             ////////////////convert daily bounds to minutes///////////////
+            debugger;
+            this.bool['b'] = false;
             console.log(
                 'calendar1 at start of calMatch$$$$$$$$$$',
                 this.calendarOne
@@ -127,7 +131,7 @@ export default {
                 calendarA[0][0] > dBounds[0] &&
                 calendarB[0][0] > dBounds[0]
             ) {
-                console.log('114');
+                console.log('130');
                 if (
                     Math.min(calendarA[0][0], calendarB[0][0]) -
                         dBounds[0] >=
@@ -212,7 +216,28 @@ export default {
                     calendarA.length - 1 === idx1 &&
                     calendarB.length - 1 === idx2
                 ) {
-                    console.log('198');
+                    //here
+                    if (
+                        calendarB[idx2][0] - calendarA[idx1][1] >
+                        this.meetingDurationComp['d']
+                    ) {
+                        console.log('219');
+                        result.push([
+                            calendarA[idx1][1],
+                            calendarB[idx2][0],
+                        ]);
+                    } else if (
+                        calendarA[idx1][0] - calendarB[idx2][1] >
+                        this.meetingDurationComp['d']
+                    ) {
+                        console.log('222');
+                        result.push([
+                            calendarB[idx2][1],
+                            calendarA[idx1][0],
+                        ]);
+                    }
+                    //
+                    console.log('226');
                     let end1 = calendarA[idx1][1];
                     let end2 = calendarB[idx2][1];
                     let curEnd = Math.max(end1, end2);
@@ -228,7 +253,7 @@ export default {
                     calendarA[idx1 + 1] &&
                     !calendarB[idx2 + 1]
                 ) {
-                    console.log('211');
+                    console.log('231');
                     let end1 = calendarA[idx1][1];
                     let end2 = calendarB[calendarB.length - 1][1];
                     let curEnd = Math.max(end1, end2);
@@ -249,7 +274,7 @@ export default {
                     calendarB[idx2 + 1] &&
                     !calendarA[idx1 + 1]
                 ) {
-                    console.log('231');
+                    console.log('252');
                     let end1 = calendarA[calendarA.length - 1][1];
                     let end2 = calendarB[idx2][1];
                     let curEnd = Math.max(end1, end2);
@@ -260,7 +285,7 @@ export default {
                         start - curEnd >=
                             this.meetingDurationComp['d']
                     ) {
-                        console.log('240');
+                        console.log('263');
                         result.push([curEnd, start]);
                     }
 
@@ -285,6 +310,7 @@ export default {
                 'calendar1 at end of calMatch$$$$$$$$$$',
                 this.calendarOne
             );
+            this.bool['b'] = true;
             return result;
         },
     },
@@ -321,6 +347,12 @@ export default {
             let d = Number(this.meetingDuration);
             return {
                 d,
+            };
+        },
+        bool: function () {
+            let b = true;
+            return {
+                b,
             };
         },
     },
