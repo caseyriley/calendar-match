@@ -42,7 +42,7 @@ export default {
                 height: `${
                     ((this.end  -
                         this.start) /
-                        1140) *
+                        1440) *
                     800
                 }px`,
             };

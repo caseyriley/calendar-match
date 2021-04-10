@@ -47,7 +47,7 @@ export default {
                 height: `${
                     ((this.breakEnd -
                         this.startTime) /
-                        1140) *
+                        1440) *
                     800
                 }px`,
             };

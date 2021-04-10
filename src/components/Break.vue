@@ -49,7 +49,7 @@ export default {
                 height: `calc(${
                     (((this.end ? this.end : this.endTime) -
                         this.start) /
-                        1140) *
+                        1440) *
                     800
                 }px)`,
             };

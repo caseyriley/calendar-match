@@ -48,7 +48,7 @@ export default {
                 height: `${
                     ((this.appEndMin['end'] -
                         this.appStartMin['start']) /
-                        1140) *
+                        1440) *
                     800
                 }px`,
             };
