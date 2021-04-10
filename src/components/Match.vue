@@ -1,16 +1,17 @@
 <template>
     <div class="match" :style="curHeight">
         <span>Available Time</span>
-        <span>{{index}}</span>
+        <span>{{ index }}</span>
     </div>
+    <no-times :start="appEndMin['end']" :end="appNextStart['start'] ? appNextStart['start'] : endTime" />
 </template>
 
 <script>
-// import NoTimes from '@/components/NoTimes.vue';
+import NoTimes from '@/components/NoTimes.vue';
 export default {
     name: 'Match',
     components: {
-        // NoTimes
+        NoTimes,
     },
     props: ['index', 'timesArray', 'endTime'],
     methods: {
@@ -35,8 +36,9 @@ export default {
         curHeight: function () {
             return {
                 height: `${
-                    (this.appEndMin['end'] -
-                        this.appStartMin['start']) / 1140 *
+                    ((this.appEndMin['end'] -
+                        this.appStartMin['start']) /
+                        1140) *
                     800
                 }px`,
             };
@@ -104,5 +106,4 @@ export default {
     border: 1px solid grey;
     border-radius: 5px;
 }
-
 </style>

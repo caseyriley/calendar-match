@@ -41,12 +41,12 @@ export default {
     computed: {
         curHeight: function () {
             return {
-                height: `calc(${
+                height: `${
                     ((this.end  -
                         this.start) /
                         1140) *
                     800
-                }px)`,
+                }px`,
             };
         },
     },

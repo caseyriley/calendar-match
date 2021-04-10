@@ -45,12 +45,12 @@ export default {
     computed: {
         curHeight: function () {
             return {
-                height: `calc(${
+                height: `${
                     ((this.appEndMin['end'] -
                         this.appStartMin['start']) /
                         1140) *
                     800
-                }px)`,
+                }px`,
             };
         },
         appStartMin: function () {
