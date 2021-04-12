@@ -31,8 +31,6 @@ export default {
     components: { NoTimes, Match },
     props: [
         'meetingDuration',
-        // 'dailyBoundsOne',
-        // 'dailyBoundsTwo',
         'startTime1',
         'startTime2',
         'endTime1',
@@ -107,19 +105,6 @@ export default {
                 console.log('No available times for a meeting');
                 return 'No available times for a meeting';
             }
-
-            //////convert both calendars to minutes///////
-            // calendarA.forEach((array, i) =>
-            //     array.forEach((el, j) => {
-            //         calendarA[i][j] = this.militaryToMinutes(el);
-            //     })
-            // );
-
-            // calendarB.forEach((array, i) =>
-            //     array.forEach((el, j) => {
-            //         calendarB[i][j] = this.militaryToMinutes(el);
-            //     })
-            // );
 
             //////declare result to be returned at end of function if there is
             //////at least one available meeting time
@@ -223,12 +208,15 @@ export default {
                         calendarB[idx2][0] - calendarA[idx1][1] >=
                         this.meetingDurationComp['d']
                     ) {
-                        console.log('222');
+                        console.log('226');
                         console.log('idx1-', idx1, ',idx2-', idx2)
                         //if there is time available after calendarA last appointment and before calendarB last appointment
                         if (dBounds[0] < calendarA[idx1][1]) {
-                            result.push([
-                                calendarA[idx1][1],
+                            let start1 = calendarA[idx1][1];
+                            let start2 = calendarB[idx2 - 1] ? calendarB[idx2 - 1][1] : calendarA[idx1][1];
+                            let cureStart = Math.max(start1, start2);
+                            result.push([              ///here******************
+                                cureStart,
                                 calendarB[idx2][0],
                             ]);
                         } else if (
@@ -248,8 +236,11 @@ export default {
                         console.log('idx1-', idx1, ',idx2-', idx2)
                         //if there is time after calendarB last appointment and before calendarA next appointment
                         if (dBounds[0] < calendarB[idx2][1]) {
+                            let start1 = calendarB[idx2][1];
+                            let start2 = calendarA[idx1 - 1] ? calendarA[idx1 - 1][1] : calendarB[idx2][1];
+                            let cureStart = Math.max(start1, start2);
                             result.push([
-                                calendarB[idx2][1],
+                                cureStart,
                                 calendarA[idx1][0],
                             ]);
                         } else if 
@@ -280,10 +271,10 @@ export default {
                     calendarA[idx1 + 1] &&
                     !calendarB[idx2 + 1]
                 ) {
-                    // if calendarA has not been fully iterated but calendarB has been // ****
+                    // if calendarA has not been fully iterated but calendarB has not been // ****
                     if (
                         calendarA[idx1][0] -
-                            calendarB[calendarB.length - 1][1] >
+                            calendarB[calendarB.length - 1][1] >=
                         this.meetingDurationComp['d']
                     ) {
                         // if there is enough time after calendarB last appointmentment and before calendarA appointment
@@ -300,7 +291,7 @@ export default {
                         while (idx1 < calendarA.length - 1) {
                             if (
                                 calendarA[idx1 + 1][0] -
-                                    calendarA[idx1][1] >
+                                    calendarA[idx1][1] >=
                                 this.meetingDurationComp['d']
                             ) {
                                 result.push([
@@ -351,7 +342,7 @@ export default {
                     // if calendarB has not been fully iterated but calendarA has   // ****
                     if (
                         calendarB[idx2][0] -
-                            calendarA[calendarA.length - 1][1] >
+                            calendarA[calendarA.length - 1][1] >=
                         this.meetingDurationComp['d']
                     ) {
                         // if there is enough time after calendarA last appointmentment and before calendarB appointment at idx2
@@ -365,7 +356,7 @@ export default {
                         while (idx2 < calendarB.length - 1) {
                             if (
                                 calendarB[idx2 + 1][0] -
-                                    calendarB[idx2][1] >
+                                    calendarB[idx2][1] >=
                                 this.meetingDurationComp['d']
                             ) {
                                 result.push([
@@ -421,12 +412,7 @@ export default {
                 console.log('No available times for a meeting');
                 return 'No available times for a meeting';
             }
-
-            //convert result times from minutes to military time
-            // result.forEach((el, i) => {
-            //     result[i][0] = this.minutesToMilitary(el[0]);
-            //     result[i][1] = this.minutesToMilitary(el[1]);
-            // });
+            
             console.log('result++++', result);
             console.log(
                 'calendar1 at end of calMatch$$$$$$$$$$',
