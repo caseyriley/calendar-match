@@ -32,12 +32,9 @@ export default {
     right: 0px;
     display: flex;
     flex-direction: column;
-    // justify-content: center;x
     align-items: center;
     overflow-y: scroll;
     height: calc(100vh - 50px);
-    // height: auto;
-    border: 1px solid blue;
 
     img {
         width: 150px;

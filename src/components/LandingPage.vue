@@ -10,6 +10,10 @@
                 Person 2
             </div>
         </div>
+        <div class="person-underline">
+            <div class="line" v-if="personToggle" key="88"></div>
+            <div class="line2" v-else-if="!personToggle" key="89"></div>
+        </div>
 
         <label class="duration">
             How many minutes long is your appointment going to be?
@@ -226,7 +230,7 @@ export default {
     name: 'LandingPage',
     components: {
         Timeline,
-        MatchTimes
+        MatchTimes,
     },
     // components: { Appointment, Start, End, FirstBreak },
     data() {
@@ -260,9 +264,15 @@ export default {
                 this.calendar1Computed['c']
             );
             this.required1 = false;
-            let startTime = this.personToggle ? this.startTime1 : this.startTime2;
-            let endTime = this.personToggle ? this.endTime1 : this.endTime2;
-            let calendar = this.personToggle ? this.calendar1Computed['c'] : this.calendar2Computed['c'];
+            let startTime = this.personToggle
+                ? this.startTime1
+                : this.startTime2;
+            let endTime = this.personToggle
+                ? this.endTime1
+                : this.endTime2;
+            let calendar = this.personToggle
+                ? this.calendar1Computed['c']
+                : this.calendar2Computed['c'];
             if (startTime > endTime) return;
             if (this.appStart > this.appEnd) return;
             if (
@@ -297,11 +307,7 @@ export default {
                 calendar.push([appSt, appEn]);
                 // this.calendar1.push(['05:00', '06:00']);
             } else {
-                for (
-                    let i = 0;
-                    i < calendar.length;
-                    i++
-                ) {
+                for (let i = 0; i < calendar.length; i++) {
                     let app = calendar[i];
                     console.log('app**************', app);
                     if (
@@ -323,8 +329,7 @@ export default {
                             // if cal.length
                             if (
                                 //if new appointment start time is less than prev appointment end time
-                                appSt <
-                                calendar[i - 1][1]
+                                appSt < calendar[i - 1][1]
                             ) {
                                 console.log('if 2 A.1');
                                 if (
@@ -432,9 +437,11 @@ export default {
                     }
                 }
                 // this.calendar1 = cal;
-                let cl = this.personToggle ? this.calendar1Computed : this.calendar2Computed;
-                cl['c'] = cal; 
-                
+                let cl = this.personToggle
+                    ? this.calendar1Computed
+                    : this.calendar2Computed;
+                cl['c'] = cal;
+
                 console.log(
                     'this.calendar1Computed[c] LandingPage Post this.this.calendar1Computed[c] = cal',
                     calendar
@@ -457,6 +464,10 @@ export default {
         },
     },
     computed: {
+        personToggleComp: function () {
+            const t = !this.personToggle
+            return {t}
+        },
         startTimeOneComp: function () {
             const t = this.startTime1
                 ? this.militaryToMinutes(this.startTime1)
@@ -584,7 +595,7 @@ h2 {
     font-family: 'Russo One', sans-serif;
     margin: 20px 20px 20px 20px;
     text-align: center;
-    color: rgb(000, 222, 222);
+    color: rgb(123, 177, 198);
 }
 .duration {
     // display: flex;
@@ -644,6 +655,26 @@ h2 {
 .person-toggle__divider {
     height: 40px;
     border-right: 1px solid $color-1;
+}
+.person-underline {
+    width: 250px;
+    height: 6px;
+    display: flex;
+    margin: 3px 0px 0px 0px;
+
+    .line {
+        width: 125px;
+        height: 6px;
+        background-color: plum;
+        border-radius: 999px;
+    }
+        .line2 {
+        width: 125px;
+        height: 6px;
+        background-color: plum;
+        border-radius: 999px;
+        margin: 0px 0px 0px 125px;
+    }
 }
 .userForm {
     width: 100%;
