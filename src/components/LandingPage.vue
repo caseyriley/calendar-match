@@ -12,7 +12,7 @@
         </div>
         <div class="person-underline">
             <div class="line" v-if="personToggle" key="88"></div>
-            <div class="line2" v-else-if="!personToggle" key="89"></div>
+            <div class="line2" v-else key="89"></div>
         </div>
 
         <label class="duration">
@@ -222,10 +222,6 @@
 <script>
 import Timeline from './Timeline.vue';
 import MatchTimes from './MatchTimes.vue';
-// import Appointment from '@/components/Appointment.vue';
-// import Start from '@/components/Start.vue';
-// import End from '@/components/End.vue';
-// import FirstBreak from '@/components/FirstBreak.vue';
 export default {
     name: 'LandingPage',
     components: {
@@ -436,7 +432,6 @@ export default {
                         pushed = true;
                     }
                 }
-                // this.calendar1 = cal;
                 let cl = this.personToggle
                     ? this.calendar1Computed
                     : this.calendar2Computed;
@@ -465,8 +460,8 @@ export default {
     },
     computed: {
         personToggleComp: function () {
-            const t = !this.personToggle
-            return {t}
+            const t = !this.personToggle;
+            return { t };
         },
         startTimeOneComp: function () {
             const t = this.startTime1
@@ -501,24 +496,12 @@ export default {
             };
         },
         calendar1Computed: function () {
-            // let c = [...this.calendar1];
-            // c.forEach((array, i) =>
-            //     array.forEach((el, j) => {
-            //         c[i][j] = this.militaryToMinutes(el);
-            //     })
-            // );
             let c = [];
             return {
                 c,
             };
         },
         calendar2Computed: function () {
-            // let c = [...this.calendar2];
-            // c.forEach((array, i) =>
-            //     array.forEach((el, j) => {
-            //         c[i][j] = this.militaryToMinutes(el);
-            //     })
-            // );
             let c = [];
             return {
                 c,
@@ -598,13 +581,8 @@ h2 {
     color: rgb(123, 177, 198);
 }
 .duration {
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
     align-items: center;
     margin: 20px 0px 0px 0px;
-    // border-top: 1px solid grey;
-    // border-bottom: 1px solid grey;
     input {
         margin: 10px 0px 7px 0px;
     }
@@ -615,19 +593,6 @@ h2 {
     justify-content: space-evenly;
     margin: 20px 0px 20px 0px;
 }
-// .timeline {
-//     width: 200px;
-//     height: 800px;
-//     height: auto;
-//     // border: 2px solid $color-1;
-//     border-radius: 5px;
-//     background-color: $color-6;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: flex-start;
-//     align-items: center;
-//     position: relative;
-// }
 .person-toggle {
     width: 250px;
     height: 40px;
@@ -668,7 +633,7 @@ h2 {
         background-color: plum;
         border-radius: 999px;
     }
-        .line2 {
+    .line2 {
         width: 125px;
         height: 6px;
         background-color: plum;

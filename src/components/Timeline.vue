@@ -46,8 +46,6 @@ export default {
 .timeline {
     width: 200px;
     height: 823px;
-    // height: auto;
-    // border: 2px solid $color-1;
     border-radius: 5px;
     background-color: $color-6;
     display: flex;

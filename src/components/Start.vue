@@ -6,26 +6,15 @@
 </template>
 
 <script>
-
 export default {
     name: 'Start',
     props: ['startTime'],
     data() {
         return {
-            
-            // height: `calc(${(this.time / 1440) * this.parentNode.clientHeight()}px)`,
-            // parent: this.$parent.height,
             height: `calc(${(this.startTime / 1440) * 800}px)`,
             parentHeight: 0,
-
-            
         };
-        // console.log('this.parentNode', parent)
-            
     },
-    // mounted() {
-    //          this.parentHeight = this.$parent.minHeight;
-    //         },
     methods: {
         minutesToMilitary(num) {
             let h = Math.floor(num / 60);
@@ -39,9 +28,11 @@ export default {
         },
     },
     computed: {
-        curHeight: function() {
-            return {height: `calc(${(this.startTime / 1440) * 800}px)`}
-        }
+        curHeight: function () {
+            return {
+                height: `calc(${(this.startTime / 1440) * 800}px)`,
+            };
+        },
     },
 };
 </script>
@@ -63,7 +54,6 @@ export default {
     border-radius: 5px;
 }
 .start span {
-
     white-space: nowrap;
 }
 </style>
