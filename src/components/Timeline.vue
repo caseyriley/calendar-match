@@ -6,7 +6,6 @@
             v-if="startTime < calendar[0][0]"
             :startTime="startTime"
             :breakEnd="breakEnd"
-            
         ></first-break>
         <appointment
             v-for="(app, index) in calendar"

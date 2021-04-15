@@ -16,7 +16,9 @@ export default {
         return {
             bool: this.startTime < this.breakEnd,
             calcStart: null,
-            curStart: this.calcStart ? this.calcStart : this.startTime,
+            curStart: this.calcStart
+                ? this.calcStart
+                : this.startTime,
         };
     },
     methods: {
@@ -45,10 +47,7 @@ export default {
         curHeight: function () {
             return {
                 height: `${
-                    ((this.breakEnd -
-                        this.startTime) /
-                        1440) *
-                    800
+                    ((this.breakEnd - this.startTime) / 1440) * 800
                 }px`,
             };
         },

@@ -34,21 +34,16 @@ export default {
         bool: function () {
             let b = this.start < this.end ? true : false;
             return {
-                b
+                b,
             };
         },
         curHeight: function () {
             return {
-                height: `${
-                    ((this.end  -
-                        this.start) /
-                        1440) *
-                    800
-                }px`,
+                height: `${((this.end - this.start) / 1440) * 800}px`,
             };
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

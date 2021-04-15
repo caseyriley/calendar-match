@@ -8,8 +8,7 @@
                     ? minutesToMilitary(end)
                     : minutesToMilitary(endTime)
             }}
-            </span
-        >
+        </span>
     </div>
 </template>
 

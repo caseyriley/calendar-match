@@ -2,7 +2,6 @@
     <div class="timeline__app" :style="curHeight" v-bind="$attrs">
         <span>Busy</span>
         <span>{{ appStartMil['start'] }}-{{ appEndMil['end'] }}</span>
-
     </div>
     <break
         :start="appEndMin['end']"
@@ -16,7 +15,6 @@ import Break from '@/components/Break.vue';
 // import Break from './Break.vue';
 export default {
     name: 'Appointment',
-    // props: ['appStart', 'appEnd', 'appNextStart', 'endTime'],
     props: ['key', 'index', 'calendar', 'endTime'],
     components: { Break },
     data() {

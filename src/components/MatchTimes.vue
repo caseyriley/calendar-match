@@ -149,7 +149,7 @@ export default {
                     let curEnd = Math.max(end1, end2);
 
                     console.log('curEnd', curEnd);
-                    console.log('nextS', nextS)
+                    console.log('nextS', nextS);
 
                     //if both clients are free at the same time push that time to result
                     if (
@@ -163,8 +163,8 @@ export default {
                         idx2++;
                         continue;
                     } else if (
-                        nextS - curEnd <  
-                        this.meetingDurationComp['d'] 
+                        nextS - curEnd <
+                        this.meetingDurationComp['d']
                     ) {
                         //if there is not enough time for a meeting increment indexes accordingly
 
