@@ -144,16 +144,17 @@ export default {
                     let nextS2 = calendarB[idx2 + 1][0];
                     let nextS = null;
                     // let nextS = Math.min(nextS1, nextS2);
-                    
 
                     let end1 = calendarA[idx1][1];
                     let end2 = calendarB[idx2][1];
                     let curEnd = null;
                     // let curEnd = Math.max(end1, end2);
-                    if (calendarB[idx2][0] > calendarA[idx1][1]){
+                    if (calendarB[idx2][0] > calendarA[idx1][1]) {
                         curEnd = calendarA[idx1][1];
                         nextS = calendarB[idx2][0];
-                    } else if (calendarA[idx1][0] > calendarB[idx2][1]){
+                    } else if (
+                        calendarA[idx1][0] > calendarB[idx2][1]
+                    ) {
                         curEnd = calendarB[idx2][1];
                         nextS = calendarA[idx1][0];
                     } else {
@@ -175,9 +176,7 @@ export default {
 
                         if (
                             calendarA[idx1 + 1][0] >
-                                calendarB[idx2 + 1][1] &&
-                            calendarB[idx2][0] - calendarA[idx1][1] >
-                                this.meetingDuration
+                                calendarB[idx2 + 1][1] 
                         ) {
                             console.log('increment 174');
                             console.log(
@@ -190,9 +189,7 @@ export default {
                             continue;
                         } else if (
                             calendarB[idx2 + 1][0] >
-                                calendarA[idx1 + 1][1] &&
-                            calendarA[idx1][0] - calendarB[idx2][1] >
-                                this.meetingDurationComp['d']
+                                calendarA[idx1 + 1][1]
                         ) {
                             console.log('increment 185');
                             console.log(
@@ -204,7 +201,7 @@ export default {
                             idx1++;
                             continue;
                         } else {
-                            console.log('increment 190');
+                            console.log('increment 208');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -465,6 +462,7 @@ export default {
                                 calendarA[calendarA.length - 1][1],
                                 dBounds[1],
                             ]);
+                            break;
                         }
                     } else if (
                         calendarB[calendarB.length - 1][0] -
@@ -482,11 +480,29 @@ export default {
                                 ',idx2-',
                                 idx2
                             );
-                            let curEnd = Math.min(
+                            let nextS = Math.min(
                                 calendarA[idx1 + 1][0],
                                 calendarB[idx2][0]
                             );
-                            result.push([calendarA[idx1][1], curEnd]);
+                            let curEnd = null;
+
+                            for (let i = 0; i < calendarB.length; i ++){
+                                let a = calendarB[i];
+                                if (a[1] > nextS){
+                                    curEnd = a[1];
+                                    break
+                                }
+                            }
+
+                            for (let j = 0; j < calendarA.length; j ++){
+                                let a = calendarA[j];
+                                if (a[1] < nextS && a[1] < curEnd && a[1] >= calendarA[idx1][1]){
+                                    curEnd = a[1];
+                                    break
+                                }
+                            }
+
+                            result.push([curEnd, nextS]);
 
                             idx1++;
                             continue;
@@ -508,7 +524,10 @@ export default {
                         // if there is enough time after calendarA last appointmentment and before calendarB appointment at idx2
                         console.log('356');
                         console.log('idx1-', idx1, ',idx2-', idx2);
-                        let start1 = calendarB[idx2 - 1][1];
+                        let start1 = 0;
+                        if (calendarB[idx2 - 1]){
+                            start1 = calendarB[idx2 - 1][1];
+                        }
                         let start2 =
                             calendarA[calendarA.length - 1][1];
                         let curStart = Math.max(start1, start2);
@@ -551,6 +570,7 @@ export default {
                                 calendarB[calendarB.length - 1][1],
                                 dBounds[1],
                             ]);
+                            break;
                         }
                     } else if (
                         calendarA[calendarA.length - 1][0] -
@@ -567,19 +587,34 @@ export default {
                                 ',idx2-',
                                 idx2
                             );
-                            let curEnd = Math.min(
+                            let nextS = Math.min(
                                 calendarB[idx2 + 1][0],
                                 calendarA[idx1][0]
                             );
-                            result.push([calendarB[idx2][1], curEnd]);
+                            let curEnd = null;
 
-                            idx2++;
+                            for (let i = 0; i < calendarA.length; i ++){
+                                let a = calendarA[i];
+                                if (a[1] > nextS){
+                                    curEnd = a[1];
+                                    break
+                                }
+                            }
+
+                            for (let j = 0; j < calendarB.length; j ++){
+                                let a = calendarB[j];
+                                if (a[1] < nextS && a[1] < curEnd && a[1] >= calendarB[idx2][1]){
+                                    curEnd = a[1];
+                                    break
+                                }
+                            }
+
+                            result.push([curEnd, nextS]);
+
+                            idx1++;
                             continue;
                         }
                     }
-
-                    idx2++;
-                    continue;
                 }
             }
 
