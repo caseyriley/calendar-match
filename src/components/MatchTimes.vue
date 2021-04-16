@@ -57,7 +57,7 @@ export default {
         },
         calMatch() {
             ////////////////convert daily bounds to minutes///////////////
-            debugger;
+            // debugger;
             this.bool['b'] = false;
             console.log(
                 'calendar1 at start of calMatch$$$$$$$$$$',
@@ -156,9 +156,59 @@ export default {
                         nextS - curEnd >= // here !!!!
                         this.meetingDurationComp['d']
                     ) {
-                        console.log('170');
+                        console.log('159');
                         console.log('idx1-', idx1, ',idx2-', idx2);
                         result.push([curEnd, nextS]);
+
+                        if (
+                            calendarA[idx1 + 1] &&
+                            calendarB[idx2 + 1]
+                        ) {
+                            if (
+                                calendarA[idx1 + 1][0] >
+                                    calendarB[idx2 + 1][1] &&
+                                calendarB[idx2][0] -
+                                    calendarA[idx1][1] >
+                                    this.meetingDuration
+                            ) {
+                                console.log('increment 174');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                idx2++;
+                                continue;
+                            } else if (
+                                calendarB[idx2 + 1][0] >
+                                    calendarA[idx1 + 1][1] &&
+                                calendarA[idx1][0] -
+                                    calendarB[idx2][1] >
+                                    this.meetingDuration
+                            ) {
+                                console.log('increment 185');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                idx1++;
+                                continue;
+                            } else {
+                                console.log('increment 190');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                idx1++;
+                                idx2++;
+                                continue;
+                            }
+                        }
                         idx1++;
                         idx2++;
                         continue;
@@ -190,6 +240,26 @@ export default {
                             calendarA[idx1 + 1][0] >
                             calendarB[idx2 + 1][1]
                         ) {
+                            if (
+                                calendarB[idx2 + 1][0] -
+                                    calendarB[idx2][1] >
+                                this.meetingDuration
+                            ) {
+                                //if there is enough time between calendar B cur and next appointment
+                                console.log('199');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                result.push([
+                                    calendarB[idx2][1],
+                                    calendarB[idx2 + 1][0],
+                                ]);
+                                idx2++;
+                                continue;
+                            }
                             //if only idx2 should increment due to the start time of the
                             //next available opening on calendarA
                             console.log('increment 198');
@@ -210,6 +280,7 @@ export default {
                                     calendarA[idx1][1] >
                                 this.meetingDuration
                             ) {
+                                //if there is enough time between calendar A cur and next appointment
                                 console.log('212');
                                 console.log(
                                     'idx1-',
