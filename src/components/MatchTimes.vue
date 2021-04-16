@@ -142,11 +142,24 @@ export default {
                     // console.log('idx1-', idx1, ',idx2-', idx2)
                     let nextS1 = calendarA[idx1 + 1][0];
                     let nextS2 = calendarB[idx2 + 1][0];
-                    let nextS = Math.min(nextS1, nextS2);
+                    let nextS = null;
+                    // let nextS = Math.min(nextS1, nextS2);
+                    
 
                     let end1 = calendarA[idx1][1];
                     let end2 = calendarB[idx2][1];
-                    let curEnd = Math.max(end1, end2);
+                    let curEnd = null;
+                    // let curEnd = Math.max(end1, end2);
+                    if (calendarB[idx2][0] > calendarA[idx1][1]){
+                        curEnd = calendarA[idx1][1];
+                        nextS = calendarB[idx2][0];
+                    } else if (calendarA[idx1][0] > calendarB[idx2][1]){
+                        curEnd = calendarB[idx2][1];
+                        nextS = calendarA[idx1][0];
+                    } else {
+                        curEnd = Math.max(end1, end2);
+                        nextS = Math.min(nextS1, nextS2);
+                    }
 
                     console.log('curEnd', curEnd);
                     console.log('nextS', nextS);
@@ -161,57 +174,47 @@ export default {
                         result.push([curEnd, nextS]);
 
                         if (
-                            calendarA[idx1 + 1] &&
-                            calendarB[idx2 + 1]
+                            calendarA[idx1 + 1][0] >
+                                calendarB[idx2 + 1][1] &&
+                            calendarB[idx2][0] - calendarA[idx1][1] >
+                                this.meetingDuration
                         ) {
-                            if (
-                                calendarA[idx1 + 1][0] >
-                                    calendarB[idx2 + 1][1] &&
-                                calendarB[idx2][0] -
-                                    calendarA[idx1][1] >
-                                    this.meetingDuration
-                            ) {
-                                console.log('increment 174');
-                                console.log(
-                                    'idx1-',
-                                    idx1,
-                                    ',idx2-',
-                                    idx2
-                                );
-                                idx2++;
-                                continue;
-                            } else if (
-                                calendarB[idx2 + 1][0] >
-                                    calendarA[idx1 + 1][1] &&
-                                calendarA[idx1][0] -
-                                    calendarB[idx2][1] >
-                                    this.meetingDurationComp['d']
-                            ) {
-                                console.log('increment 185');
-                                console.log(
-                                    'idx1-',
-                                    idx1,
-                                    ',idx2-',
-                                    idx2
-                                );
-                                idx1++;
-                                continue;
-                            } else {
-                                console.log('increment 190');
-                                console.log(
-                                    'idx1-',
-                                    idx1,
-                                    ',idx2-',
-                                    idx2
-                                );
-                                idx1++;
-                                idx2++;
-                                continue;
-                            }
+                            console.log('increment 174');
+                            console.log(
+                                'idx1-',
+                                idx1,
+                                ',idx2-',
+                                idx2
+                            );
+                            idx2++;
+                            continue;
+                        } else if (
+                            calendarB[idx2 + 1][0] >
+                                calendarA[idx1 + 1][1] &&
+                            calendarA[idx1][0] - calendarB[idx2][1] >
+                                this.meetingDurationComp['d']
+                        ) {
+                            console.log('increment 185');
+                            console.log(
+                                'idx1-',
+                                idx1,
+                                ',idx2-',
+                                idx2
+                            );
+                            idx1++;
+                            continue;
+                        } else {
+                            console.log('increment 190');
+                            console.log(
+                                'idx1-',
+                                idx1,
+                                ',idx2-',
+                                idx2
+                            );
+                            idx1++;
+                            idx2++;
+                            continue;
                         }
-                        idx1++;
-                        idx2++;
-                        continue;
                     } else if (
                         nextS - curEnd <
                         this.meetingDurationComp['d']
