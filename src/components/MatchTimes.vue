@@ -185,7 +185,7 @@ export default {
                                     calendarA[idx1 + 1][1] &&
                                 calendarA[idx1][0] -
                                     calendarB[idx2][1] >
-                                    this.meetingDuration
+                                    this.meetingDurationComp['d']
                             ) {
                                 console.log('increment 185');
                                 console.log(
@@ -243,7 +243,7 @@ export default {
                             if (
                                 calendarB[idx2 + 1][0] -
                                     calendarB[idx2][1] >
-                                this.meetingDuration
+                                this.meetingDurationComp['d']
                             ) {
                                 //if there is enough time between calendar B cur and next appointment
                                 console.log('199');
@@ -278,7 +278,7 @@ export default {
                             if (
                                 calendarA[idx1 + 1][0] -
                                     calendarA[idx1][1] >
-                                this.meetingDuration
+                                this.meetingDurationComp['d']
                             ) {
                                 //if there is enough time between calendar A cur and next appointment
                                 console.log('212');
