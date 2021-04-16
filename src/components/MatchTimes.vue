@@ -205,17 +205,37 @@ export default {
                             calendarB[idx2 + 1][0] >
                             calendarA[idx1 + 1][1]
                         ) {
-                            //if only idx1 should increment due to the start time of the
-                            //next available opening on calendarB
-                            console.log('increment 207');
-                            console.log(
-                                'idx1-',
-                                idx1,
-                                ',idx2-',
-                                idx2
-                            );
-                            idx1++;
-                            continue;
+                            if (
+                                calendarA[idx1 + 1][0] -
+                                    calendarA[idx1][1] >
+                                this.meetingDuration
+                            ) {
+                                console.log('212');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                result.push([
+                                    calendarA[idx1][1],
+                                    calendarA[idx1 + 1][0],
+                                ]);
+                                idx1++;
+                                continue;
+                            } else {
+                                //if only idx1 should increment due to the start time of the
+                                //next available opening on calendarB
+                                console.log('increment 223');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                idx1++;
+                                continue;
+                            }
                         }
                     }
                 } else if (
