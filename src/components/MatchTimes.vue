@@ -70,19 +70,6 @@ export default {
             console.log('dailyBounds1', dailyBounds1);
             console.log('dailyBounds2', dailyBounds2);
 
-            // dailyBounds1[0] = this.militaryToMinutes(
-            //     this.dailyBoundsOne[0]
-            // );
-            // dailyBounds1[1] = this.militaryToMinutes(
-            //     this.dailyBoundsOne[1]
-            // );
-            // dailyBounds2[0] = this.militaryToMinutes(
-            //     this.dailyBoundsTwo[0]
-            // );
-            // dailyBounds2[1] = this.militaryToMinutes(
-            //     this.dailyBoundsTwo[1]
-            // );
-
             ////////set dBounds to min and max times available for both clients///////
             let dBounds = [
                 Math.max(dailyBounds1[0], dailyBounds2[0]),
@@ -635,7 +622,7 @@ export default {
 
                             result.push([curEnd, nextS]);
 
-                            idx1++;
+                            idx2++;
                             continue;
                         }
                     }
