@@ -482,13 +482,6 @@ export default {
                         //push time as needed
 
                         if (calendarA[idx1 + 1]) {
-                            console.log('476');
-                            console.log(
-                                'idx1-',
-                                idx1,
-                                ',idx2-',
-                                idx2
-                            );
                             let nextS = Math.min(
                                 calendarA[idx1 + 1][0],
                                 calendarB[idx2][0]
@@ -501,7 +494,7 @@ export default {
                                 i++
                             ) {
                                 let a = calendarB[i];
-                                if (a[1] > nextS) {
+                                if (a[1] < nextS) {
                                     curEnd = a[1];
                                     break;
                                 }
@@ -515,15 +508,28 @@ export default {
                                 let a = calendarA[j];
                                 if (
                                     a[1] < nextS &&
-                                    a[1] < curEnd &&
+                                    a[1] > curEnd &&
                                     a[1] >= calendarA[idx1][1]
                                 ) {
                                     curEnd = a[1];
                                     break;
                                 }
                             }
-
-                            result.push([curEnd, nextS]);
+                            if (
+                                !result[result.length - 1][0] ===
+                                    curEnd &&
+                                !result[result.length - 1][1] ===
+                                    nextS
+                            ) {
+                                console.log('526');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                result.push([curEnd, nextS]);
+                            }
 
                             idx1++;
                             continue;
@@ -603,13 +609,6 @@ export default {
                         //if there is time before calendar A last appointment and the end of calendar B current appointment
                         //push time as needed
                         if (calendarB[idx2 + 1]) {
-                            console.log('595');
-                            console.log(
-                                'idx1-',
-                                idx1,
-                                ',idx2-',
-                                idx2
-                            );
                             let nextS = Math.min(
                                 calendarB[idx2 + 1][0],
                                 calendarA[idx1][0]
@@ -622,7 +621,7 @@ export default {
                                 i++
                             ) {
                                 let a = calendarA[i];
-                                if (a[1] > nextS) {
+                                if (a[1] < nextS) {
                                     curEnd = a[1];
                                     break;
                                 }
@@ -636,15 +635,28 @@ export default {
                                 let a = calendarB[j];
                                 if (
                                     a[1] < nextS &&
-                                    a[1] < curEnd &&
+                                    a[1] > curEnd &&
                                     a[1] >= calendarB[idx2][1]
                                 ) {
                                     curEnd = a[1];
                                     break;
                                 }
                             }
-
-                            result.push([curEnd, nextS]);
+                            if (
+                                !result[result.length - 1][0] ===
+                                    curEnd &&
+                                !result[result.length - 1][1] ===
+                                    nextS
+                            ) {
+                                console.log('651');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                result.push([curEnd, nextS]);
+                            }
 
                             idx2++;
                             continue;
