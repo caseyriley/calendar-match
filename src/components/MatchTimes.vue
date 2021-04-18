@@ -137,13 +137,29 @@ export default {
                     let curEnd = null;
                     // let curEnd = Math.max(end1, end2);
                     if (calendarB[idx2][0] > calendarA[idx1][1]) {
-                        curEnd = calendarA[idx1][1];
-                        nextS = calendarB[idx2][0];
+                        if (calendarB[idx2 - 1]) {
+                            curEnd = Math.max(
+                                calendarA[idx1][1],
+                                calendarB[idx2 - 1][1]
+                            );
+                            nextS = calendarB[idx2][0];
+                        } else {
+                            curEnd = calendarA[idx1][1];
+                            nextS = calendarB[idx2][0];
+                        }
                     } else if (
                         calendarA[idx1][0] > calendarB[idx2][1]
                     ) {
-                        curEnd = calendarB[idx2][1];
-                        nextS = calendarA[idx1][0];
+                        if (calendarA[idx1 - 1]) {
+                            curEnd = Math.max(
+                                calendarB[idx2][1],
+                                calendarA[idx1 - 1][1]
+                            );
+                            nextS = calendarA[idx1][0];
+                        } else {
+                            curEnd = calendarB[idx2][1];
+                            nextS = calendarA[idx1][0];
+                        }
                     } else {
                         curEnd = Math.max(end1, end2);
                         nextS = Math.min(nextS1, nextS2);
@@ -414,10 +430,7 @@ export default {
                             start - end >
                             this.meetingDurationComp['d']
                         ) {
-                            result.push([
-                                end,
-                                start,
-                            ]);
+                            result.push([end, start]);
                             // idx1++;
                         }
 
@@ -532,7 +545,7 @@ export default {
                         // if there is enough time after calendarA last appointmentment and before calendarB appointment at idx2
                         console.log('537');
                         console.log('idx1-', idx1, ',idx2-', idx2);
-                        
+
                         let end = calendarA[idx1][1];
 
                         let start = calendarB[idx2][0];
@@ -540,10 +553,7 @@ export default {
                             start - end >
                             this.meetingDurationComp['d']
                         ) {
-                            result.push([
-                                end,
-                                start,
-                            ])
+                            result.push([end, start]);
                         }
 
                         while (idx2 < calendarB.length - 1) {
