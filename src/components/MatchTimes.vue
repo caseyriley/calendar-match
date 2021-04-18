@@ -406,10 +406,7 @@ export default {
                         // if there is enough time after calendarB last appointmentment and before calendarA appointment
                         console.log('420');
                         console.log('idx1-', idx1, ',idx2-', idx2);
-                        // let start1 = calendarA[idx1 - 1][1];
-                        // let start2 =
-                        //     calendarB[calendarB.length - 1][1];
-                        // let curStart = Math.max(start1, start2);
+
                         let end = calendarB[idx2][1];
 
                         let start = calendarA[idx1][0];
@@ -535,14 +532,19 @@ export default {
                         // if there is enough time after calendarA last appointmentment and before calendarB appointment at idx2
                         console.log('537');
                         console.log('idx1-', idx1, ',idx2-', idx2);
-                        let start1 = 0;
-                        if (calendarB[idx2 - 1]) {
-                            start1 = calendarB[idx2 - 1][1];
+                        
+                        let end = calendarA[idx1][1];
+
+                        let start = calendarB[idx2][0];
+                        if (
+                            start - end >
+                            this.meetingDurationComp['d']
+                        ) {
+                            result.push([
+                                end,
+                                start,
+                            ])
                         }
-                        let start2 =
-                            calendarA[calendarA.length - 1][1];
-                        let curStart = Math.max(start1, start2);
-                        result.push([curStart, calendarB[idx2][0]]);
 
                         while (idx2 < calendarB.length - 1) {
                             if (
