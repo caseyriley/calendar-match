@@ -169,10 +169,34 @@ export default {
                     console.log('nextS', nextS);
 
                     if (
-                        nextS - curEnd >= // here !!!!
+                        nextS - curEnd >=
                         this.meetingDurationComp['d']
                     ) {
                         //if both clients are free at the same time push that time to result and increment as needed
+                        // if (
+                        //     calendarB[idx2 + 1][0] -
+                        //         calendarB[idx2][1] >=
+                        //         this.meetingDuration &&
+                        //     calendarA[idx1][1] <=
+                        //         calendarB[idx2][1] &&
+                        //     calendarA[idx1 + 1][0] >
+                        //         calendarB[idx2 + 1][0]
+                        // ) {
+                        //     console.log('189');
+                        //     console.log(
+                        //         'idx1-',
+                        //         idx1,
+                        //         ',idx2-',
+                        //         idx2
+                        //     );
+                        //     result.push([
+                        //         calendarB[idx2][1],
+                        //         calendarB[idx2 + 1][0],
+                        //     ]);
+                        //     idx2++;
+                        //     continue;
+                        // }
+
                         console.log('176');
                         console.log('idx1-', idx1, ',idx2-', idx2);
                         result.push([curEnd, nextS]);
@@ -181,22 +205,6 @@ export default {
                             calendarA[idx1 + 1][0] >
                             calendarB[idx2 + 1][1]
                         ) {
-                            // if (
-                            //     calendarB[idx2 + 1][0] -
-                            //         calendarB[idx2][1] >=
-                            //     this.meetingDuration
-                            // ) {
-                            //     console.log('189');
-                            //     console.log(
-                            //         'idx1-',
-                            //         idx1,
-                            //         ',idx2-',
-                            //         idx2
-                            //     );
-                            //     result.push(calendarB[idx2][1], calendarB[idx2 + 1][0])
-                            //     idx2 ++;
-                            //     continue;
-                            // }
                             console.log('increment 198');
                             console.log(
                                 'idx1-',
@@ -511,7 +519,6 @@ export default {
                                 let a = calendarB[i];
                                 if (a[1] < nextS) {
                                     curEnd = a[1];
-                                    break;
                                 }
                             }
 
@@ -527,7 +534,6 @@ export default {
                                     a[1] >= calendarA[idx1][1]
                                 ) {
                                     curEnd = a[1];
-                                    break;
                                 }
                             }
                             if (
@@ -542,6 +548,7 @@ export default {
                                     ',idx2-',
                                     idx2
                                 );
+
                                 result.push([curEnd, nextS]);
                             }
 
@@ -637,7 +644,6 @@ export default {
                                 let a = calendarA[i];
                                 if (a[1] < nextS) {
                                     curEnd = a[1];
-                                    break;
                                 }
                             }
 
@@ -653,7 +659,6 @@ export default {
                                     a[1] >= calendarB[idx2][1]
                                 ) {
                                     curEnd = a[1];
-                                    break;
                                 }
                             }
                             if (
