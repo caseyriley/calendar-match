@@ -301,19 +301,37 @@ export default {
                                 this.meetingDurationComp['d']
                             ) {
                                 //if there is enough time between calendar B cur and next appointment
-                                console.log('266');
-                                console.log(
-                                    'idx1-',
-                                    idx1,
-                                    ',idx2-',
-                                    idx2
-                                );
-                                result.push([
-                                    calendarB[idx2][1],
-                                    calendarB[idx2 + 1][0],
-                                ]);
-                                idx2++;
-                                continue;
+                                if (
+                                    calendarB[idx2][1] >
+                                        calendarA[idx1][1] &&
+                                    calendarB[idx2 + 1][0] <
+                                        calendarA[idx1 + 1][0]
+                                ) {
+                                    console.log('310');
+                                    console.log(
+                                        'idx1-',
+                                        idx1,
+                                        ',idx2-',
+                                        idx2
+                                    );
+
+                                    result.push([
+                                        calendarB[idx2][1],
+                                        calendarB[idx2 + 1][0],
+                                    ]);
+                                    idx2++;
+                                    continue;
+                                } else {
+                                    console.log('increment 325');
+                                    console.log(
+                                        'idx1-',
+                                        idx1,
+                                        ',idx2-',
+                                        idx2
+                                    );
+                                    idx2++;
+                                    continue;
+                                }
                             }
                             //if only idx2 should increment due to the start time of the
                             //next available opening on calendarA
@@ -336,19 +354,37 @@ export default {
                                 this.meetingDurationComp['d']
                             ) {
                                 //if there is enough time between calendar A cur and next appointment
-                                console.log('301');
-                                console.log(
-                                    'idx1-',
-                                    idx1,
-                                    ',idx2-',
-                                    idx2
-                                );
-                                result.push([
-                                    calendarA[idx1][1],
-                                    calendarA[idx1 + 1][0],
-                                ]);
-                                idx1++;
-                                continue;
+                                if (
+                                    calendarA[idx1][1] >
+                                        calendarB[idx2][1] &&
+                                    calendarA[idx1 + 1][0] <
+                                        calendarB[idx2 + 1][0]
+                                ) {
+                                    console.log('310');
+                                    console.log(
+                                        'idx1-',
+                                        idx1,
+                                        ',idx2-',
+                                        idx2
+                                    );
+
+                                    result.push([
+                                        calendarA[idx1][1],
+                                        calendarB[idx1 + 1][0],
+                                    ]);
+                                    idx1++;
+                                    continue;
+                                } else {
+                                    console.log('increment 325');
+                                    console.log(
+                                        'idx1-',
+                                        idx1,
+                                        ',idx2-',
+                                        idx2
+                                    );
+                                    idx2++;
+                                    continue;
+                                }
                             } else {
                                 //if only idx1 should increment due to the start time of the
                                 //next available opening on calendarB
