@@ -125,17 +125,15 @@ export default {
             ) {
                 //if not at the last index of either calendar
                 if (calendarA[idx1 + 1] && calendarB[idx2 + 1]) {
-                    // console.log('156');
-                    // console.log('idx1-', idx1, ',idx2-', idx2)
+
                     let nextS1 = calendarA[idx1 + 1][0];
                     let nextS2 = calendarB[idx2 + 1][0];
                     let nextS = null;
-                    // let nextS = Math.min(nextS1, nextS2);
 
                     let end1 = calendarA[idx1][1];
                     let end2 = calendarB[idx2][1];
                     let curEnd = null;
-                    // let curEnd = Math.max(end1, end2);
+
                     if (calendarB[idx2][0] > calendarA[idx1][1]) {
                         if (calendarB[idx2 - 1]) {
                             curEnd = Math.max(
@@ -172,34 +170,19 @@ export default {
                         nextS - curEnd >=
                         this.meetingDurationComp['d']
                     ) {
-                        //if both clients are free at the same time push that time to result and increment as needed
-                        // if (
-                        //     calendarB[idx2 + 1][0] -
-                        //         calendarB[idx2][1] >=
-                        //         this.meetingDuration &&
-                        //     calendarA[idx1][1] <=
-                        //         calendarB[idx2][1] &&
-                        //     calendarA[idx1 + 1][0] >
-                        //         calendarB[idx2 + 1][0]
-                        // ) {
-                        //     console.log('189');
-                        //     console.log(
-                        //         'idx1-',
-                        //         idx1,
-                        //         ',idx2-',
-                        //         idx2
-                        //     );
-                        //     result.push([
-                        //         calendarB[idx2][1],
-                        //         calendarB[idx2 + 1][0],
-                        //     ]);
-                        //     idx2++;
-                        //     continue;
-                        // }
-
-                        console.log('176');
-                        console.log('idx1-', idx1, ',idx2-', idx2);
-                        result.push([curEnd, nextS]);
+                        if (
+                            result[result.length - 1][0] !== curEnd &&
+                            result[result.length - 1][1] !== nextS
+                        ) {
+                            console.log('203');
+                            console.log(
+                                'idx1-',
+                                idx1,
+                                ',idx2-',
+                                idx2
+                            );
+                            result.push([curEnd, nextS]);
+                        }
 
                         if (
                             calendarA[idx1 + 1][0] >
