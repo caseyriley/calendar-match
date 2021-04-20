@@ -228,16 +228,44 @@ export default {
                             idx1++;
                             continue;
                         } else {
-                            console.log('increment 221');
-                            console.log(
-                                'idx1-',
-                                idx1,
-                                ',idx2-',
-                                idx2
-                            );
-                            idx1++;
-                            idx2++;
-                            continue;
+                            if (
+                                calendarB[idx2][0] <
+                                calendarA[idx1][0]
+                            ) {
+                                console.log('increment 235');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                idx2++;
+                                continue;
+                            } else if (
+                                calendarA[idx1][0] <
+                                calendarB[idx2][0]
+                            ) {
+                                console.log('increment 248');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                idx1++;
+                                continue;
+                            } else {
+                                console.log('increment 258');
+                                console.log(
+                                    'idx1-',
+                                    idx1,
+                                    ',idx2-',
+                                    idx2
+                                );
+                                idx1++;
+                                idx2++;
+                                continue;
+                            }
                         }
                     } else if (
                         nextS - curEnd <
