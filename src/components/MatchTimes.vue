@@ -168,12 +168,12 @@ export default {
                     console.log('curEnd', curEnd);
                     console.log('nextS', nextS);
 
-                    //if both clients are free at the same time push that time to result
                     if (
                         nextS - curEnd >= // here !!!!
                         this.meetingDurationComp['d']
                     ) {
-                        console.log('173');
+                        //if both clients are free at the same time push that time to result and increment as needed
+                        console.log('176');
                         console.log('idx1-', idx1, ',idx2-', idx2);
                         result.push([curEnd, nextS]);
 
@@ -181,7 +181,23 @@ export default {
                             calendarA[idx1 + 1][0] >
                             calendarB[idx2 + 1][1]
                         ) {
-                            console.log('increment 181');
+                            // if (
+                            //     calendarB[idx2 + 1][0] -
+                            //         calendarB[idx2][1] >=
+                            //     this.meetingDuration
+                            // ) {
+                            //     console.log('189');
+                            //     console.log(
+                            //         'idx1-',
+                            //         idx1,
+                            //         ',idx2-',
+                            //         idx2
+                            //     );
+                            //     result.push(calendarB[idx2][1], calendarB[idx2 + 1][0])
+                            //     idx2 ++;
+                            //     continue;
+                            // }
+                            console.log('increment 198');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -194,7 +210,7 @@ export default {
                             calendarB[idx2 + 1][0] >
                             calendarA[idx1 + 1][1]
                         ) {
-                            console.log('increment 194');
+                            console.log('increment 211');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -204,7 +220,7 @@ export default {
                             idx1++;
                             continue;
                         } else {
-                            console.log('increment 204');
+                            console.log('increment 221');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -229,7 +245,7 @@ export default {
                         ) {
                             //if both indexes should increment because the start of both
                             //clients next appointment is later then both clients next availble openings
-                            console.log('188');
+                            console.log('246');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -249,7 +265,7 @@ export default {
                                 this.meetingDurationComp['d']
                             ) {
                                 //if there is enough time between calendar B cur and next appointment
-                                console.log('249');
+                                console.log('266');
                                 console.log(
                                     'idx1-',
                                     idx1,
@@ -265,7 +281,7 @@ export default {
                             }
                             //if only idx2 should increment due to the start time of the
                             //next available opening on calendarA
-                            console.log('increment 265');
+                            console.log('increment 282');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -284,7 +300,7 @@ export default {
                                 this.meetingDurationComp['d']
                             ) {
                                 //if there is enough time between calendar A cur and next appointment
-                                console.log('284');
+                                console.log('301');
                                 console.log(
                                     'idx1-',
                                     idx1,
@@ -300,7 +316,7 @@ export default {
                             } else {
                                 //if only idx1 should increment due to the start time of the
                                 //next available opening on calendarB
-                                console.log('increment 300');
+                                console.log('increment 317');
                                 console.log(
                                     'idx1-',
                                     idx1,
@@ -328,7 +344,7 @@ export default {
                                 ? calendarB[idx2 - 1][1]
                                 : calendarA[idx1][1];
                             let cureStart = Math.max(start1, start2);
-                            console.log('328');
+                            console.log('345');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -336,7 +352,6 @@ export default {
                                 idx2
                             );
                             result.push([
-                                ///here******************
                                 cureStart,
                                 calendarB[idx2][0],
                             ]);
@@ -344,7 +359,7 @@ export default {
                             dBounds[0] > calendarA[idx1][1] &&
                             dBounds[0] < calendarB[idx2][0]
                         ) {
-                            console.log('344');
+                            console.log('360');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -367,7 +382,7 @@ export default {
                                 ? calendarA[idx1 - 1][1]
                                 : calendarB[idx2][1];
                             let cureStart = Math.max(start1, start2);
-                            console.log('367');
+                            console.log('383');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -382,7 +397,7 @@ export default {
                             dBounds[0] > calendarB[idx2][1] &&
                             dBounds[0] < calendarA[idx1][0]
                         ) {
-                            console.log('382');
+                            console.log('398');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -404,7 +419,7 @@ export default {
                         dBounds[1] - curEnd >=
                         this.meetingDurationComp['d']
                     ) {
-                        console.log('404');
+                        console.log('420');
                         console.log('idx1-', idx1, ',idx2-', idx2);
                         result.push([curEnd, dBounds[1]]);
                     }
@@ -420,7 +435,7 @@ export default {
                         this.meetingDurationComp['d']
                     ) {
                         // if there is enough time after calendarB last appointmentment and before calendarA appointment
-                        console.log('420');
+                        console.log('436');
                         console.log('idx1-', idx1, ',idx2-', idx2);
 
                         let end = calendarB[idx2][1];
@@ -440,7 +455,7 @@ export default {
                                     calendarA[idx1][1] >=
                                 this.meetingDurationComp['d']
                             ) {
-                                console.log('434');
+                                console.log('456');
                                 console.log(
                                     'idx1-',
                                     idx1,
@@ -460,7 +475,7 @@ export default {
                             this.meetingDurationComp['d']
                         ) {
                             //if there is enough time after calendar B current appointment and before calendar A last appointment
-                            console.log('454');
+                            console.log('476');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -516,12 +531,11 @@ export default {
                                 }
                             }
                             if (
-                                !result[result.length - 1][0] ===
+                                result[result.length - 1][0] !==
                                     curEnd &&
-                                !result[result.length - 1][1] ===
-                                    nextS
+                                result[result.length - 1][1] !== nextS
                             ) {
-                                console.log('526');
+                                console.log('536');
                                 console.log(
                                     'idx1-',
                                     idx1,
@@ -549,7 +563,7 @@ export default {
                         this.meetingDurationComp['d']
                     ) {
                         // if there is enough time after calendarA last appointmentment and before calendarB appointment at idx2
-                        console.log('537');
+                        console.log('564');
                         console.log('idx1-', idx1, ',idx2-', idx2);
 
                         let end = calendarA[idx1][1];
@@ -568,7 +582,7 @@ export default {
                                     calendarB[idx2][1] >=
                                 this.meetingDurationComp['d']
                             ) {
-                                console.log('554');
+                                console.log('584');
                                 console.log(
                                     'idx1-',
                                     idx1,
@@ -588,7 +602,7 @@ export default {
                             this.meetingDurationComp['d']
                         ) {
                             //if there is enough time after calendar A current appointment and before calendar B last appointment
-                            console.log('574');
+                            console.log('603');
                             console.log(
                                 'idx1-',
                                 idx1,
@@ -613,7 +627,7 @@ export default {
                                 calendarB[idx2 + 1][0],
                                 calendarA[idx1][0]
                             );
-                            let curEnd = null;
+                            let curEnd = -1;
 
                             for (
                                 let i = 0;
@@ -643,12 +657,11 @@ export default {
                                 }
                             }
                             if (
-                                !result[result.length - 1][0] ===
+                                result[result.length - 1][0] !==
                                     curEnd &&
-                                !result[result.length - 1][1] ===
-                                    nextS
+                                result[result.length - 1][1] !== nextS
                             ) {
-                                console.log('651');
+                                console.log('662');
                                 console.log(
                                     'idx1-',
                                     idx1,
