@@ -512,11 +512,10 @@ export default {
 
                         let start = calendarA[idx1][0];
                         if (
-                            start - end >
+                            start - end >=
                             this.meetingDurationComp['d']
                         ) {
                             result.push([end, start]);
-                            // idx1++;
                         }
 
                         while (idx1 < calendarA.length - 1) {
