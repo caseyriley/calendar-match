@@ -139,7 +139,12 @@ export default {
                                 calendarA[idx1][1],
                                 calendarB[idx2 - 1][1]
                             );
-                            nextS = calendarB[idx2][0];
+                            if (calendarB[idx2][0] <= calendarA[idx1 + 1][0]){
+                                nextS = calendarB[idx2][0];
+                            } else {
+                                nextS = calendarA[idx1 + 1][0];
+                            }
+                             
                         } else {
                             if (
                                 calendarA[idx1 + 1][0] <
@@ -160,7 +165,11 @@ export default {
                                 calendarB[idx2][1],
                                 calendarA[idx1 - 1][1]
                             );
-                            nextS = calendarA[idx1][0];
+                            if (calendarA[idx1][0] <= calendarB[idx2 + 1][0]){
+                                nextS = calendarA[idx1][0];
+                            } else {
+                                nextS = calendarB[idx2 + 1][0];
+                            }
                         } else {
                             if (
                                 calendarB[idx2 + 1][0] <
