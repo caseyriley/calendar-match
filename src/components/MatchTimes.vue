@@ -317,7 +317,10 @@ export default {
                                     calendarB[idx2][1] >
                                         calendarA[idx1][1] &&
                                     calendarB[idx2 + 1][0] <
-                                        calendarA[idx1 + 1][0]
+                                        calendarA[idx1 + 1][0] &&
+                                    calendarB[idx2 + 1][0] -
+                                        calendarB[idx2][1] >=
+                                        this.meetingDurationComp['d']
                                 ) {
                                     console.log('310');
                                     console.log(
@@ -370,7 +373,10 @@ export default {
                                     calendarA[idx1][1] >
                                         calendarB[idx2][1] &&
                                     calendarA[idx1 + 1][0] <
-                                        calendarB[idx2 + 1][0]
+                                        calendarB[idx2 + 1][0] &&
+                                    calendarA[idx2 + 1][0] -
+                                        calendarA[idx1][1] >=
+                                        this.meetingDurationComp['d']
                                 ) {
                                     console.log('310');
                                     console.log(
@@ -616,7 +622,7 @@ export default {
                                     curEnd &&
                                 result[result.length - 1][1] !==
                                     nextS &&
-                                nextS - curEnd >= this.meetingDuration
+                                nextS - curEnd >= this.meetingDurationComp['d']
                             ) {
                                 console.log('536');
                                 console.log(
@@ -627,6 +633,8 @@ export default {
                                 );
 
                                 result.push([curEnd, nextS]);
+                            } else {
+                                console.log('no push on 536 idx1 ++')
                             }
 
                             idx1++;
@@ -741,9 +749,9 @@ export default {
                             if (
                                 result[result.length - 1][0] !==
                                     curEnd &&
-                                result[result.length - 1][1] !== nextS
-                                &&
-                                nextS - curEnd >= this.meetingDuration
+                                result[result.length - 1][1] !==
+                                    nextS &&
+                                nextS - curEnd >= this.meetingDurationComp['d']
                             ) {
                                 console.log('731');
                                 console.log(
@@ -753,6 +761,8 @@ export default {
                                     idx2
                                 );
                                 result.push([curEnd, nextS]);
+                            } else {
+                                console.log('no push on 731 idx2 ++')
                             }
 
                             idx2++;
