@@ -139,12 +139,14 @@ export default {
                                 calendarA[idx1][1],
                                 calendarB[idx2 - 1][1]
                             );
-                            if (calendarB[idx2][0] <= calendarA[idx1 + 1][0]){
+                            if (
+                                calendarB[idx2][0] <=
+                                calendarA[idx1 + 1][0]
+                            ) {
                                 nextS = calendarB[idx2][0];
                             } else {
                                 nextS = calendarA[idx1 + 1][0];
                             }
-                             
                         } else {
                             if (
                                 calendarA[idx1 + 1][0] <
@@ -165,7 +167,10 @@ export default {
                                 calendarB[idx2][1],
                                 calendarA[idx1 - 1][1]
                             );
-                            if (calendarA[idx1][0] <= calendarB[idx2 + 1][0]){
+                            if (
+                                calendarA[idx1][0] <=
+                                calendarB[idx2 + 1][0]
+                            ) {
                                 nextS = calendarA[idx1][0];
                             } else {
                                 nextS = calendarB[idx2 + 1][0];
@@ -609,7 +614,9 @@ export default {
                             if (
                                 result[result.length - 1][0] !==
                                     curEnd &&
-                                result[result.length - 1][1] !== nextS
+                                result[result.length - 1][1] !==
+                                    nextS &&
+                                nextS - curEnd >= this.meetingDuration
                             ) {
                                 console.log('536');
                                 console.log(
@@ -735,6 +742,8 @@ export default {
                                 result[result.length - 1][0] !==
                                     curEnd &&
                                 result[result.length - 1][1] !== nextS
+                                &&
+                                nextS - curEnd >= this.meetingDuration
                             ) {
                                 console.log('731');
                                 console.log(
