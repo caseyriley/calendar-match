@@ -125,7 +125,6 @@ export default {
             ) {
                 //if not at the last index of either calendar
                 if (calendarA[idx1 + 1] && calendarB[idx2 + 1]) {
-
                     let nextS1 = calendarA[idx1 + 1][0];
                     let nextS2 = calendarB[idx2 + 1][0];
                     let nextS = null;
@@ -155,8 +154,16 @@ export default {
                             );
                             nextS = calendarA[idx1][0];
                         } else {
-                            curEnd = calendarB[idx2][1];
-                            nextS = calendarA[idx1][0];
+                            if (
+                                calendarB[idx2 + 1][0] <
+                                calendarA[idx1][0]
+                            ) {
+                                curEnd = calendarB[idx2][1];
+                                nextS = calendarB[idx2 + 1][0];
+                            } else {
+                                curEnd = calendarB[idx2][1];
+                                nextS = calendarA[idx1][0];
+                            }
                         }
                     } else {
                         curEnd = Math.max(end1, end2);
@@ -174,7 +181,7 @@ export default {
                             result[result.length - 1][0] !== curEnd &&
                             result[result.length - 1][1] !== nextS
                         ) {
-                            console.log('203');
+                            console.log('177');
                             console.log(
                                 'idx1-',
                                 idx1,
