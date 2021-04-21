@@ -141,8 +141,16 @@ export default {
                             );
                             nextS = calendarB[idx2][0];
                         } else {
-                            curEnd = calendarA[idx1][1];
-                            nextS = calendarB[idx2][0];
+                            if (
+                                calendarA[idx1 + 1][0] <
+                                calendarB[idx2][0]
+                            ) {
+                                curEnd = calendarA[idx1][1];
+                                nextS = calendarA[idx1 + 1][0];
+                            } else {
+                                curEnd = calendarA[idx1][1];
+                                nextS = calendarB[idx2][0];
+                            }
                         }
                     } else if (
                         calendarA[idx1][0] > calendarB[idx2][1]
