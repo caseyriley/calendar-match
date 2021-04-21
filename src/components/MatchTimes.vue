@@ -322,7 +322,7 @@ export default {
                                         calendarB[idx2][1] >=
                                         this.meetingDurationComp['d']
                                 ) {
-                                    console.log('310');
+                                    console.log('325');
                                     console.log(
                                         'idx1-',
                                         idx1,
@@ -337,7 +337,7 @@ export default {
                                     idx2++;
                                     continue;
                                 } else {
-                                    console.log('increment 325');
+                                    console.log('increment 340');
                                     console.log(
                                         'idx1-',
                                         idx1,
@@ -378,7 +378,7 @@ export default {
                                         calendarA[idx1][1] >=
                                         this.meetingDurationComp['d']
                                 ) {
-                                    console.log('310');
+                                    console.log('381');
                                     console.log(
                                         'idx1-',
                                         idx1,
@@ -388,19 +388,19 @@ export default {
 
                                     result.push([
                                         calendarA[idx1][1],
-                                        calendarB[idx1 + 1][0],
+                                        calendarA[idx1 + 1][0],
                                     ]);
                                     idx1++;
                                     continue;
                                 } else {
-                                    console.log('increment 325');
+                                    console.log('increment 396');
                                     console.log(
                                         'idx1-',
                                         idx1,
                                         ',idx2-',
                                         idx2
                                     );
-                                    idx2++;
+                                    idx1++;
                                     continue;
                                 }
                             } else {
