@@ -639,7 +639,7 @@ export default {
 
                         let start = calendarB[idx2][0];
                         if (
-                            start - end >
+                            start - end >=
                             this.meetingDurationComp['d']
                         ) {
                             result.push([end, start]);
@@ -728,7 +728,7 @@ export default {
                                     curEnd &&
                                 result[result.length - 1][1] !== nextS
                             ) {
-                                console.log('662');
+                                console.log('731');
                                 console.log(
                                     'idx1-',
                                     idx1,
