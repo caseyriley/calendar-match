@@ -39,7 +39,7 @@ export default {
                 h = 12;
             }
             let m = mins % 60;
-            h = h < 10 ? '0' + h : h;
+            // h = h < 10 ? '0' + h : h;
             m = m < 10 ? '0' + m : m;
             return `${h}:${m} ${amPm}`;
         },
