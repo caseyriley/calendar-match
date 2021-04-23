@@ -2,8 +2,8 @@
     <div class="no-times" v-if="bool['b']" :style="curHeight">
         <span>No Times</span>
         <span
-            >{{ minutesToMilitary(start) }} -
-            {{ end ? minutesToMilitary(end) : '24:00' }}</span
+            >{{ minutesToStandardTime(start) }} -
+            {{ end ? minutesToStandardTime(end) : '24:00' }}</span
         >
     </div>
 </template>
@@ -28,6 +28,20 @@ export default {
             let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
+        },
+        minutesToStandardTime(mins) {
+            let amPm = 'am';
+            let h = Math.floor(mins / 60);
+            if (h > 12) {
+                h -= 12;
+                amPm = 'pm';
+            } else if (h === 0) {
+                h = 12;
+            }
+            let m = mins % 60;
+            h = h < 10 ? '0' + h : h;
+            m = m < 10 ? '0' + m : m;
+            return `${h}:${m} ${amPm}`;
         },
     },
     computed: {
