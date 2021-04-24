@@ -2,8 +2,8 @@
     <div class="break" v-if="bool" :style="curHeight">
         <span>Break</span>
         <span>
-            {{ minToMilStart }} -
-            {{ minutesToMilitary(breakEnd) }}
+            {{ minToStandardStart }} -
+            {{ minutesToStandardTime(breakEnd) }}
         </span>
     </div>
 </template>
@@ -38,10 +38,26 @@ export default {
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
         },
+        minutesToStandardTime(mins) {
+            let amPm = 'am';
+            let h = Math.floor(mins / 60);
+            if (h > 12) {
+                h -= 12;
+                amPm = 'pm';
+            } else if (h === 0) {
+                h = 12;
+            } else if (h === 12) {
+                amPm = 'pm'
+            }
+            let m = mins % 60;
+            // h = h < 10 ? '0' + h : h;
+            m = m < 10 ? '0' + m : m;
+            return `${h}:${m} ${amPm}`;
+        },
     },
     computed: {
-        minToMilStart: function () {
-            let minToMStart = this.minutesToMilitary(this.startTime);
+        minToStandardStart: function () {
+            let minToMStart = this.minutesToStandardTime(this.startTime);
             return minToMStart;
         },
         curHeight: function () {

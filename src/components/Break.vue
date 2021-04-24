@@ -2,11 +2,11 @@
     <div class="break" v-if="bool" :style="curHeight">
         <span>Break</span>
         <span
-            >{{ minutesToMilitary(start) }} -
+            >{{ minutesToStandardTime(start) }} -
             {{
                 end
-                    ? minutesToMilitary(end)
-                    : minutesToMilitary(endTime)
+                    ? minutesToStandardTime(end)
+                    : minutesToStandardTime(endTime)
             }}
         </span>
     </div>
@@ -40,6 +40,21 @@ export default {
             let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
+        },
+        minutesToStandardTime(mins) {
+            let amPm = 'am';
+            let h = Math.floor(mins / 60);
+            if (h > 12) {
+                h -= 12;
+                amPm = 'pm';
+            } else if (h === 0) {
+                h = 12;
+            } else if (h === 12) {
+                amPm = 'pm';
+            }
+            let m = mins % 60;
+            m = m < 10 ? '0' + m : m;
+            return `${h}:${m} ${amPm}`;
         },
     },
     computed: {

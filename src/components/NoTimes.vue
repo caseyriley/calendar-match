@@ -37,6 +37,8 @@ export default {
                 amPm = 'pm';
             } else if (h === 0) {
                 h = 12;
+            } else if (h === 12) {
+                amPm = 'pm'
             }
             let m = mins % 60;
             // h = h < 10 ? '0' + h : h;

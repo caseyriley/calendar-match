@@ -1,7 +1,7 @@
 <template>
     <div class="timeline__app" :style="curHeight" v-bind="$attrs">
-        <span>Busy</span>
-        <span>{{ appStartMil['start'] }}-{{ appEndMil['end'] }}</span>
+        <span class="busy">Busy</span>
+        <span>{{ appStartStandard['start'] }} - {{ appEndStandard['end'] }}</span>
     </div>
     <break
         :start="appEndMin['end']"
@@ -39,6 +39,21 @@ export default {
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
         },
+        minutesToStandardTime(mins) {
+            let amPm = 'am';
+            let h = Math.floor(mins / 60);
+            if (h > 12) {
+                h -= 12;
+                amPm = 'pm';
+            } else if (h === 0) {
+                h = 12;
+            } else if (h === 12) {
+                amPm = 'pm';
+            }
+            let m = mins % 60;
+            m = m < 10 ? '0' + m : m;
+            return `${h}:${m} ${amPm}`;
+        },
     },
     computed: {
         curHeight: function () {
@@ -49,6 +64,33 @@ export default {
                         1440) *
                     800
                 }px`,
+                fontSize: `${this.fontS['s']}px`
+            };
+        },
+        fontS: function () {
+            let s = null
+            let h = ((this.appEndMin['end'] -
+                        this.appStartMin['start']) /
+                        1440) *
+                    800;
+            if ( h > 100) {
+                s = 15
+            }else if (h > 80){
+                s = 14
+            } else if (h > 60){
+                s = 13
+            } else if (h > 40){
+                s = 12
+            } else if (h > 20){
+                s = 11
+            } else if (h > 10) {
+                s = 9
+            } else {
+                s = 7
+            }
+
+            return {
+                s,
             };
         },
         appStartMin: function () {
@@ -59,9 +101,9 @@ export default {
                 start,
             };
         },
-        appStartMil: function () {
+        appStartStandard: function () {
             const start = this.calendar[this.index]
-                ? this.minutesToMilitary(this.calendar[this.index][0])
+                ? this.minutesToStandardTime(this.calendar[this.index][0])
                 : null;
             return {
                 start,
@@ -75,9 +117,9 @@ export default {
                 end,
             };
         },
-        appEndMil: function () {
+        appEndStandard: function () {
             const end = this.calendar[this.index]
-                ? this.minutesToMilitary(this.calendar[this.index][1])
+                ? this.minutesToStandardTime(this.calendar[this.index][1])
                 : null;
             return {
                 end,
@@ -97,17 +139,20 @@ export default {
 
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
+.busy {
+    margin: 0px 3px 0px 0px;
+}
 .timeline__app {
     width: 100%;
-
     background-color: $color-2;
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
     border: 1px solid grey;
     border-radius: 5px;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 </style>

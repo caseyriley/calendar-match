@@ -1,7 +1,7 @@
 <template>
     <div class="start" :style="curHeight">
         <span>Start Time </span>
-        <span> {{ minutesToMilitary(startTime) }} </span>
+        <span> {{ minutesToStandardTime(startTime) }} </span>
     </div>
 </template>
 
@@ -26,11 +26,50 @@ export default {
             }
             return `${h}:${m}`;
         },
+        minutesToStandardTime(mins) {
+            let amPm = 'am';
+            let h = Math.floor(mins / 60);
+            if (h > 12) {
+                h -= 12;
+                amPm = 'pm';
+            } else if (h === 0) {
+                h = 12;
+            } else if (h === 12) {
+                amPm = 'pm'
+            }
+            let m = mins % 60;
+            m = m < 10 ? '0' + m : m;
+            return `${h}:${m} ${amPm}`;
+        },
     },
     computed: {
         curHeight: function () {
             return {
                 height: `calc(${(this.startTime / 1440) * 800}px)`,
+                fontSize: `${this.fontS['s']}px`
+            };
+        },
+        fontS: function () {
+            let s = null
+            let h = (this.startTime / 1440) * 800;
+            if ( h > 100) {
+                s = 15
+            }else if (h > 80){
+                s = 14
+            } else if (h > 60){
+                s = 13
+            } else if (h > 40){
+                s = 12
+            } else if (h > 20){
+                s = 11
+            } else if (h > 10) {
+                s = 9
+            } else {
+                s = 7
+            }
+
+            return {
+                s,
             };
         },
     },
@@ -44,7 +83,6 @@ export default {
     background-color: $color-4;
     border-radius: 5px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: scroll;
