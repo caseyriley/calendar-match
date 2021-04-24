@@ -1,7 +1,10 @@
 <template>
     <div class="match" :style="curHeight">
-        <span>Available Time</span>
-        <span>{{ appStartStandard['start'] }} - {{ appEndStandard['end'] }}</span>
+        <span class="match__text">Available</span>
+        <span
+            >{{ appStartStandard['start'] }} -
+            {{ appEndStandard['end'] }}</span
+        >
     </div>
     <no-times
         v-if="appEndMin['end'] < timesArray[timesArray.length - 1][1]"
@@ -44,7 +47,7 @@ export default {
             } else if (h === 0) {
                 h = 12;
             } else if (h === 12) {
-                amPm = 'pm'
+                amPm = 'pm';
             }
             let m = mins % 60;
             // h = h < 10 ? '0' + h : h;
@@ -61,6 +64,7 @@ export default {
                         1440) *
                     800
                 }px`,
+                fontSize: `${this.fontS['s']}px`
             };
         },
         appStartMin: function () {
@@ -107,6 +111,32 @@ export default {
                 start,
             };
         },
+        fontS: function () {
+            let s = null;
+            let h =
+                ((this.appEndMin['end'] - this.appStartMin['start']) /
+                    1440) *
+                800;
+            if (h > 100) {
+                s = 15;
+            } else if (h > 80) {
+                s = 14;
+            } else if (h > 60) {
+                s = 13;
+            } else if (h > 40) {
+                s = 12;
+            } else if (h > 20) {
+                s = 11;
+            } else if (h > 10) {
+                s = 9;
+            } else {
+                s = 7;
+            }
+
+            return {
+                s,
+            };
+        },
     },
 };
 </script>
@@ -118,12 +148,14 @@ export default {
 
     background-color: $color-9;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
     border: 1px solid grey;
     border-radius: 5px;
+    .match__text {
+        margin: 0px 3px 0px 0px;
+    }
 }
 </style>
