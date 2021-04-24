@@ -1,6 +1,6 @@
 <template>
     <div class="no-times" v-if="bool['b']" :style="curHeight">
-        <span>No Times</span>
+        <span class="no-times__text">No Time</span>
         <span
             >{{ minutesToStandardTime(start) }} -
             {{ end ? minutesToStandardTime(end) : '24:00' }}</span
@@ -38,7 +38,7 @@ export default {
             } else if (h === 0) {
                 h = 12;
             } else if (h === 12) {
-                amPm = 'pm'
+                amPm = 'pm';
             }
             let m = mins % 60;
             // h = h < 10 ? '0' + h : h;
@@ -56,6 +56,30 @@ export default {
         curHeight: function () {
             return {
                 height: `${((this.end - this.start) / 1440) * 800}px`,
+                fontSize: `${this.fontS['s']}px`
+            };
+        },
+        fontS: function () {
+            let s = null;
+            let h = ((this.end - this.start) / 1440) * 800;
+            if (h > 100) {
+                s = 15;
+            } else if (h > 80) {
+                s = 14;
+            } else if (h > 60) {
+                s = 13;
+            } else if (h > 40) {
+                s = 12;
+            } else if (h > 20) {
+                s = 11;
+            } else if (h > 10) {
+                s = 9;
+            } else {
+                s = 7;
+            }
+
+            return {
+                s,
             };
         },
     },
@@ -68,12 +92,14 @@ export default {
     width: 100%;
     background-color: $color-7;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
     border: 2px solid grey;
     border-radius: 5px;
+    .no-times__text{
+        margin: 0px 3px 0px 0px;
+    }
 }
 </style>

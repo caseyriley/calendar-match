@@ -844,6 +844,7 @@ export default {
     justify-content: flex-start;
     align-items: center;
     position: relative;
+    font-family: 'Noto Sans JP', sans-serif;
 }
 .name {
     height: 20px;
@@ -852,5 +853,6 @@ export default {
     display: flex;
     align-items: center;
     margin: 3px 0px 0px 0px;
+    
 }
 </style>
