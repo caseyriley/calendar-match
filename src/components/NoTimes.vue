@@ -1,6 +1,6 @@
 <template>
     <div class="no-times" v-if="bool['b']" :style="curHeight">
-        <span class="no-times__text">No Time</span>
+        <span class="no-times__text">None</span>
         <span
             >{{ minutesToStandardTime(start) }} -
             {{ end ? minutesToStandardTime(end) : '24:00' }}</span
