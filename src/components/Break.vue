@@ -1,6 +1,6 @@
 <template>
     <div class="break" v-if="bool" :style="curHeight">
-        <span>Break</span>
+        <span class="break__text">Break</span>
         <span
             >{{ minutesToStandardTime(start) }} -
             {{
@@ -66,6 +66,33 @@ export default {
                         1440) *
                     800
                 }px)`,
+                fontSize: `${this.fontS['s']}px`,
+            };
+        },
+        fontS: function () {
+            let s = null;
+            let h =
+                (((this.end ? this.end : this.endTime) - this.start) /
+                    1440) *
+                800;
+            if (h > 100) {
+                s = 15;
+            } else if (h > 80) {
+                s = 14;
+            } else if (h > 60) {
+                s = 13;
+            } else if (h > 40) {
+                s = 12;
+            } else if (h > 20) {
+                s = 11;
+            } else if (h > 10) {
+                s = 9;
+            } else {
+                s = 7;
+            }
+
+            return {
+                s,
             };
         },
     },
@@ -78,12 +105,15 @@ export default {
     width: 100%;
     background-color: $color-5;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
     border: 2px solid grey;
     border-radius: 5px;
+    font-family: 'Noto Sans JP', sans-serif;
+    .break__text {
+        margin: 0px 3px 0px 0px;
+    }
 }
 </style>

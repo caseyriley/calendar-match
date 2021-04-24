@@ -1,6 +1,6 @@
 <template>
     <div class="end" :style="curHeight">
-        <span>End Time</span>
+        <span class="end__text">End Time</span>
         <span> {{ minutesToStandardTime(endTime) }} </span>
     </div>
 </template>
@@ -46,6 +46,31 @@ export default {
         curHeight: function () {
             return {
                 height: `${((1440 - this.endTime) / 1440) * 800}px`,
+                fontSize: `${this.fontS['s']}px`,
+            };
+        },
+        fontS: function () {
+            let s = null;
+            let h =
+                ((1440 - this.endTime) / 1440) * 800;
+            if (h > 100) {
+                s = 15;
+            } else if (h > 80) {
+                s = 14;
+            } else if (h > 60) {
+                s = 13;
+            } else if (h > 40) {
+                s = 12;
+            } else if (h > 20) {
+                s = 11;
+            } else if (h > 10) {
+                s = 9;
+            } else {
+                s = 7;
+            }
+
+            return {
+                s,
             };
         },
     },
@@ -58,13 +83,16 @@ export default {
     width: 100%;
     background-color: $color-4;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
     border: 1px solid grey;
     border-radius: 5px;
     overflow: scroll;
+    font-family: 'Noto Sans JP', sans-serif;
+    .end__text{
+        margin: 0px 3px 0px 0px;
+    }
 }
 .end span {
     // margin: 5px 5px 5px 5px;
