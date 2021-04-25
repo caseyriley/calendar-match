@@ -1,7 +1,14 @@
 <template>
     <div class="timeline__app" :style="curHeight" v-bind="$attrs">
         <span class="busy">Busy</span>
-        <span>{{ appStartStandard['start'] }} - {{ appEndStandard['end'] }}</span>
+        <span
+            >{{ appStartStandard['start'] }} -
+            {{ appEndStandard['end'] }}</span
+        >
+        <div class="delete-app" @click="del">
+            <div />
+            <div />
+        </div>
     </div>
     <break
         :start="appEndMin['end']"
@@ -15,7 +22,7 @@ import Break from '@/components/Break.vue';
 // import Break from './Break.vue';
 export default {
     name: 'Appointment',
-    props: ['key', 'index', 'calendar', 'endTime'],
+    props: ['key', 'index', 'calendar', 'calNum', 'endTime'],
     components: { Break },
     data() {
         return {
@@ -23,6 +30,9 @@ export default {
         };
     },
     methods: {
+        del() {
+            this.$emit('delete-app', { index: this.index, calNum: this.calNum });
+        },
         minutesToMilitary(num) {
             let h = Math.floor(num / 60);
             let m = num % 60;
@@ -62,31 +72,31 @@ export default {
                     ((this.appEndMin['end'] -
                         this.appStartMin['start']) /
                         1440) *
-                    800
+                    1000
                 }px`,
-                fontSize: `${this.fontS['s']}px`
+                fontSize: `${this.fontS['s']}px`,
             };
         },
         fontS: function () {
-            let s = null
-            let h = ((this.appEndMin['end'] -
-                        this.appStartMin['start']) /
-                        1440) *
-                    800;
-            if ( h > 100) {
-                s = 15
-            }else if (h > 80){
-                s = 14
-            } else if (h > 60){
-                s = 13
-            } else if (h > 40){
-                s = 12
-            } else if (h > 20){
-                s = 11
+            let s = null;
+            let h =
+                ((this.appEndMin['end'] - this.appStartMin['start']) /
+                    1440) *
+                1000;
+            if (h > 100) {
+                s = 15;
+            } else if (h > 80) {
+                s = 14;
+            } else if (h > 60) {
+                s = 13;
+            } else if (h > 40) {
+                s = 12;
+            } else if (h > 20) {
+                s = 11;
             } else if (h > 10) {
-                s = 9
+                s = 9;
             } else {
-                s = 7
+                s = 7;
             }
 
             return {
@@ -103,7 +113,9 @@ export default {
         },
         appStartStandard: function () {
             const start = this.calendar[this.index]
-                ? this.minutesToStandardTime(this.calendar[this.index][0])
+                ? this.minutesToStandardTime(
+                      this.calendar[this.index][0]
+                  )
                 : null;
             return {
                 start,
@@ -119,7 +131,9 @@ export default {
         },
         appEndStandard: function () {
             const end = this.calendar[this.index]
-                ? this.minutesToStandardTime(this.calendar[this.index][1])
+                ? this.minutesToStandardTime(
+                      this.calendar[this.index][1]
+                  )
                 : null;
             return {
                 end,
@@ -154,5 +168,39 @@ export default {
     border: 1px solid grey;
     border-radius: 5px;
     font-family: 'Noto Sans JP', sans-serif;
+    position: relative;
+    .delete-app {
+        height: 11px;
+        width: 11px;
+        background-color: $color-7;
+        border: 1px solid grey;
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+    }
+
+    .delete-app :nth-child(1) {
+        width: 8px;
+        background-color: grey;
+        border: 1px solid grey;
+        transform: rotate(45deg);
+        position: absolute;
+        // left: 1px;
+    }
+    .delete-app :nth-child(2) {
+        width: 8px;
+        background-color: grey;
+        border: 1px solid grey;
+        transform: rotate(-45deg);
+        position: absolute;
+        // left: 1px;
+    }
+}
+.delete-app:hover {
+    background-color: powderblue;
 }
 </style>

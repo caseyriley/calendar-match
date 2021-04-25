@@ -1,6 +1,6 @@
 <template>
     <div class="start" :style="curHeight">
-        <span>Start Time </span>
+        <span class="start__text">Start Time </span>
         <span> {{ minutesToStandardTime(startTime) }} </span>
     </div>
 </template>
@@ -11,7 +11,7 @@ export default {
     props: ['startTime'],
     data() {
         return {
-            height: `calc(${(this.startTime / 1440) * 800}px)`,
+            height: `calc(${(this.startTime / 1440) * 1000}px)`,
             parentHeight: 0,
         };
     },
@@ -45,13 +45,13 @@ export default {
     computed: {
         curHeight: function () {
             return {
-                height: `calc(${(this.startTime / 1440) * 800}px)`,
+                height: `calc(${(this.startTime / 1440) * 1000}px)`,
                 fontSize: `${this.fontS['s']}px`
             };
         },
         fontS: function () {
             let s = null
-            let h = (this.startTime / 1440) * 800;
+            let h = (this.startTime / 1440) * 1000;
             if ( h > 100) {
                 s = 15
             }else if (h > 80){
@@ -87,10 +87,13 @@ export default {
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
-    border: 2px solid grey;
+    border: 1px solid grey;
     border-bottom: none;
     border-radius: 5px;
     font-family: 'Noto Sans JP', sans-serif;
+    .start__text {
+        margin: 0px 3px 0px 0px;
+    }
 }
 .start span {
     white-space: nowrap;

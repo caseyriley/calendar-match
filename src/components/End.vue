@@ -45,14 +45,14 @@ export default {
     computed: {
         curHeight: function () {
             return {
-                height: `${((1440 - this.endTime) / 1440) * 800}px`,
+                height: `${((1440 - this.endTime) / 1440) * 1000}px`,
                 fontSize: `${this.fontS['s']}px`,
             };
         },
         fontS: function () {
             let s = null;
             let h =
-                ((1440 - this.endTime) / 1440) * 800;
+                ((1440 - this.endTime) / 1440) * 1000;
             if (h > 100) {
                 s = 15;
             } else if (h > 80) {

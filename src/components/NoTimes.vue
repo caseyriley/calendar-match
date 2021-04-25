@@ -55,13 +55,13 @@ export default {
         },
         curHeight: function () {
             return {
-                height: `${((this.end - this.start) / 1440) * 800}px`,
+                height: `${((this.end - this.start) / 1440) * 1000}px`,
                 fontSize: `${this.fontS['s']}px`
             };
         },
         fontS: function () {
             let s = null;
-            let h = ((this.end - this.start) / 1440) * 800;
+            let h = ((this.end - this.start) / 1440) * 1000;
             if (h > 100) {
                 s = 15;
             } else if (h > 80) {
@@ -96,7 +96,7 @@ export default {
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
-    border: 2px solid grey;
+    border: 1px solid grey;
     border-radius: 5px;
     .no-times__text{
         margin: 0px 3px 0px 0px;

@@ -836,7 +836,7 @@ export default {
 @import './../styles/_variables.scss';
 .app-times {
     width: 200px;
-    height: 823px;
+    height: 1000px;
     border-radius: 5px;
     background-color: $color-6;
     display: flex;

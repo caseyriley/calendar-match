@@ -62,7 +62,7 @@ export default {
                     ((this.appEndMin['end'] -
                         this.appStartMin['start']) /
                         1440) *
-                    800
+                    1000
                 }px`,
                 fontSize: `${this.fontS['s']}px`
             };
@@ -116,7 +116,7 @@ export default {
             let h =
                 ((this.appEndMin['end'] - this.appStartMin['start']) /
                     1440) *
-                800;
+                1000;
             if (h > 100) {
                 s = 15;
             } else if (h > 80) {

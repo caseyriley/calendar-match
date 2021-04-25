@@ -13,10 +13,12 @@
             :index="index"
             :calendar="calendar"
             :endTime="endTime"
+            :calNum="calNum"
         >
         </appointment>
 
         <end v-if="endTime" :endTime="endTime"></end>
+        <div @delete-app="log" />
     </div>
 </template>
 
@@ -28,7 +30,7 @@ import FirstBreak from '@/components/FirstBreak.vue';
 export default {
     name: 'Timeline',
     components: { Appointment, Start, End, FirstBreak },
-    props: ['name', 'startTime', 'breakEnd', 'endTime', 'calendar'],
+    props: ['name', 'startTime', 'breakEnd', 'endTime', 'calendar', 'calNum'],
     methods: {
         militaryToMinutes(string) {
             console.log('string Timeline', string);
@@ -36,6 +38,9 @@ export default {
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
         },
+        log(event){
+            console.log('timeline event', event)
+        }
     },
 };
 </script>
@@ -44,7 +49,7 @@ export default {
 @import './../styles/_variables.scss';
 .timeline {
     width: 200px;
-    height: 823px;
+    height: 1000px;
     border-radius: 5px;
     background-color: $color-6;
     display: flex;

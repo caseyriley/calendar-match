@@ -64,7 +64,7 @@ export default {
                     (((this.end ? this.end : this.endTime) -
                         this.start) /
                         1440) *
-                    800
+                    1000
                 }px)`,
                 fontSize: `${this.fontS['s']}px`,
             };
@@ -74,7 +74,7 @@ export default {
             let h =
                 (((this.end ? this.end : this.endTime) - this.start) /
                     1440) *
-                800;
+                1000;
             if (h > 100) {
                 s = 15;
             } else if (h > 80) {
@@ -109,7 +109,7 @@ export default {
     align-items: center;
     overflow: scroll;
     box-sizing: border-box;
-    border: 2px solid grey;
+    border: 1px solid grey;
     border-radius: 5px;
     font-family: 'Noto Sans JP', sans-serif;
     .break__text {

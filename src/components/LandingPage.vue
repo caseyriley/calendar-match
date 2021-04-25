@@ -24,6 +24,7 @@
                 max="1440"
             />
         </label>
+        <div @delete-app="deleteApp" />
         <!-- Person 1's Form -->
         <div class="userForm" v-if="personToggle">
             <h2>{{ name1 }}</h2>
@@ -176,6 +177,7 @@
                 "
                 :endTime="endTimeOneComp['t']"
                 :calendar="[...calendar1Computed['c']]"
+                :calNum="1"
             >
             </timeline>
             <!-- MatchTimes --------- -->
@@ -212,6 +214,7 @@
                 "
                 :endTime="endTimeTwoComp['t']"
                 :calendar="[...calendar2Computed['c']]"
+                :calNum="2"
             >
             </timeline>
             <!-- ---------- --------- -->
@@ -253,6 +256,13 @@ export default {
             let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
+        },
+        deleteApp({calNum, index}) {
+            if (calNum === 1) {
+                this.calendar1Computed['c'].splice(index, 1)
+            } else this.calendar2Computed['c'].splice(index, 1)
+            console.log("deleteApp->>>", 'index', index, 'calNum', calNum)
+
         },
         addApp1() {
             console.log(
@@ -444,7 +454,7 @@ export default {
             }
 
             console.log(
-                'calendar1Computed[c] at addApp1 end======>',
+                'calendar at addApp1 end======>',
                 calendar
             );
 
