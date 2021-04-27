@@ -262,9 +262,7 @@ export default {
         },
         deleteApp({calNum, index}) {
             if (calNum === 1) {
-                let cal = this.calendar1Computed
-                cal['c'] = []
-                this.calKey1 ++;
+                this.calendar1Computed = this.calendar1Computed['c'].splice(index, 1)
                 console.log('deleteApp calNum === 1', this.calendar1Computed['c'])
                 // this.calendar1Computed['c'] = this.calendar1Computed['c'].splice(index, 1)
             } else this.calendar2Computed['c'].splice(index, 1)
