@@ -24,7 +24,7 @@
                 max="1440"
             />
         </label>
-        <div @delete-app="deleteApp" />
+        
         <!-- Person 1's Form -->
         <div class="userForm" v-if="personToggle">
             <h2>{{ name1 }}</h2>
@@ -164,6 +164,7 @@
         <div class="timeline-c">
             <timeline
                 v-if="startTime1"
+                key="calKey1"
                 :name="
                     name1 === null || name1 === ''
                         ? 'person one'
@@ -178,6 +179,7 @@
                 :endTime="endTimeOneComp['t']"
                 :calendar="[...calendar1Computed['c']]"
                 :calNum="1"
+                @delete-app="deleteApp"
             >
             </timeline>
             <!-- MatchTimes --------- -->
@@ -248,6 +250,7 @@ export default {
             required1: false,
             required2: false,
             meetingDuration: null,
+            calKey1: 0,
         };
     },
     methods: {
@@ -259,7 +262,11 @@ export default {
         },
         deleteApp({calNum, index}) {
             if (calNum === 1) {
-                this.calendar1Computed['c'].splice(index, 1)
+                let cal = this.calendar1Computed
+                cal['c'] = []
+                this.calKey1 ++;
+                console.log('deleteApp calNum === 1', this.calendar1Computed['c'])
+                // this.calendar1Computed['c'] = this.calendar1Computed['c'].splice(index, 1)
             } else this.calendar2Computed['c'].splice(index, 1)
             console.log("deleteApp->>>", 'index', index, 'calNum', calNum)
 
