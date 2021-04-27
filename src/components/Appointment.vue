@@ -31,7 +31,10 @@ export default {
     },
     methods: {
         del() {
-            this.$emit('delete-app', { index: this.index, calNum: this.calNum });
+            this.$emit('delete-app', {
+                index: this.index,
+                calNum: this.calNum,
+            });
         },
         minutesToMilitary(num) {
             let h = Math.floor(num / 60);
@@ -170,8 +173,8 @@ export default {
     font-family: 'Noto Sans JP', sans-serif;
     position: relative;
     .delete-app {
-        height: 11px;
-        width: 11px;
+        height: 12px;
+        width: 12px;
         background-color: $color-7;
         border: 1px solid grey;
         border-radius: 3px;
@@ -189,7 +192,6 @@ export default {
         border: 1px solid grey;
         transform: rotate(45deg);
         position: absolute;
-        // left: 1px;
     }
     .delete-app :nth-child(2) {
         width: 8px;
@@ -197,10 +199,10 @@ export default {
         border: 1px solid grey;
         transform: rotate(-45deg);
         position: absolute;
-        // left: 1px;
     }
 }
 .delete-app:hover {
     background-color: powderblue;
+    border: 1px solid rgb(93, 93, 93);
 }
 </style>
