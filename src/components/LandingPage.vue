@@ -164,7 +164,7 @@
         <div class="timeline-c">
             <timeline
                 v-if="startTime1"
-                key="calKey1"
+                :key="calKey1"
                 :name="
                     name1 === null || name1 === ''
                         ? 'person one'
@@ -260,9 +260,13 @@ export default {
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
         },
+        rerenderCal1(){
+            this.calKey1 += 1;
+        },
         deleteApp({calNum, index}) {
             if (calNum === 1) {
                 this.calendar1Computed = this.calendar1Computed['c'].splice(index, 1)
+                this.rerenderCal1();
                 console.log('deleteApp calNum === 1', this.calendar1Computed['c'])
                 // this.calendar1Computed['c'] = this.calendar1Computed['c'].splice(index, 1)
             } else this.calendar2Computed['c'].splice(index, 1)
