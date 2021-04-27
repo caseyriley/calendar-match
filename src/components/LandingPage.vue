@@ -24,7 +24,7 @@
                 max="1440"
             />
         </label>
-        
+
         <!-- Person 1's Form -->
         <div class="userForm" v-if="personToggle">
             <h2>{{ name1 }}</h2>
@@ -203,6 +203,7 @@
             <!-- Timeline 2 --------- -->
             <timeline
                 v-if="startTime2"
+                :key="calKey2"
                 :name="
                     name2 === null || name2 === ''
                         ? 'person two'
@@ -217,6 +218,7 @@
                 :endTime="endTimeTwoComp['t']"
                 :calendar="[...calendar2Computed['c']]"
                 :calNum="2"
+                @delete-app="deleteApp"
             >
             </timeline>
             <!-- ---------- --------- -->
@@ -251,6 +253,7 @@ export default {
             required2: false,
             meetingDuration: null,
             calKey1: 0,
+            calKey2: 0,
         };
     },
     methods: {
@@ -260,18 +263,20 @@ export default {
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
         },
-        rerenderCal1(){
+        rerenderCal1() {
             this.calKey1 += 1;
         },
-        deleteApp({calNum, index}) {
+        rerenderCal2() {
+            this.calKey2 += 1;
+        },
+        deleteApp({ calNum, index }) {
             if (calNum === 1) {
-                this.calendar1Computed = this.calendar1Computed['c'].splice(index, 1)
+                this.calendar1Computed['c'].splice(index, 1);
                 this.rerenderCal1();
-                console.log('deleteApp calNum === 1', this.calendar1Computed['c'])
-                // this.calendar1Computed['c'] = this.calendar1Computed['c'].splice(index, 1)
-            } else this.calendar2Computed['c'].splice(index, 1)
-            console.log("deleteApp->>>", 'index', index, 'calNum', calNum)
-
+            } else {
+                this.calendar2Computed['c'].splice(index, 1);
+                this.rerenderCal2();
+            }
         },
         addApp1() {
             console.log(
@@ -462,10 +467,7 @@ export default {
                 );
             }
 
-            console.log(
-                'calendar at addApp1 end======>',
-                calendar
-            );
+            console.log('calendar at addApp1 end======>', calendar);
 
             this.appStart = null;
             this.appEnd = null;
