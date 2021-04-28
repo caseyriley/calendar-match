@@ -1,6 +1,6 @@
 <template>
     <div class="match" :style="curHeight">
-        <span class="match__text">Available</span>
+        <span role="img" aria-label="check" class="match__text">⭐️</span>
         <span
             >{{ appStartStandard['start'] }} -
             {{ appEndStandard['end'] }}</span
