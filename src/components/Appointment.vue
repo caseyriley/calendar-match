@@ -5,7 +5,7 @@
             >{{ appStartStandard['start'] }} -
             {{ appEndStandard['end'] }}</span
         >
-        <div class="delete-app" @click="del">
+        <div class="delete-app" @click="del" :style="curDelHeight">
             <div />
             <div />
         </div>
@@ -78,6 +78,22 @@ export default {
                     1000
                 }px`,
                 fontSize: `${this.fontS['s']}px`,
+            };
+        },
+        curDelHeight: function () {
+            let h =
+                ((this.appEndMin['end'] - this.appStartMin['start']) /
+                    1440) *
+                1000;
+            let s = null;
+            if (h > 11) {
+                s = 12;
+            } else {
+                s = 6;
+            }
+            return {
+                height: `${s}px`,
+                width: `${s}px`,
             };
         },
         fontS: function () {
