@@ -11,8 +11,11 @@
             </div>
         </div>
         <div class="person-underline">
-            <div class="line" v-if="personToggle" key="88"></div>
-            <div class="line2" v-else key="89"></div>
+            <div
+                class="line"
+                :style="personToggleStyle"
+            ></div>
+            <!-- <div class="line2" v-else key="89"></div> -->
         </div>
 
         <label class="duration">
@@ -161,67 +164,71 @@
         </div>
         <!-- --------------------- -->
 
-        <div class="timeline-c">
-            <timeline
-                v-if="startTime1"
-                :key="calKey1"
-                :name="
-                    name1 === null || name1 === ''
-                        ? 'person one'
-                        : name1
-                "
-                :startTime="startTimeOneComp['t']"
-                :breakEnd="
-                    calendar1Computed['c'].length
-                        ? calendar1Computed['c'][0][0]
-                        : null
-                "
-                :endTime="endTimeOneComp['t']"
-                :calendar="[...calendar1Computed['c']]"
-                :calNum="1"
-                @delete-app="deleteApp"
-            >
-            </timeline>
-            <!-- MatchTimes --------- -->
-            <match-times
-                v-if="
-                    calendar1Computed['c'].length &&
-                    calendar2Computed['c'].length &&
-                    meetingDuration
-                "
-                :meetingDuration="meetingDuration"
-                :startTime1="startTimeOneComp['t']"
-                :endTime1="endTimeOneComp['t']"
-                :startTime2="startTimeTwoComp['t']"
-                :endTime2="endTimeTwoComp['t']"
-                :calendarOne="[...calendar1Computed['c']]"
-                :calendarTwo="[...calendar2Computed['c']]"
-            >
-            </match-times>
+        <div class="timeline-c" key="0">
 
-            <!-- ---------- --------- -->
-            <!-- Timeline 2 --------- -->
-            <timeline
-                v-if="startTime2"
-                :key="calKey2"
-                :name="
-                    name2 === null || name2 === ''
-                        ? 'person two'
-                        : name2
-                "
-                :startTime="startTimeTwoComp['t']"
-                :breakEnd="
-                    calendar2Computed['c'].length
-                        ? calendar2Computed['c'][0][0]
-                        : null
-                "
-                :endTime="endTimeTwoComp['t']"
-                :calendar="[...calendar2Computed['c']]"
-                :calNum="2"
-                @delete-app="deleteApp"
-            >
-            </timeline>
-            <!-- ---------- --------- -->
+                <timeline
+                    v-if="startTime1"
+                    :key="calKey1"
+                    :name="
+                        name1 === null || name1 === ''
+                            ? 'person one'
+                            : name1
+                    "
+                    :startTime="startTimeOneComp['t']"
+                    :breakEnd="
+                        calendar1Computed['c'].length
+                            ? calendar1Computed['c'][0][0]
+                            : null
+                    "
+                    :endTime="endTimeOneComp['t']"
+                    :calendar="[...calendar1Computed['c']]"
+                    :calNum="1"
+                    @delete-app="deleteApp"
+                >
+                </timeline>
+
+                <!-- MatchTimes --------- -->
+                <match-times
+                    v-if="
+                        calendar1Computed['c'].length &&
+                        calendar2Computed['c'].length &&
+                        meetingDuration
+                    "
+                    :key="777"
+                    :meetingDuration="meetingDuration"
+                    :startTime1="startTimeOneComp['t']"
+                    :endTime1="endTimeOneComp['t']"
+                    :startTime2="startTimeTwoComp['t']"
+                    :endTime2="endTimeTwoComp['t']"
+                    :calendarOne="[...calendar1Computed['c']]"
+                    :calendarTwo="[...calendar2Computed['c']]"
+                >
+                </match-times>
+
+                <!-- ---------- --------- -->
+                <!-- Timeline 2 --------- -->
+                <timeline
+                    v-if="startTime2"
+                    :key="calKey2"
+                    :name="
+                        name2 === null || name2 === ''
+                            ? 'person two'
+                            : name2
+                    "
+                    :startTime="startTimeTwoComp['t']"
+                    :breakEnd="
+                        calendar2Computed['c'].length
+                            ? calendar2Computed['c'][0][0]
+                            : null
+                    "
+                    :endTime="endTimeTwoComp['t']"
+                    :calendar="[...calendar2Computed['c']]"
+                    :calNum="2"
+                    @delete-app="deleteApp"
+                >
+                </timeline>
+                <!-- ---------- --------- -->
+            
         </div>
     </div>
 </template>
@@ -252,8 +259,8 @@ export default {
             required1: false,
             required2: false,
             meetingDuration: null,
-            calKey1: 0,
-            calKey2: 0,
+            calKey1: 1000,
+            calKey2: 100,
         };
     },
     methods: {
@@ -480,6 +487,17 @@ export default {
         },
     },
     computed: {
+        personToggleStyle: function () {
+            let s = null;
+            if (this.personToggle) {
+                s = 0;
+            } else {
+                s = 126;
+            }
+            return {
+                left: `${s}px`,
+            };
+        },
         personToggleComp: function () {
             const t = !this.personToggle;
             return { t };
@@ -653,6 +671,8 @@ h2 {
         height: 6px;
         background-color: plum;
         border-radius: 999px;
+        position: relative;
+        transition: all 0.5s;
     }
     .line2 {
         width: 125px;
