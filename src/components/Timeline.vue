@@ -19,7 +19,7 @@
         </appointment>
 
         <end v-if="endTime" :endTime="endTime"></end>
-        <div  />
+        <div />
     </div>
 </template>
 
@@ -46,9 +46,12 @@ export default {
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
         },
-        del({calNum, index}) {
-            this.$emit('delete-app', { index: index, calNum: calNum });
-        }, 
+        del({ calNum, index }) {
+            this.$emit('delete-app', {
+                index: index,
+                calNum: calNum,
+            });
+        },
     },
 };
 </script>

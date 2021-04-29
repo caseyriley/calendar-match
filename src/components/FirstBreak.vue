@@ -47,7 +47,7 @@ export default {
             } else if (h === 0) {
                 h = 12;
             } else if (h === 12) {
-                amPm = 'pm'
+                amPm = 'pm';
             }
             let m = mins % 60;
             // h = h < 10 ? '0' + h : h;
@@ -57,7 +57,9 @@ export default {
     },
     computed: {
         minToStandardStart: function () {
-            let minToMStart = this.minutesToStandardTime(this.startTime);
+            let minToMStart = this.minutesToStandardTime(
+                this.startTime
+            );
             return minToMStart;
         },
         curHeight: function () {
@@ -69,22 +71,22 @@ export default {
             };
         },
         fontS: function () {
-            let s = null
-            let h = (this.breakEnd - this.startTime) / 1440 * 1000;
-            if ( h > 100) {
-                s = 15
-            }else if (h > 80){
-                s = 14
-            } else if (h > 60){
-                s = 13
-            } else if (h > 40){
-                s = 12
-            } else if (h > 20){
-                s = 11
+            let s = null;
+            let h = ((this.breakEnd - this.startTime) / 1440) * 1000;
+            if (h > 100) {
+                s = 15;
+            } else if (h > 80) {
+                s = 14;
+            } else if (h > 60) {
+                s = 13;
+            } else if (h > 40) {
+                s = 12;
+            } else if (h > 20) {
+                s = 11;
             } else if (h > 10) {
-                s = 9
+                s = 9;
             } else {
-                s = 7
+                s = 7;
             }
 
             return {
@@ -108,7 +110,7 @@ export default {
     border: 1px solid grey;
     border-radius: 5px;
     font-family: 'Noto Sans JP', sans-serif;
-    .break__text{
+    .break__text {
         margin: 0px 3px 0px 0px;
     }
 }

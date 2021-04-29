@@ -1,6 +1,8 @@
 <template>
     <div class="match" :style="curHeight">
-        <span role="img" aria-label="star" class="match__text">⭐️</span>
+        <span role="img" aria-label="star" class="match__text"
+            >⭐️</span
+        >
         <span
             >{{ appStartStandard['start'] }} -
             {{ appEndStandard['end'] }}</span
@@ -64,7 +66,7 @@ export default {
                         1440) *
                     1000
                 }px`,
-                fontSize: `${this.fontS['s']}px`
+                fontSize: `${this.fontS['s']}px`,
             };
         },
         appStartMin: function () {

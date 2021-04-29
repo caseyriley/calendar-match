@@ -51,8 +51,7 @@ export default {
         },
         fontS: function () {
             let s = null;
-            let h =
-                ((1440 - this.endTime) / 1440) * 1000;
+            let h = ((1440 - this.endTime) / 1440) * 1000;
             if (h > 100) {
                 s = 15;
             } else if (h > 80) {
@@ -90,7 +89,7 @@ export default {
     border-radius: 5px;
     overflow: scroll;
     font-family: 'Noto Sans JP', sans-serif;
-    .end__text{
+    .end__text {
         margin: 0px 3px 0px 0px;
     }
 }

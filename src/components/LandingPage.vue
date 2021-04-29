@@ -11,10 +11,7 @@
             </div>
         </div>
         <div class="person-underline">
-            <div
-                class="line"
-                :style="personToggleStyle"
-            ></div>
+            <div class="line" :style="personToggleStyle"></div>
             <!-- <div class="line2" v-else key="89"></div> -->
         </div>
 
@@ -165,70 +162,68 @@
         <!-- --------------------- -->
 
         <div class="timeline-c" key="0">
+            <timeline
+                v-if="startTime1"
+                :key="calKey1"
+                :name="
+                    name1 === null || name1 === ''
+                        ? 'person one'
+                        : name1
+                "
+                :startTime="startTimeOneComp['t']"
+                :breakEnd="
+                    calendar1Computed['c'].length
+                        ? calendar1Computed['c'][0][0]
+                        : null
+                "
+                :endTime="endTimeOneComp['t']"
+                :calendar="[...calendar1Computed['c']]"
+                :calNum="1"
+                @delete-app="deleteApp"
+            >
+            </timeline>
 
-                <timeline
-                    v-if="startTime1"
-                    :key="calKey1"
-                    :name="
-                        name1 === null || name1 === ''
-                            ? 'person one'
-                            : name1
-                    "
-                    :startTime="startTimeOneComp['t']"
-                    :breakEnd="
-                        calendar1Computed['c'].length
-                            ? calendar1Computed['c'][0][0]
-                            : null
-                    "
-                    :endTime="endTimeOneComp['t']"
-                    :calendar="[...calendar1Computed['c']]"
-                    :calNum="1"
-                    @delete-app="deleteApp"
-                >
-                </timeline>
+            <!-- MatchTimes --------- -->
+            <match-times
+                v-if="
+                    calendar1Computed['c'].length &&
+                    calendar2Computed['c'].length &&
+                    meetingDuration
+                "
+                :key="777"
+                :meetingDuration="meetingDuration"
+                :startTime1="startTimeOneComp['t']"
+                :endTime1="endTimeOneComp['t']"
+                :startTime2="startTimeTwoComp['t']"
+                :endTime2="endTimeTwoComp['t']"
+                :calendarOne="[...calendar1Computed['c']]"
+                :calendarTwo="[...calendar2Computed['c']]"
+            >
+            </match-times>
 
-                <!-- MatchTimes --------- -->
-                <match-times
-                    v-if="
-                        calendar1Computed['c'].length &&
-                        calendar2Computed['c'].length &&
-                        meetingDuration
-                    "
-                    :key="777"
-                    :meetingDuration="meetingDuration"
-                    :startTime1="startTimeOneComp['t']"
-                    :endTime1="endTimeOneComp['t']"
-                    :startTime2="startTimeTwoComp['t']"
-                    :endTime2="endTimeTwoComp['t']"
-                    :calendarOne="[...calendar1Computed['c']]"
-                    :calendarTwo="[...calendar2Computed['c']]"
-                >
-                </match-times>
-
-                <!-- ---------- --------- -->
-                <!-- Timeline 2 --------- -->
-                <timeline
-                    v-if="startTime2"
-                    :key="calKey2"
-                    :name="
-                        name2 === null || name2 === ''
-                            ? 'person two'
-                            : name2
-                    "
-                    :startTime="startTimeTwoComp['t']"
-                    :breakEnd="
-                        calendar2Computed['c'].length
-                            ? calendar2Computed['c'][0][0]
-                            : null
-                    "
-                    :endTime="endTimeTwoComp['t']"
-                    :calendar="[...calendar2Computed['c']]"
-                    :calNum="2"
-                    @delete-app="deleteApp"
-                >
-                </timeline>
-                <!-- ---------- --------- -->
-            
+            <!-- ---------- --------- -->
+            <!-- Timeline 2 --------- -->
+            <timeline
+                v-if="startTime2"
+                :key="calKey2"
+                :name="
+                    name2 === null || name2 === ''
+                        ? 'person two'
+                        : name2
+                "
+                :startTime="startTimeTwoComp['t']"
+                :breakEnd="
+                    calendar2Computed['c'].length
+                        ? calendar2Computed['c'][0][0]
+                        : null
+                "
+                :endTime="endTimeTwoComp['t']"
+                :calendar="[...calendar2Computed['c']]"
+                :calNum="2"
+                @delete-app="deleteApp"
+            >
+            </timeline>
+            <!-- ---------- --------- -->
         </div>
     </div>
 </template>

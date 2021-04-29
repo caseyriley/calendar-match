@@ -622,7 +622,8 @@ export default {
                                     curEnd &&
                                 result[result.length - 1][1] !==
                                     nextS &&
-                                nextS - curEnd >= this.meetingDurationComp['d']
+                                nextS - curEnd >=
+                                    this.meetingDurationComp['d']
                             ) {
                                 console.log('536');
                                 console.log(
@@ -634,7 +635,7 @@ export default {
 
                                 result.push([curEnd, nextS]);
                             } else {
-                                console.log('no push on 536 idx1 ++')
+                                console.log('no push on 536 idx1 ++');
                             }
 
                             idx1++;
@@ -751,7 +752,8 @@ export default {
                                     curEnd &&
                                 result[result.length - 1][1] !==
                                     nextS &&
-                                nextS - curEnd >= this.meetingDurationComp['d']
+                                nextS - curEnd >=
+                                    this.meetingDurationComp['d']
                             ) {
                                 console.log('731');
                                 console.log(
@@ -762,7 +764,7 @@ export default {
                                 );
                                 result.push([curEnd, nextS]);
                             } else {
-                                console.log('no push on 731 idx2 ++')
+                                console.log('no push on 731 idx2 ++');
                             }
 
                             idx2++;
@@ -853,6 +855,5 @@ export default {
     display: flex;
     align-items: center;
     margin: 3px 0px 0px 0px;
-    
 }
 </style>

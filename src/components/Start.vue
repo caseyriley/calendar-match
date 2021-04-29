@@ -35,7 +35,7 @@ export default {
             } else if (h === 0) {
                 h = 12;
             } else if (h === 12) {
-                amPm = 'pm'
+                amPm = 'pm';
             }
             let m = mins % 60;
             m = m < 10 ? '0' + m : m;
@@ -46,26 +46,26 @@ export default {
         curHeight: function () {
             return {
                 height: `calc(${(this.startTime / 1440) * 1000}px)`,
-                fontSize: `${this.fontS['s']}px`
+                fontSize: `${this.fontS['s']}px`,
             };
         },
         fontS: function () {
-            let s = null
+            let s = null;
             let h = (this.startTime / 1440) * 1000;
-            if ( h > 100) {
-                s = 15
-            }else if (h > 80){
-                s = 14
-            } else if (h > 60){
-                s = 13
-            } else if (h > 40){
-                s = 12
-            } else if (h > 20){
-                s = 11
+            if (h > 100) {
+                s = 15;
+            } else if (h > 80) {
+                s = 14;
+            } else if (h > 60) {
+                s = 13;
+            } else if (h > 40) {
+                s = 12;
+            } else if (h > 20) {
+                s = 11;
             } else if (h > 10) {
-                s = 9
+                s = 9;
             } else {
-                s = 7
+                s = 7;
             }
 
             return {
