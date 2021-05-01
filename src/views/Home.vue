@@ -2,7 +2,7 @@
     <div class="home">
         
         <img
-            alt="Vue logo"
+            alt="faces and question marks"
             src="../assets/fquestion.jpg"
         />
 
@@ -42,7 +42,7 @@ export default {
         filter: hue-rotate(40deg);
         margin: 30px 0px 0px 0px;
         border-radius: 999px;
-        box-shadow: 5px 5px 10px 2px rgb(0, 0, 0, .3);
+        box-shadow: 4px 4px 9px 2px rgba(73, 4, 4, 0.25);
     }
 
 }

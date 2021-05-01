@@ -650,6 +650,12 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: filter .3s;
+}
+.person-toggle__1:hover,
+.person-toggle__2:hover{
+    cursor: pointer;
+    filter: brightness(.96);
 }
 .person-toggle__divider {
     height: 40px;
@@ -721,5 +727,6 @@ input:focus {
     color: white;
     background-color: grey;
     border: 1px solid white;
+    cursor: pointer;
 }
 </style>

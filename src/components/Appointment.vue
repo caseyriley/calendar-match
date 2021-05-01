@@ -220,6 +220,7 @@ export default {
 .delete-app:hover {
     background-color: powderblue;
     border: 1px solid rgb(93, 93, 93);
+    cursor: pointer;
 }
 @media screen and (max-width: 555px){
     .timeline__app{
