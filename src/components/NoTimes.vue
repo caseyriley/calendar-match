@@ -104,8 +104,8 @@ export default {
 }
 
 @media screen and (max-width: 543px){
-    .no-times__text{
-        display: none;
+    .no-times{
+        font-size: 10px !important;
     }
 }
 </style>
