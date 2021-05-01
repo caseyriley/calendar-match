@@ -617,6 +617,7 @@ h2 {
 .duration {
     align-items: center;
     margin: 20px 0px 0px 0px;
+    text-align: center;
     input {
         margin: 10px 0px 7px 0px;
     }
@@ -696,6 +697,7 @@ label {
     font-family: 'Sarabun', sans-serif;
     font-weight: 600;
     font-size: 20px;
+    text-align: center;
 }
 input {
     border: 1px solid grey;
@@ -728,5 +730,16 @@ input:focus {
     background-color: grey;
     border: 1px solid white;
     cursor: pointer;
+}
+@media screen and (max-width: 567px){
+    .duration,
+    .userForm label{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .app-submit {
+        margin: 7px 0px 0px 0px;
+    }
 }
 </style>
