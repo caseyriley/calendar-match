@@ -114,4 +114,9 @@ export default {
         margin: 0px 3px 0px 0px;
     }
 }
+@media screen and (max-width: 555px){
+    .break {
+        font-size: 10px !important;
+    }
+}
 </style>
