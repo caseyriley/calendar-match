@@ -103,7 +103,7 @@ export default {
     }
 }
 
-@media screen and (max-width: 543px){
+@media screen and (max-width: 555px){
     .no-times{
         font-size: 10px !important;
     }

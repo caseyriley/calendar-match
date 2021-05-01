@@ -221,7 +221,7 @@ export default {
     background-color: powderblue;
     border: 1px solid rgb(93, 93, 93);
 }
-@media screen and (max-width: 435px){
+@media screen and (max-width: 555px){
     .timeline__app{
         font-size: 10px !important;
     }
