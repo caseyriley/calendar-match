@@ -12,6 +12,8 @@ module.exports = {
             addStyleResource(config.module.rule('stylus').oneOf(type))
         );
     },
+    publicPath:
+        process.env.NODE_ENV === 'production' ? '/calendar-match/' : '/',
 };
 
 function addStyleResource(rule) {
