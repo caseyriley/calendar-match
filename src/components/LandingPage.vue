@@ -160,8 +160,8 @@
             >
         </div>
         <!-- --------------------- -->
-
-        <div class="timeline-c" key="0">
+        <div class="calendar-c">
+            <div class="timeline-c" key="0">
             <timeline
                 v-if="startTime1"
                 :key="calKey1"
@@ -225,6 +225,8 @@
             </timeline>
             <!-- ---------- --------- -->
         </div>
+        </div>
+        
     </div>
 </template>
 
@@ -730,6 +732,15 @@ input:focus {
     background-color: grey;
     border: 1px solid white;
     cursor: pointer;
+}
+.calendar-c {
+    height: auto;
+    width: 100%;
+    max-width: 700px;
+    min-width: 374px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-shrink: 10;
 }
 @media screen and (max-width: 567px){
     .duration,
