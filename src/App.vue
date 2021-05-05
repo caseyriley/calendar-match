@@ -18,7 +18,13 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    background: $color-7;
+    background: rgb(113, 106, 236);
+    background: linear-gradient(
+        0deg,
+        rgba(113, 106, 236, 1) 0%,
+        rgba(18, 45, 142, 1) 36%,
+        rgba(0, 255, 196, 1) 100%
+    );
 }
 
 #nav {

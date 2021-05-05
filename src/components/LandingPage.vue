@@ -614,7 +614,7 @@ h2 {
     font-family: 'Russo One', sans-serif;
     margin: 20px 20px 20px 20px;
     text-align: center;
-    color: rgb(123, 177, 198);
+    color: whitesmoke;
 }
 .duration {
     align-items: center;
@@ -694,7 +694,7 @@ h2 {
     align-items: center;
 }
 label {
-    color: grey;
+    color: whitesmoke;
     font-family: 'Russo One', sans-serif;
     font-family: 'Sarabun', sans-serif;
     font-weight: 600;
