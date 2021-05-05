@@ -37,7 +37,8 @@
     justify-content: center;
     align-items: center;
     border: 1px solid green;
-
+    background-color: rgba(0, 255, 196, 1);
+    z-index: 10;
     a {
         font-weight: bold;
         color: #2c3e50;
