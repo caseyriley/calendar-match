@@ -114,10 +114,9 @@ export default {
     font-family: 'Noto Sans JP', sans-serif;
     .break__text {
         margin: 0px 3px 0px 0px;
-        
     }
 }
-@media screen and (max-width: 555px){
+@media screen and (max-width: 555px) {
     .break {
         font-size: 10px !important;
     }

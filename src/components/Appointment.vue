@@ -222,8 +222,8 @@ export default {
     border: 1px solid rgb(93, 93, 93);
     cursor: pointer;
 }
-@media screen and (max-width: 555px){
-    .timeline__app{
+@media screen and (max-width: 555px) {
+    .timeline__app {
         font-size: 10px !important;
     }
 }

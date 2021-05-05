@@ -98,7 +98,7 @@ export default {
 .start span {
     white-space: nowrap;
 }
-@media screen and (max-width: 555px){
+@media screen and (max-width: 555px) {
     .start {
         font-size: 10px !important;
     }

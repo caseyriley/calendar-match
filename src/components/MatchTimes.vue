@@ -1,6 +1,8 @@
 <template>
     <div class="app-times" v-if="bool['b']">
-        <span class="name">Available <span class="times">Times</span></span>
+        <span class="name"
+            >Available <span class="times">Times</span></span
+        >
         <no-times
             v-if="timesArray['cal']"
             :start="0"
@@ -856,8 +858,8 @@ export default {
     align-items: center;
     margin: 3px 0px 0px 0px;
 }
-@media screen and (max-width: 390px){
-    .times{
+@media screen and (max-width: 390px) {
+    .times {
         display: none;
     }
 }

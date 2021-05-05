@@ -55,8 +55,10 @@ export default {
         },
         curHeight: function () {
             return {
-                height: `${((this.end - this.start) / 1440) * 1000}px`,
-                fontSize: `${this.fontS['s']}px`
+                height: `${
+                    ((this.end - this.start) / 1440) * 1000
+                }px`,
+                fontSize: `${this.fontS['s']}px`,
             };
         },
         fontS: function () {
@@ -98,13 +100,13 @@ export default {
     box-sizing: border-box;
     border: 1px solid grey;
     border-radius: 5px;
-    .no-times__text{
+    .no-times__text {
         margin: 0px 3px 0px 0px;
     }
 }
 
-@media screen and (max-width: 555px){
-    .no-times{
+@media screen and (max-width: 555px) {
+    .no-times {
         font-size: 10px !important;
     }
 }
