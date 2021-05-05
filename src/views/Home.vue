@@ -7,7 +7,7 @@
         />
 
         <landing-page />
-     
+        
     </div>
 </template>
 
@@ -35,7 +35,6 @@ export default {
     align-items: center;
     overflow-y: scroll;
     height: calc(100vh - 50px);
-
     img {
         width: 150px;
         height: 150px;
@@ -47,14 +46,4 @@ export default {
 
 }
 
-.home-scroll {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    width: 100%;
-    height: 100%;
-
-}
 </style>

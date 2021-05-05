@@ -227,6 +227,7 @@
             </div>
         </div>
     </div>
+    <div class="bottom-space"></div>
 </template>
 
 <script>
@@ -607,7 +608,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0px 0px 50px 0px;
+
 }
 h1,
 h2 {
@@ -745,6 +746,11 @@ input:focus {
     display: flex;
     justify-content: space-evenly;
     flex-shrink: 10;
+    margin: 0px 0px 100px 0px;
+}
+.bottom-space {
+    height: 50px;
+    width: 100%;
 }
 @media screen and (max-width: 567px) {
     .duration,
