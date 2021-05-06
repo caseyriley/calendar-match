@@ -27,7 +27,7 @@
 
         <!-- Person 1's Form -->
         <div class="userForm" v-if="personToggle">
-            <h2>{{ name1 }}</h2>
+            <h2 class="person-one-name">{{ name1 }}</h2>
             <label>
                 What is person one's name?
                 <input v-model="name1" />
@@ -67,12 +67,12 @@
                 }}'s appointment #{{
                     calendar1Computed['c'].length + 1
                 }}
-                times and click submit, or enter
+                start/end times and click submit, or edit
                 {{
                     name2 === null || name2 === ''
                         ? 'person two'
                         : name2
-                }}'s information
+                }}'s calendar
             </h2>
             <label>
                 Appointment start time
@@ -95,7 +95,7 @@
         </div>
         <!-- Person 2's Form -->
         <div class="userForm" v-if="!personToggle">
-            <h2>{{ name2 }}</h2>
+            <h2 class="person-two-name">{{ name2 }}</h2>
             <label>
                 What is person two's name?
                 <input v-model="name2" />
@@ -132,13 +132,13 @@
                     name2 === null || name2 === ''
                         ? 'person two'
                         : name2
-                }}'s appointment #{{ calendar2.length + 1 }} times and
-                click submit, or enter
+                }}'s appointment #{{ calendar2Computed['c'].length + 1 }} start/end times and
+                click submit, or edit
                 {{
                     name1 === null || name1 === ''
                         ? 'person one'
                         : name1
-                }}'s information
+                }}'s calendar
             </h2>
             <label>
                 Appointment start time
@@ -617,6 +617,16 @@ h2 {
     text-align: center;
     color: whitesmoke;
     max-width: 500px;
+}
+.person-one-name,
+.person-two-name{
+    text-shadow: 0px 2px 4px rgb(0, 0, 0, .8);
+}
+.person-one-name{
+    color: $color-5;
+}
+.person-two-name{
+    color: rgb(209, 209, 242);
 }
 .duration {
     align-items: center;
