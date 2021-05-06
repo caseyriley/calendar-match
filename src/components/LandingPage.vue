@@ -616,6 +616,7 @@ h2 {
     margin: 20px 20px 20px 20px;
     text-align: center;
     color: whitesmoke;
+    max-width: 500px;
 }
 .duration {
     align-items: center;
@@ -704,6 +705,7 @@ label {
     font-size: 20px;
     text-align: center;
     margin: 0px 0px 20px 0px;
+    max-width: 525px;
 }
 input {
     border: 1px solid grey;
