@@ -27,148 +27,144 @@
 
         <!-- Person 1's Form -->
         <!-- <transition name="fade" appear> -->
-            <div class="userForm" v-if="personToggle">
-                <h2 class="person-one-name">{{ name1 }}</h2>
-                <label>
-                    What is person one's name?
-                    <input v-model="name1" />
-                </label>
-                <label>
-                    When does
-                    {{
-                        name1 === null || name1 === ''
-                            ? 'person one'
-                            : name1
-                    }}
-                    begin thier day?
-                    <input v-model="startTime1" type="time" />
-                    <span v-if="reqStartTime['req']" class="required"
-                        >*</span
-                    >
-                </label>
-                <label>
-                    When does
-                    {{
-                        name1 === null || name1 === ''
-                            ? 'person one'
-                            : name1
-                    }}
-                    end thier day?
-                    <input v-model="endTime1" type="time" />
-                    <span v-if="reqEndTime['req']" class="required"
-                        >*</span
-                    >
-                </label>
-                <h2>
-                    Enter
-                    {{
-                        name1 === null || name1 === ''
-                            ? 'person one'
-                            : name1
-                    }}'s appointment #{{
-                        calendar1Computed['c'].length + 1
-                    }}
-                    start/end times and click submit, or edit
-                    {{
-                        name2 === null || name2 === ''
-                            ? 'person two'
-                            : name2
-                    }}'s calendar
-                </h2>
-                <label>
-                    Appointment start time
-                    <input v-model="appStart" type="time" />
-                    <span v-if="reqAppStart['req']" class="required"
-                        >*</span
-                    >
-                </label>
-                <label>
-                    Appointment end time
-                    <input v-model="appEnd" type="time" />
-                    <span v-if="reqAppEnd['req']" class="required"
-                        >*</span
-                    >
-                </label>
-                <span class="message">{{message}}</span>
-                <div class="app-submit" v-on:click="addApp1">
-                    Submit
-                </div>
-                <span v-if="required1" class="required"
-                    >please complete required fields *</span
+        <div class="userForm" v-if="personToggle">
+            <h2 class="person-one-name">{{ name1 }}</h2>
+            <label>
+                What is person one's name?
+                <input v-model="name1" />
+            </label>
+            <label>
+                When does
+                {{
+                    name1 === null || name1 === ''
+                        ? 'person one'
+                        : name1
+                }}
+                begin thier day?
+                <input v-model="startTime1" type="time" />
+                <span v-if="reqStartTime['req']" class="required"
+                    >*</span
                 >
-            </div>
+            </label>
+            <label>
+                When does
+                {{
+                    name1 === null || name1 === ''
+                        ? 'person one'
+                        : name1
+                }}
+                end thier day?
+                <input v-model="endTime1" type="time" />
+                <span v-if="reqEndTime['req']" class="required"
+                    >*</span
+                >
+            </label>
+            <h2>
+                Enter
+                {{
+                    name1 === null || name1 === ''
+                        ? 'person one'
+                        : name1
+                }}'s appointment #{{
+                    calendar1Computed['c'].length + 1
+                }}
+                start/end times and click submit, or edit
+                {{
+                    name2 === null || name2 === ''
+                        ? 'person two'
+                        : name2
+                }}'s calendar
+            </h2>
+            <label>
+                Appointment start time
+                <input v-model="appStart" type="time" />
+                <span v-if="reqAppStart['req']" class="required"
+                    >*</span
+                >
+            </label>
+            <label>
+                Appointment end time
+                <input v-model="appEnd" type="time" />
+                <span v-if="reqAppEnd['req']" class="required"
+                    >*</span
+                >
+            </label>
+            <span class="message">{{ message }}</span>
+            <div class="app-submit" v-on:click="addApp1">Submit</div>
+            <span v-if="required1" class="required"
+                >please complete required fields *</span
+            >
+        </div>
 
-            <div class="userForm" v-else-if="!personToggle">
-                <!-- Person 2's Form -->
-                <h2 class="person-two-name">{{ name2 }}</h2>
-                <label>
-                    What is person two's name?
-                    <input v-model="name2" />
-                </label>
-                <label>
-                    When does
-                    {{
-                        name2 === null || name2 === ''
-                            ? 'person two'
-                            : name2
-                    }}
-                    begin thier day?
-                    <input v-model="startTime2" type="time" />
-                    <span v-if="reqStartTime2['req']" class="required"
-                        >*</span
-                    >
-                </label>
-                <label>
-                    When does
-                    {{
-                        name2 === null || name2 === ''
-                            ? 'person two'
-                            : name2
-                    }}
-                    end thier day?
-                    <input v-model="endTime2" type="time" />
-                    <span v-if="reqEndTime2['req']" class="required"
-                        >*</span
-                    >
-                </label>
-                <h2>
-                    Enter
-                    {{
-                        name2 === null || name2 === ''
-                            ? 'person two'
-                            : name2
-                    }}'s appointment #{{
-                        calendar2Computed['c'].length + 1
-                    }}
-                    start/end times and click submit, or edit
-                    {{
-                        name1 === null || name1 === ''
-                            ? 'person one'
-                            : name1
-                    }}'s calendar
-                </h2>
-                <label>
-                    Appointment start time
-                    <input v-model="appStart" type="time" />
-                    <span v-if="reqAppStart2['req']" class="required"
-                        >*</span
-                    >
-                </label>
-                <label>
-                    Appointment end time
-                    <input v-model="appEnd" type="time" />
-                    <span v-if="reqAppEnd2['req']" class="required"
-                        >*</span
-                    >
-                </label>
-                <span class="message">{{message}}</span>
-                <div class="app-submit" v-on:click="addApp1">
-                    Submit
-                </div>
-                <span v-if="required2" class="required"
-                    >please complete required fields *</span
+        <div class="userForm" v-else-if="!personToggle">
+            <!-- Person 2's Form -->
+            <h2 class="person-two-name">{{ name2 }}</h2>
+            <label>
+                What is person two's name?
+                <input v-model="name2" />
+            </label>
+            <label>
+                When does
+                {{
+                    name2 === null || name2 === ''
+                        ? 'person two'
+                        : name2
+                }}
+                begin thier day?
+                <input v-model="startTime2" type="time" />
+                <span v-if="reqStartTime2['req']" class="required"
+                    >*</span
                 >
-            </div>
+            </label>
+            <label>
+                When does
+                {{
+                    name2 === null || name2 === ''
+                        ? 'person two'
+                        : name2
+                }}
+                end thier day?
+                <input v-model="endTime2" type="time" />
+                <span v-if="reqEndTime2['req']" class="required"
+                    >*</span
+                >
+            </label>
+            <h2>
+                Enter
+                {{
+                    name2 === null || name2 === ''
+                        ? 'person two'
+                        : name2
+                }}'s appointment #{{
+                    calendar2Computed['c'].length + 1
+                }}
+                start/end times and click submit, or edit
+                {{
+                    name1 === null || name1 === ''
+                        ? 'person one'
+                        : name1
+                }}'s calendar
+            </h2>
+            <label>
+                Appointment start time
+                <input v-model="appStart" type="time" />
+                <span v-if="reqAppStart2['req']" class="required"
+                    >*</span
+                >
+            </label>
+            <label>
+                Appointment end time
+                <input v-model="appEnd" type="time" />
+                <span v-if="reqAppEnd2['req']" class="required"
+                    >*</span
+                >
+            </label>
+            <span class="message">{{ message }}</span>
+            <div class="app-submit" v-on:click="addApp1">Submit</div>
+            <span v-if="required2" class="required"
+                >please complete required fields *</span
+            >
+        </div>
         <!-- </transition> -->
         <!-- --------------------- -->
         <div class="calendar-c">
@@ -275,6 +271,13 @@ export default {
     methods: {
         militaryToMinutes(string) {
             console.log('string LandingPage', string);
+            if (string === null) {
+                if (this.personToggle === true) {
+                    this.required1 = true;
+                } else {
+                    this.required2 = true;
+                }
+            }
             let h = Number(string.match(/[^:]+/)); //match first 1 or 2 numbers
             let m = Number(string.match(/(?<=:)../)); //match last 2 numbers
             return h * 60 + m;
@@ -311,13 +314,15 @@ export default {
                 ? this.calendar1Computed['c']
                 : this.calendar2Computed['c'];
             if (startTime > endTime) {
-                this.message = 'You must end your day later then you start your day';
+                this.message =
+                    'You must end your day later then you start your day';
                 return;
             }
             if (this.appStart > this.appEnd) {
-                this.message = 'Appointment End Time must be later then appointment Start Time';
+                this.message =
+                    'Appointment End Time must be later then appointment Start Time';
                 return;
-            } 
+            }
             if (
                 this.militaryToMinutes(startTime) >
                 this.militaryToMinutes(this.appStart)
@@ -807,6 +812,8 @@ input:focus {
     border: 1px solid $color-2;
 }
 .required {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
     color: red;
     margin: 0px 0px 0px 5px;
 }
