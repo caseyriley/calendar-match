@@ -89,6 +89,7 @@
                         >*</span
                     >
                 </label>
+                <span class="message">{{message}}</span>
                 <div class="app-submit" v-on:click="addApp1">
                     Submit
                 </div>
@@ -160,6 +161,7 @@
                         >*</span
                     >
                 </label>
+                <span class="message">{{message}}</span>
                 <div class="app-submit" v-on:click="addApp1">
                     Submit
                 </div>
@@ -267,6 +269,7 @@ export default {
             meetingDuration: null,
             calKey1: 1000,
             calKey2: 100,
+            message: '',
         };
     },
     methods: {
@@ -296,6 +299,7 @@ export default {
                 'calendar1Computed[c] at addApp1 start======>',
                 this.calendar1Computed['c']
             );
+            this.message = '';
             this.required1 = false;
             let startTime = this.personToggle
                 ? this.startTime1
@@ -306,8 +310,14 @@ export default {
             let calendar = this.personToggle
                 ? this.calendar1Computed['c']
                 : this.calendar2Computed['c'];
-            if (startTime > endTime) return;
-            if (this.appStart > this.appEnd) return;
+            if (startTime > endTime) {
+                this.message = 'You must end your day later then you start your day';
+                return;
+            }
+            if (this.appStart > this.appEnd) {
+                this.message = 'Appointment End Time must be later then appointment Start Time';
+                return;
+            } 
             if (
                 this.militaryToMinutes(startTime) >
                 this.militaryToMinutes(this.appStart)
@@ -679,6 +689,13 @@ h2 {
     text-align: center;
     color: whitesmoke;
     max-width: 500px;
+}
+.message {
+    font-family: 'Montserrat', sans-serif;
+    color: red;
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 20px 20px 20px;
 }
 .person-one-name,
 .person-two-name {
