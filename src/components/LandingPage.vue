@@ -26,7 +26,7 @@
         </label>
 
         <!-- Person 1's Form -->
-        <transition name="fade" appear>
+        <!-- <transition name="fade" appear> -->
             <div class="userForm" v-if="personToggle">
                 <h2 class="person-one-name">{{ name1 }}</h2>
                 <label>
@@ -167,7 +167,7 @@
                     >please complete required fields *</span
                 >
             </div>
-        </transition>
+        <!-- </transition> -->
         <!-- --------------------- -->
         <div class="calendar-c">
             <div class="timeline-c" key="0">
