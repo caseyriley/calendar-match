@@ -3,7 +3,7 @@
         
         <img
             alt="faces and question marks"
-            src="../assets/fquestion.jpg"
+            src="../assets/CalendarMatch3.png"
         />
 
         <landing-page />
@@ -40,8 +40,8 @@ export default {
         height: 150px;
         filter: hue-rotate(40deg);
         margin: 30px 0px 0px 0px;
-        border-radius: 999px;
-        box-shadow: 4px 4px 9px 2px rgba(73, 4, 4, 0.25);
+        // border-radius: 0px;
+        // box-shadow: 4px 4px 9px 2px rgba(73, 4, 4, 0.25);
     }
 
 }
