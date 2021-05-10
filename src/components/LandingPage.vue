@@ -810,6 +810,7 @@ input {
 }
 input:hover {
     background-color: rgb(212, 212, 253);
+    cursor: pointer;
 }
 input:focus {
     outline: none;
