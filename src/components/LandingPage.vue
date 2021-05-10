@@ -800,11 +800,16 @@ label {
     text-align: center;
     margin: 0px 0px 20px 0px;
     max-width: 525px;
+    
 }
 input {
     border: 1px solid grey;
     border-radius: 5px;
     color: grey;
+    transition: all .5s;
+}
+input:hover {
+    background-color: rgb(212, 212, 253);
 }
 input:focus {
     outline: none;
