@@ -816,6 +816,7 @@ input:focus {
     outline: none;
     background-color: lavender;
     border: 1px solid $color-2;
+    color: black;
 }
 .required {
     font-family: 'Montserrat', sans-serif;
