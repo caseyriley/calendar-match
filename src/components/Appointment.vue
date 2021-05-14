@@ -222,9 +222,19 @@ export default {
     border: 1px solid rgb(93, 93, 93);
     cursor: pointer;
 }
+@media screen and (max-width: 420px) {
+    .busy {
+        display: none;
+    }
+     .timeline__app {
+        background-color: lightgray;
+    }
+}
 @media screen and (max-width: 555px) {
     .timeline__app {
         font-size: 10px !important;
     }
+   
 }
+
 </style>
