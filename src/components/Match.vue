@@ -160,6 +160,11 @@ export default {
         margin: 0px 3px 0px 0px;
     }
 }
+@media screen and (max-width: 360px) {
+    .match__text {
+        display: none;
+    }
+}
 @media screen and (max-width: 555px) {
     .match {
         font-size: 10px !important;

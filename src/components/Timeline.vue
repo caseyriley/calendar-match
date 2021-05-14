@@ -59,7 +59,9 @@ export default {
 <style lang="scss" scoped>
 @import './../styles/_variables.scss';
 .timeline {
-    width: 200px;
+    max-width: 200px;
+    min-width: 93px;
+    width: 33%;
     height: 1000px;
     border-radius: 5px;
     background-color: $color-6;

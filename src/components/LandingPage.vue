@@ -846,7 +846,7 @@ input:focus {
     height: 1000px;
     width: 100%;
     max-width: 700px;
-    min-width: 374px;
+    min-width: 280px;
     display: flex;
     justify-content: space-evenly;
     flex-shrink: 10;
