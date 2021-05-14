@@ -104,14 +104,14 @@ export default {
         margin: 0px 3px 0px 0px;
     }
 }
-@media screen and (max-width: 420px) {
-    .no-times__text {
-        display: none;
-    }
-}
 @media screen and (max-width: 555px) {
     .no-times {
         font-size: 10px !important;
+    }
+}
+@media screen and (max-width: 420px) {
+    .no-times__text {
+        display: none;
     }
 }
 </style>
