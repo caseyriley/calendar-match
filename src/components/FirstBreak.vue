@@ -115,7 +115,7 @@ export default {
     }
 }
 @media screen and (max-width: 420px) {
-     .break__text {
+    .break__text {
         display: none;
     }
 }

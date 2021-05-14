@@ -13,7 +13,9 @@ module.exports = {
         );
     },
     publicPath:
-        process.env.NODE_ENV === 'production' ? '/calendar-match/' : '/',
+        process.env.NODE_ENV === 'production'
+            ? '/calendar-match/'
+            : '/',
 };
 
 function addStyleResource(rule) {

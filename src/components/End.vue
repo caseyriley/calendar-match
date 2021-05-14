@@ -98,7 +98,7 @@ export default {
     white-space: nowrap;
 }
 @media screen and (max-width: 420px) {
-     .end {
+    .end {
         background-color: lightgray;
     }
 }

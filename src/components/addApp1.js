@@ -8,9 +8,7 @@ function addApp1() {
     let startTime = this.personToggle
         ? this.startTime1
         : this.startTime2;
-    let endTime = this.personToggle
-        ? this.endTime1
-        : this.endTime2;
+    let endTime = this.personToggle ? this.endTime1 : this.endTime2;
     let calendar = this.personToggle
         ? this.calendar1Computed['c']
         : this.calendar2Computed['c'];
@@ -36,12 +34,7 @@ function addApp1() {
     ) {
         this.appEnd = endTime;
     }
-    if (
-        !this.appStart ||
-        !this.appEnd ||
-        !startTime ||
-        !endTime
-    ) {
+    if (!this.appStart || !this.appEnd || !startTime || !endTime) {
         this.required1 = true;
         return;
     }
@@ -202,4 +195,4 @@ function addApp1() {
     this.appEnd = null;
 }
 
-module.exports = addApp1
+module.exports = addApp1;

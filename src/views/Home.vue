@@ -1,13 +1,11 @@
 <template>
     <div class="home">
-        
         <img
             alt="faces and question marks"
             src="../assets/CalendarMatch3.png"
         />
 
         <landing-page />
-        
     </div>
 </template>
 
@@ -18,7 +16,6 @@ import LandingPage from '@/components/LandingPage.vue';
 export default {
     name: 'Home',
     components: {
-
         LandingPage,
     },
 };
@@ -43,7 +40,5 @@ export default {
         // border-radius: 0px;
         // box-shadow: 4px 4px 9px 2px rgba(73, 4, 4, 0.25);
     }
-
 }
-
 </style>

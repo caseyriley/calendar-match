@@ -226,7 +226,7 @@ export default {
     .busy {
         display: none;
     }
-     .timeline__app {
+    .timeline__app {
         background-color: lightgray;
     }
 }
@@ -234,7 +234,5 @@ export default {
     .timeline__app {
         font-size: 10px !important;
     }
-   
 }
-
 </style>
