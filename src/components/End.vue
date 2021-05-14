@@ -97,6 +97,11 @@ export default {
     // margin: 5px 5px 5px 5px;
     white-space: nowrap;
 }
+@media screen and (max-width: 420px) {
+     .end {
+        background-color: lightgray;
+    }
+}
 @media screen and (max-width: 555px) {
     .end {
         font-size: 10px !important;
