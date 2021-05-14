@@ -90,4 +90,12 @@ h2 {
     margin: 20px 20px 20px 20px;
     color: whitesmoke;
 }
+@media screen and (max-width: 580px) {
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 18px;
+    }
+}
 </style>
