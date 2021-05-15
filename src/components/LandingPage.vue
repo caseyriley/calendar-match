@@ -391,7 +391,7 @@ export default {
                             // if cal.length
                             if (
                                 //if new appointment start time is less than prev appointment end time
-                                minAppStart < calendar[i - 1][1]
+                                minAppStart <= calendar[i - 1][1]
                             ) {
                                 console.log('if 2 A.1');
                                 if (
