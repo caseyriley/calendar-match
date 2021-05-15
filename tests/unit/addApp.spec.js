@@ -7,3 +7,10 @@ describe('LandingPage', () => {
         expect(wrapper.text()).toMatch(/available appointment times/);
     });
 });
+
+describe('LandingPage', () => {
+    it("has text containing 'Find all'", () => {
+        const wrapper = mount(LandingPage);
+        expect(wrapper.text()).toMatch(/Find all/);
+    });
+});

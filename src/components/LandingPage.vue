@@ -313,14 +313,24 @@ export default {
             let calendar = this.personToggle
                 ? this.calendar1Computed['c']
                 : this.calendar2Computed['c'];
+
+            let minAppStart = this.militaryToMinutes(this.appStart);
+            let minAppEnd = this.militaryToMinutes(this.appEnd);
             if (startTime > endTime) {
                 this.message =
                     'You must end your day later then you start your day';
                 return;
             }
             if (this.appStart > this.appEnd) {
+                console.log('appStart', this.appStart, 'appEnd', this.appEnd)
                 this.message =
                     'Appointment End Time must be later then appointment Start Time';
+                return;
+            }
+            if (minAppEnd < (minAppStart + 15)) {
+                console.log('minAppStart', minAppStart, 'minAppEnd', minAppEnd)
+                this.message =
+                    'Appointments must be at least 15 minutes long';
                 return;
             }
             if (
