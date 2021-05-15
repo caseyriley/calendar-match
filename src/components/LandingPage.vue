@@ -432,7 +432,7 @@ export default {
                             // if cal has no length
                             // if new appointment end time is after current appointment start time but before current appointment end time
                             if (
-                                minAppEnd > app[0] &&
+                                minAppEnd >= app[0] &&
                                 minAppEnd < app[1]
                             ) {
                                 console.log('if 2 B.1');
@@ -449,11 +449,11 @@ export default {
                                 console.log('if 2 B.2 end');
                             } else {
                                 //if new appointment end time is before current appointment start time
-                                console.log('if 2 B.3');
+                                console.log('if 2 B.4');
                                 cal.push([minAppStart, minAppEnd]);
                                 pushed = true;
                                 i--;
-                                console.log('if 2 B.3 end');
+                                console.log('if 2 B.5');
                             }
                         }
                     } else if (
