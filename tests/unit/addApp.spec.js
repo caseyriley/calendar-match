@@ -1,4 +1,4 @@
-import {mount, shallowMount} from '@vue/test-utils';
+import { mount, shallowMount } from '@vue/test-utils';
 import LandingPage from '@/components/LandingPage';
 
 describe('LandingPage', () => {
