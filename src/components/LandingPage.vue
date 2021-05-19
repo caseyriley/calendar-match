@@ -407,30 +407,34 @@ export default {
                                     //if new appointment end time is at least then next appointment end time
                                     minAppEnd >= app[1]
                                 ) {
-                                    if (
-                                        minAppStart ===
-                                        cal[cal.length - 1][0]
-                                    ) {
-                                        //if new appointment start time is equal to previous appointment start time
-                                        console.log('if 2 A.1.2');
-                                        const prev = cal.pop();
-                                        cal.push([
-                                            prev[0],
-                                            minAppEnd,
-                                        ]);
-                                        cal.push([
-                                            minAppStart,
-                                            minAppEnd,
-                                        ]);
-                                        pushed = true;
-                                    } else {
-                                        console.log('if 2 A.1.3');
-                                        cal.push([
-                                            minAppStart,
-                                            minAppEnd,
-                                        ]);
-                                        pushed = true;
-                                    }
+                                    console.log('if 2 A.1.2');
+                                    const prev = cal.pop();
+                                    cal.push([prev[0], minAppEnd]);
+                                    // if (
+                                    //     minAppStart ===
+                                    //     cal[cal.length - 1][0]
+                                    // ) {
+                                    //     //if new appointment start time is equal to previous appointment start time
+                                    //     console.log('if 2 A.1.2');
+                                    //     const prev = cal.pop();
+                                    //     cal.push([
+                                    //         prev[0],
+                                    //         minAppEnd,
+                                    //     ]);
+                                    //     // cal.push([
+                                    //     //     minAppStart,
+                                    //     //     minAppEnd,
+                                    //     // ]);
+                                    //     pushed = true;
+                                    // } else {
+                                    //     console.log('if 2 A.1.3');
+                                    //     console.log('minAppStart in 2 A.1.3', minAppStart)
+                                    //     cal.push([
+                                    //         minAppStart,
+                                    //         minAppEnd,
+                                    //     ]);
+                                    //     pushed = true;
+                                    // }
                                 } else {
                                     console.log('if 2 A.1.4');
                                     const prev = cal.pop();
