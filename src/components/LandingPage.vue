@@ -22,6 +22,7 @@
                 type="number"
                 min="0"
                 max="1440"
+                data-test="meetingDuration"
             />
         </label>
 
@@ -31,7 +32,7 @@
             <h2 class="person-one-name">{{ name1 }}</h2>
             <label>
                 What is person one's name?
-                <input v-model="name1" />
+                <input v-model="name1" data-test="name1" />
             </label>
             <label>
                 When does
@@ -41,7 +42,7 @@
                         : name1
                 }}
                 begin thier day?
-                <input v-model="startTime1" type="time" />
+                <input v-model="startTime1" type="time" data-test="startTime1" />
                 <span v-if="reqStartTime['req']" class="required"
                     >*</span
                 >
@@ -54,7 +55,7 @@
                         : name1
                 }}
                 end thier day?
-                <input v-model="endTime1" type="time" />
+                <input v-model="endTime1" type="time" data-test="endTime1"/>
                 <span v-if="reqEndTime['req']" class="required"
                     >*</span
                 >
@@ -90,7 +91,9 @@
                 >
             </label>
             <span class="message">{{ message }}</span>
-            <div class="app-submit" v-on:click="addApp1">Submit</div>
+            <button class="app-submit" v-on:click="addApp1">
+                Submit
+            </button>
             <span v-if="required1" class="required"
                 >please complete required fields *</span
             >
@@ -168,7 +171,7 @@
         <!-- </transition> -->
         <!-- --------------------- -->
         <div class="calendar-c">
-            <div class="timeline-c" key="0">
+            <div class="timeline-c" data-test="button" key="0">
                 <timeline
                     v-if="startTime1"
                     :key="calKey1"
