@@ -1,7 +1,6 @@
 import { mount, shallowMount } from '@vue/test-utils';
 import LandingPage from '@/components/LandingPage';
 
-
 describe('LandingPage', () => {
     it("has text containing 'available appointment times'", () => {
         const wrapper = shallowMount(LandingPage);
@@ -14,12 +13,6 @@ describe('LandingPage', () => {
     });
 
     it('LandingPage renders timeline with 3 appointments', async () => {
-        // const meetingDuration = 30;
-        // const name1 = 'Casey';
-        // const startTime1 = '05:00';
-        // const endTime1 = '22:00';
-        // const appStart = '14:00';
-        // const appEnd = '15:00';
         const wrapper = mount(LandingPage, {
             // props: {
             //     meetingDuration,
@@ -30,24 +23,31 @@ describe('LandingPage', () => {
             //     appEnd,
             // },
         });
-        // const meetingDuration = wrapper.get(
-        //     '[data-test="meetingDutation"]'
-        // );
-        // const name1 = wrapper.get('[data-test="name1"]');
-        // const startTime1 = wrapper.get('[data-test="startTime1"]');
-        // const endTime1 = wrapper.get('[data-test="endTime1"]');
-        // const appStart = wrapper.get('[data-test="appStart"]');
-        // const appEnd = wrapper.get('[data-test="appEnd"]');
 
-        await wrapper.find("[data-test='name1']").setValue("Casey");
+        const button = wrapper.get('button');
+
+        await wrapper
+            .find("[data-test='meetingDuration']")
+            .setValue(30);
+        await wrapper.find("[data-test='name1']").setValue('Casey');
+        await wrapper
+            .find("[data-test='startTime1']")
+            .setValue('05:00');
+        await wrapper
+            .find("[data-test='endTime1']")
+            .setValue('22:00');
+        await wrapper
+            .find("[data-test='appStart']")
+            .setValue('14:00');
+        await wrapper.find("[data-test='appEnd']").setValue('15:00');
+
+        await button.trigger('click');
+
+        const timelineName = wrapper.get(
+            '[data-test="timeline-name"]'
+        );
+
         expect(wrapper.text()).toMatch(/Casey/);
-        // const button = wrapper.get('button');
-        // const timeline = wrapper.get('[data-test="button"]')
-        // await button.trigger('click');
-        // expect(name1.text()).toMatch(/Casey/);
-        // expect(button.text()).toMatch(/Submit/);
-        // expect(timeline.text()).toMatch(
-        //     /CaseyStart Time5:00 am5:00 am - 2:00 pm2:00 pm - 3:00 pm3:00 pm - 10:00 pmEnd Time10:00 pm/
-        // );
+        expect(timelineName.text()).toMatch(/Casey/);
     });
 });

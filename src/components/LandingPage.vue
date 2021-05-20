@@ -78,14 +78,14 @@
             </h2>
             <label>
                 Appointment start time
-                <input v-model="appStart" type="time" />
+                <input v-model="appStart" type="time" data-test="appStart"/>
                 <span v-if="reqAppStart['req']" class="required"
                     >*</span
                 >
             </label>
             <label>
                 Appointment end time
-                <input v-model="appEnd" type="time" />
+                <input v-model="appEnd" type="time" data-test="appEnd"/>
                 <span v-if="reqAppEnd['req']" class="required"
                     >*</span
                 >

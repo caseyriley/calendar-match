@@ -1,6 +1,6 @@
 <template>
     <div class="timeline" v-if="calendar.length">
-        <span class="name">{{ name }}</span>
+        <span class="name" data-test="timeline-name">{{ name }}</span>
         <start v-if="startTime" :startTime="startTime"></start>
         <first-break
             v-if="startTime < calendar[0][0]"
