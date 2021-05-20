@@ -368,7 +368,6 @@ export default {
                 // calendar1.length < 1
                 console.log('calendar1.length < 1');
                 calendar.push([minAppStart, minAppEnd]);
-                // this.calendar1.push(['05:00', '06:00']);
             } else {
                 for (let i = 0; i < calendar.length; i++) {
                     let app = calendar[i];
@@ -390,7 +389,7 @@ export default {
                         if (cal.length) {
                             // if cal.length
                             if (
-                                //if new appointment start time is less than prev appointment end time
+                                //if new appointment start time is less than or equal to prev appointment end time
                                 minAppStart <= calendar[i - 1][1]
                             ) {
                                 console.log('if 2 A.1');
@@ -410,31 +409,6 @@ export default {
                                     console.log('if 2 A.1.2');
                                     const prev = cal.pop();
                                     cal.push([prev[0], minAppEnd]);
-                                    // if (
-                                    //     minAppStart ===
-                                    //     cal[cal.length - 1][0]
-                                    // ) {
-                                    //     //if new appointment start time is equal to previous appointment start time
-                                    //     console.log('if 2 A.1.2');
-                                    //     const prev = cal.pop();
-                                    //     cal.push([
-                                    //         prev[0],
-                                    //         minAppEnd,
-                                    //     ]);
-                                    //     // cal.push([
-                                    //     //     minAppStart,
-                                    //     //     minAppEnd,
-                                    //     // ]);
-                                    //     pushed = true;
-                                    // } else {
-                                    //     console.log('if 2 A.1.3');
-                                    //     console.log('minAppStart in 2 A.1.3', minAppStart)
-                                    //     cal.push([
-                                    //         minAppStart,
-                                    //         minAppEnd,
-                                    //     ]);
-                                    //     pushed = true;
-                                    // }
                                 } else {
                                     console.log('if 2 A.1.4');
                                     const prev = cal.pop();
@@ -444,7 +418,7 @@ export default {
                                 }
                             } else {
                                 //if new appointment start time is greater than prev appointment end time
-                                console.log('if 2 A.4');
+                                console.log('if 2 A.5');
                                 cal.push([minAppStart, minAppEnd]);
                                 pushed = true;
                                 i--;
@@ -498,15 +472,27 @@ export default {
                             const prev = cal.pop();
                             cal.push([prev[0], app[1]]);
                         } else if (
+                            cal[cal.length - 1][1] === minAppStart &&
+                            minAppEnd === app[0]
+                        ) {
+                            //if the new appointment start time is equal to the previous appointment end time and the new appointment end time is equal to the current appointment start time
+                            console.log('if 3.3');
+                            let prev = cal.pop();
+                            cal.push([prev[0], app[1]]);
+                        } else if (
                             //if the new appointment end time is equal to the last appointment start time
                             minAppEnd === app[0]
                         ) {
-                            console.log('if 3.3');
+                            console.log('if 3.4');
+                            console.log(
+                                'cal[cal.length - 1][1]',
+                                cal[cal.length - 1][1]
+                            );
                             cal.pop();
                             cal.push([minAppStart, app[1]]);
                         } else {
                             //if the last appointment end time is greater then the current appointment end time
-                            console.log('if 3.4');
+                            console.log('if 3.5');
                             continue;
                         }
                     }
