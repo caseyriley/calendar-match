@@ -42,7 +42,11 @@
                         : name1
                 }}
                 begin thier day?
-                <input v-model="startTime1" type="time" data-test="startTime1" />
+                <input
+                    v-model="startTime1"
+                    type="time"
+                    data-test="startTime1"
+                />
                 <span v-if="reqStartTime['req']" class="required"
                     >*</span
                 >
@@ -55,7 +59,11 @@
                         : name1
                 }}
                 end thier day?
-                <input v-model="endTime1" type="time" data-test="endTime1"/>
+                <input
+                    v-model="endTime1"
+                    type="time"
+                    data-test="endTime1"
+                />
                 <span v-if="reqEndTime['req']" class="required"
                     >*</span
                 >
@@ -78,14 +86,22 @@
             </h2>
             <label>
                 Appointment start time
-                <input v-model="appStart" type="time" data-test="appStart"/>
+                <input
+                    v-model="appStart"
+                    type="time"
+                    data-test="appStart"
+                />
                 <span v-if="reqAppStart['req']" class="required"
                     >*</span
                 >
             </label>
             <label>
                 Appointment end time
-                <input v-model="appEnd" type="time" data-test="appEnd"/>
+                <input
+                    v-model="appEnd"
+                    type="time"
+                    data-test="appEnd"
+                />
                 <span v-if="reqAppEnd['req']" class="required"
                     >*</span
                 >
@@ -171,7 +187,7 @@
         <!-- </transition> -->
         <!-- --------------------- -->
         <div class="calendar-c">
-            <div class="timeline-c" data-test="button" key="0">
+            <div class="timeline-c" key="0">
                 <timeline
                     v-if="startTime1"
                     :key="calKey1"
@@ -190,6 +206,7 @@
                     :calendar="[...calendar1Computed['c']]"
                     :calNum="1"
                     @delete-app="deleteApp"
+                    data-test="timeline"
                 >
                 </timeline>
 
