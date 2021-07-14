@@ -19,7 +19,6 @@
 
 <script>
 import Break from '@/components/Break.vue';
-// import Break from './Break.vue';
 export default {
     name: 'Appointment',
     props: ['key', 'index', 'calendar', 'calNum', 'endTime'],
@@ -179,7 +178,6 @@ export default {
     width: 100%;
     background-color: $color-2;
     display: flex;
-    // flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: scroll;
