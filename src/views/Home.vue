@@ -10,7 +10,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 import LandingPage from '@/components/LandingPage.vue';
 
 export default {
@@ -37,8 +37,6 @@ export default {
         height: 150px;
         filter: hue-rotate(40deg);
         margin: 30px 0px 0px 0px;
-        // border-radius: 0px;
-        // box-shadow: 4px 4px 9px 2px rgba(73, 4, 4, 0.25);
     }
 }
 </style>
